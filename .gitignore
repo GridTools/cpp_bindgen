@@ -1,0 +1,66 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*~
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+*.exe
+
+CMakeFiles/
+CTestTestfile.cmake
+Makefile
+cmake_install.cmake
+
+include/workarounds/
+unit_tests/CMakeFiles/
+unit_tests/CTestTestfile.cmake
+unit_tests/Makefile
+unit_tests/cmake_install.cmake
+/build/
+/interface1_block.exe.stackdump
+
+# ignore everything in the root folder
+/*
+!LICENSE
+!test_compilation.sh
+!CmakeLists.txt
+!README.md
+*stackdump
+core
+
+!include
+
+# except
+!cmake
+!docs
+!examples
+!experimental
+!include
+!jenkins
+!python
+!src
+!tools
+!unit_tests
+!.clang-format
+!.gitignore
+!CMakeLists.txt
+!Doxyfile.in
+!GridToolsConfig.cmake.in
+!GridToolsConfigVersion.cmake.in
+!index.html
+!LICENSE
+!mainpage.dox
+!README.md
+!Vagrant_bootstrap.sh
+!Vagrantfile
+# Ignore CI build directory
+build/
