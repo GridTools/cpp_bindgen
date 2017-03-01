@@ -15,11 +15,6 @@
 
 *.exe
 
-CMakeFiles/
-CTestTestfile.cmake
-Makefile
-cmake_install.cmake
-
 include/workarounds/
 unit_tests/CMakeFiles/
 unit_tests/CTestTestfile.cmake
