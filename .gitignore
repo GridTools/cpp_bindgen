@@ -23,6 +23,10 @@ unit_tests/cmake_install.cmake
 /build/
 /interface1_block.exe.stackdump
 
+# Python temporary files
+__pycache__
+*.pyc
+
 # ignore everything in the root folder
 /*
 !LICENSE
@@ -41,6 +45,7 @@ core
 !experimental
 !include
 !jenkins
+!pyutils
 !python
 !src
 !tools
