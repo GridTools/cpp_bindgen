@@ -42,7 +42,6 @@ core
 !cmake
 !docs
 !examples
-!experimental
 !include
 !jenkins
 !pyutils
