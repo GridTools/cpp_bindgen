@@ -65,3 +65,4 @@ core
 !Vagrantfile
 # Ignore CI build directory
 build/
+!version.txt
