@@ -1,168 +1,57 @@
-gridtools
-=========
+<a href="https://GridTools.github.io/gridtools"><img src="docs/_static/logo.svg"/></a>
+<br/><br/>
+<a target="_blank" href="https://opensource.org/licenses/BSD-3-Clause">![License: BSD][BSD.License]</a>
 
-Design project for a C++ library for applications on regular or block regular grids, like PDE solvers.
+The GridTools framework is a set of libraries and utilities to develop performance portable applications in the area of weather and climate. To achieve the goal of performance portability, the user-code is written in a generic form which is then optimized for a given architecture at compile-time. The core of GridTools is the stencil composition module which implements a DSL embedded in C++ for stencils and stencil-like patterns. Further, GridTools provides modules for halo exchanges, boundary conditions, data management and bindings to C and Fortran.
 
-Coding conventions
-==================
+GridTools is successfully used to accelerate the dynamical core of the [COSMO model](http://cosmo-model.org/) with improved performance on CUDA-GPUs compared to the current official version, demonstrating production quality and feature-completeness of the library for models on lat-lon grids.
 
-the coding conventions follow those implemented by Boost.
-* The object member names are lowercase, start with 'm_' and each word is split with an underscore (m_class_member)
-* The static object member names are lowercase, start with 's_' and each word is split with an underscore (s_static_member)
-* the object names are lowercase and and each word is split with an underscore (class_name)
-* the template arguments have the first letter of each word capitalized, no underscores (TemplateArgument)
-* the local variables are lowercase and the words are separated by underscores (same as for object names, well, it's not easy mistake them)
-* the typedef names are lowercase, words separated by underscores, and they end with _t (some_def_t)
-* the class methods and all the functions follow the same convention: lowercase, words separated by underscores
-* enum types follow the convention of the object names, but are defined inside the enumtype namespace (enumtype::some_id)
+Although GridTools was developed for weather and climate applications it might be applicable for other domains with a focus on stencil-like computations.
 
-# Google Test #
+A detailed introduction can be found in the [documentation](https://GridTools.github.io/gridtools).
 
-[![Build Status](https://travis-ci.org/google/googletest.svg?branch=master)](https://travis-ci.org/google/googletest)
-[![Build status](https://ci.appveyor.com/api/projects/status/4o38plt0xbo1ubc8/branch/master?svg=true)](https://ci.appveyor.com/project/BillyDonahue/googletest/branch/master)
+### Installation instructions
 
-Welcome to **Google Test**, Google's C++ test framework!
+```
+git clone https://github.com/GridTools/gridtools.git
+cd gridtools
+mkdir -p build && cd build
+cmake ..
+make -j8
+make test
+```
+##### Requirements
 
-This repository is a merger of the formerly separate GoogleTest and
-GoogleMock projects. These were so closely related that it makes sense to
-maintain and release them together.
+- Boost (1.65.1 or later)
+- CMake (3.12.4 or later)
+- CUDA Toolkit (8.0 or later, optional)
 
-Please see the project page above for more information as well as the
-mailing list for questions, discussions, and development.  There is
-also an IRC channel on OFTC (irc.oftc.net) #gtest available.  Please
-join us!
+### Supported compilers
 
-Getting started information for **Google Test** is available in the 
-[Google Test Primer](googletest/docs/Primer.md) documentation.
+The GridTools libraries are currently nightly tested with the following compilers on [CSCS supercomputers](https://www.cscs.ch/computers/overview/).
 
-**Google Mock** is an extension to Google Test for writing and using C++ mock
-classes.  See the separate [Google Mock documentation](googlemock/README.md).
+| Compiler | Backend | Tested on |
+| --- | --- | --- |
+| NVCC 9.2 with GNU 5.3 | cuda | Piz Daint |
+| NVCC 9.2 with Clang 3.8.1 | cuda | Piz Daint |
+| GNU 7.3.0 | x86, mc | Piz Daint |
+| Clang 7.0.1 | x86, mc | Piz Daint |
+| NVCC 8.0 with GNU 5.4.0 | cuda | Piz Kesch |
 
-More detailed documentation for googletest (including build instructions) are
-in its interior [googletest/README.md](googletest/README.md) file.
+##### Known issues
 
-## Features ##
+- Intel is able to compile GridTools code, but depending on user code, might have severe performance problems compared to GNU- or Clang-compiled code.
 
-  * An [XUnit](https://en.wikipedia.org/wiki/XUnit) test framework.
-  * Test discovery.
-  * A rich set of assertions.
-  * User-defined assertions.
-  * Death tests.
-  * Fatal and non-fatal failures.
-  * Value-parameterized tests.
-  * Type-parameterized tests.
-  * Various options for running the tests.
-  * XML test report generation.
+##### Officially not supported (no workarounds implemented and planned)
 
-## Platforms ##
+| Compiler | Backend | Date | Comments
+| --- | --- | --- | --- |
+| NVCC <= 9.1 with GNU 6.x | cuda | 2018-10-16 | similar to [this tuple bug](https://devtalk.nvidia.com/default/topic/1028112/cuda-setup-and-installation/nvcc-bug-related-to-gcc-6-lt-tuple-gt-header-/)
+| PGI 18.5 | x86 | 2018-12-06 | no effort to fix compilation
+| Cray 8.7.3 | x86 | 2018-12-06 | no effort to fix compilation
 
-Google test has been used on a variety of platforms:
+### Contributing
 
-  * Linux
-  * Mac OS X
-  * Windows
-  * Cygwin
-  * MinGW
-  * Windows Mobile
-  * Symbian
+Contributions to the GridTools framework are welcome. Please open an issue for any bugs that you encounter or provide a fix or enhancement as a PR. External contributions to GridTools require us a signed copy of a copyright release form to ETH Zurich. We will contact you on the PR.
 
-## Who Is Using Google Test? ##
-
-In addition to many internal projects at Google, Google Test is also used by
-the following notable projects:
-
-  * The [Chromium projects](http://www.chromium.org/) (behind the Chrome
-    browser and Chrome OS).
-  * The [LLVM](http://llvm.org/) compiler.
-  * [Protocol Buffers](https://github.com/google/protobuf), Google's data
-    interchange format.
-  * The [OpenCV](http://opencv.org/) computer vision library.
-
-## Related Open Source Projects ##
-
-[Google Test UI](https://github.com/ospector/gtest-gbar) is test runner that runs
-your test binary, allows you to track its progress via a progress bar, and
-displays a list of test failures. Clicking on one shows failure text. Google
-Test UI is written in C#.
-
-[GTest TAP Listener](https://github.com/kinow/gtest-tap-listener) is an event
-listener for Google Test that implements the
-[TAP protocol](https://en.wikipedia.org/wiki/Test_Anything_Protocol) for test
-result output. If your test runner understands TAP, you may find it useful.
-
-## Requirements ##
-
-Google Test is designed to have fairly minimal requirements to build
-and use with your projects, but there are some.  Currently, we support
-Linux, Windows, Mac OS X, and Cygwin.  We will also make our best
-effort to support other platforms (e.g. Solaris, AIX, and z/OS).
-However, since core members of the Google Test project have no access
-to these platforms, Google Test may have outstanding issues there.  If
-you notice any problems on your platform, please notify
-<googletestframework@googlegroups.com>. Patches for fixing them are
-even more welcome!
-
-### Linux Requirements ###
-
-These are the base requirements to build and use Google Test from a source
-package (as described below):
-
-  * GNU-compatible Make or gmake
-  * POSIX-standard shell
-  * POSIX(-2) Regular Expressions (regex.h)
-  * A C++98-standard-compliant compiler
-
-### Windows Requirements ###
-
-  * Microsoft Visual C++ v7.1 or newer
-
-### Cygwin Requirements ###
-
-  * Cygwin v1.5.25-14 or newer
-
-### Mac OS X Requirements ###
-
-  * Mac OS X v10.4 Tiger or newer
-  * Xcode Developer Tools
-
-### Requirements for Contributors ###
-
-We welcome patches.  If you plan to contribute a patch, you need to
-build Google Test and its own tests from a git checkout (described
-below), which has further requirements:
-
-  * [Python](https://www.python.org/) v2.3 or newer (for running some of
-    the tests and re-generating certain source files from templates)
-  * [CMake](https://cmake.org/) v2.6.4 or newer
-
-## Regenerating Source Files ##
-
-Some of Google Test's source files are generated from templates (not
-in the C++ sense) using a script.
-For example, the
-file include/gtest/internal/gtest-type-util.h.pump is used to generate
-gtest-type-util.h in the same directory.
-
-You don't need to worry about regenerating the source files
-unless you need to modify them.  You would then modify the
-corresponding `.pump` files and run the '[pump.py](googletest/scripts/pump.py)'
-generator script.  See the [Pump Manual](googletest/docs/PumpManual.md).
-
-### Contributing Code ###
-
-We welcome patches.  Please read the
-[Developer's Guide](googletest/docs/DevGuide.md)
-for how you can contribute. In particular, make sure you have signed
-the Contributor License Agreement, or we won't be able to accept the
-patch.
-
-Happy testing!
-
-Unit test naming conventions
-==================
-* the unit test folder structure has to match the code folder structure (e.g., a unit test for some element in `gridtools/include/storage/` has to be placed in `gridtools/unit_tests/storage/`)
-* the unit test file name has to match following regex ```/(test)(_cxx11)?([a-z|A-Z|0-9|_]*)((\.cpp|\.cu))```
-* cuda unit test file extension is `.cu`. host unit test file extension is `.cpp`
-* as described in the regular expression cxx11 tests have to be named like `test_cxx11_<testname>.<cpp|cu>`
-* the cmakelists mustn't be modified. tests are discovered automatically if named correctly.
-* if you have a very special test case put it into examples or in case it really has to be in the unit_test folder discuss with the gridtools members how to proceed.
+[BSD.License]: https://img.shields.io/badge/License-BSD--3--Clause-blue.svg
