@@ -10,3 +10,6 @@ find_dependency(Boost @REQUIRED_BOOST_VERSION@)
 set_and_check(gt_c_bindings_MODULE_PATH @PACKAGE_gt_c_bindings_MODULE_PATH@)
 set_and_check(gt_c_bindings_SOURCES_PATH @PACKAGE_gt_c_bindings_SOURCES_PATH@)
 set_and_check(gt_c_bindings_INCLUDE_PATH @PACKAGE_gt_c_bindings_INCLUDE_PATH@)
+
+list(APPEND CMAKE_MODULE_PATH "${gt_c_bindings_MODULE_PATH}")
+include(gt_bindings)

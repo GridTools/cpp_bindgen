@@ -14,8 +14,6 @@
 #include <typeinfo>
 #include <utility>
 
-//#include "generic_metafunctions/utility.hpp"
-
 namespace gridtools {
 
     struct bad_any_cast : std::bad_cast {

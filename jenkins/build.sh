@@ -30,11 +30,21 @@ elif [[ "$HOST" == daint* ]]; then
     export BOOST_ROOT=/project/c14/install/daint/boost/boost_1_67_0
     export CUDA_ARCH=sm_60
 else
-    echo "Host $HOST is not supported!"
-    exit 1
+    echo "Unknown host ${HOST}, using current environment."
 fi
 
+cwd=$(pwd)
+
+# install c_bindings
 mkdir -p build && cd build
-cmake ..
-nice -15 make -j8
+cmake .. -DCMAKE_INSTALL_PREFIX=${cwd}/install
+nice -15 make -j8 install
 ctest .
+
+# compile examples using the installation
+cd ${cwd}/example/simple
+mkdir -p build && cd build
+cmake .. -Dgt_c_bindings_DIR=${cwd}/install/lib/cmake
+nice -15 make -j8
+./driver
+
