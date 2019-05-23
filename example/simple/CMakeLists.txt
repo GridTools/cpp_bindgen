@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.12.4) #TODO replace with generated version
 project(simple_example LANGUAGES CXX C Fortran)
-#TODO add comments
 
 # 1) find installed c_bindings version
 find_package(gt_c_bindings)
