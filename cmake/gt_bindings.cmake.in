@@ -36,9 +36,11 @@ set(BINDINGS_INCLUDE_DIR @BINDINGS_INCLUDE_DIR@)
 add_library(c_bindings_generator ${BINDINGS_SOURCE_DIR}/c_bindings/generator.cpp)
 # PUBLIC to make export.hpp available in the sources passed to add_bindings_library()
 target_include_directories(c_bindings_generator PUBLIC ${BINDINGS_INCLUDE_DIR})
+target_compile_features(c_bindings_generator PUBLIC cxx_std_11)
 
 add_library(c_bindings_handle ${BINDINGS_SOURCE_DIR}/c_bindings/handle.cpp)
 target_include_directories(c_bindings_handle PRIVATE ${BINDINGS_INCLUDE_DIR})
+target_compile_features(c_bindings_handle PRIVATE cxx_std_11)
 
 # gt_enable_bindings_library_fortran()
 #
