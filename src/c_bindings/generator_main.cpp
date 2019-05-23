@@ -11,7 +11,7 @@
 #include <fstream>
 #include <iostream>
 
-#include <gridtools/c_bindings/generator.hpp>
+#include <c_bindings/generator.hpp>
 
 int main(int argc, const char *argv[]) {
     if (argc > 3) {

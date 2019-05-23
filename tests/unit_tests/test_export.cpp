@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#include <gridtools/c_bindings/export.hpp>
+#include <c_bindings/export.hpp>
 
 #include <functional>
 #include <sstream>
@@ -16,7 +16,7 @@
 
 #include <gtest/gtest.h>
 
-#include <gridtools/c_bindings/handle.h>
+#include <c_bindings/handle.h>
 
 namespace {
 
