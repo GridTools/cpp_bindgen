@@ -81,7 +81,7 @@ namespace {
         EXPECT_FALSE(my_empty(obj));
         EXPECT_EQ(42, my_top(obj));
         my_pop(obj);
-        EXPECT_FALSE(my_empty(obj));
+        EXPECT_TRUE(my_empty(obj));
         gt_release(obj);
     }
 
