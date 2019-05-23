@@ -1,10 +1,8 @@
 cmake_minimum_required(VERSION 3.12.4) #TODO replace with generated version
-
 project(simple_example LANGUAGES CXX C Fortran)
+#TODO add comments
 
-find_package(gt_c_bindings)
-
-# 3) find installed GridTools version
+# 3) find installed c_bindings version
 find_package(gt_c_bindings)
    # @GridTools_VERSION@ REQUIRED
    # HINTS @CMAKE_INSTALL_PREFIX@/lib/cmake)

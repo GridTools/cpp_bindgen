@@ -8,6 +8,9 @@ list (APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 include(CTest)
 
+set(REQUIRED_BOOST_VERSION 1.58)
+find_package( Boost ${REQUIRED_BOOST_VERSION} REQUIRED )
+
 include(bindings)
 
 if (BUILD_TESTING)
