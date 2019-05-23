@@ -1,3 +1,6 @@
-# collect all tests in current folder
-fetch_x86_tests(. LABELS unittest_x86)
-fetch_gpu_tests(. LABELS unittest_cuda)
+#TODO enable CUDA tests
+
+compile_test(test_export test_export.cpp)
+compile_test(test_fortran_array_view test_fortran_array_view.cpp)
+compile_test(test_function_wrapper test_function_wrapper.cpp)
+compile_test(test_generator test_generator.cpp)

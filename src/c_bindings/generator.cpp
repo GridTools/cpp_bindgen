@@ -8,8 +8,8 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#include <gridtools/c_bindings/generator.hpp>
-#include <gridtools/common/gt_assert.hpp>
+#include <c_bindings/generator.hpp>
+#include <cassert>
 
 namespace gridtools {
     namespace c_bindings {
@@ -110,7 +110,7 @@ namespace gridtools {
         } // namespace _impl
 
         std::string wrap_line(const std::string &line, const std::string &prefix) {
-            static constexpr uint_t max_line_length = 132;
+            static constexpr unsigned int max_line_length = 132;
             const std::string line_divider = " &";
             std::string ret = "";
             std::string current_prefix = prefix;
@@ -120,7 +120,8 @@ namespace gridtools {
                 auto next_it = it + max_line_length - line_divider.size() - current_prefix.size();
                 while (*(next_it - 1) != ',') {
                     --next_it;
-                    GT_ASSERT_OR_THROW(next_it != line.begin() + 1, "Too long line cannot be wrapped");
+                    if (next_it == line.begin() + 1)
+                        throw std::runtime_error("Too long line cannot be wrapped");
                 }
 
                 ret.append(current_prefix);

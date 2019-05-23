@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#include <gridtools/c_bindings/fortran_array_view.hpp>
+#include <c_bindings/fortran_array_view.hpp>
 
 #include <gtest/gtest.h>
 

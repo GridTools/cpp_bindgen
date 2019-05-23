@@ -6,10 +6,12 @@ unset(__C_BINDINGS_VERSION)
 
 list (APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
-#include (bindings)
+include(CTest)
+
+include(bindings)
 
 if (BUILD_TESTING)
     add_subdirectory(tests)
 endif()
 
-#include(export)
+include(export)

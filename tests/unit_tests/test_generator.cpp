@@ -8,8 +8,8 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#include <gridtools/c_bindings/generator.hpp>
-#include <gridtools/c_bindings/handle_impl.hpp>
+#include <c_bindings/generator.hpp>
+#include <c_bindings/handle_impl.hpp>
 
 #include <sstream>
 

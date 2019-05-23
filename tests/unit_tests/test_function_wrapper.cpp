@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#include <gridtools/c_bindings/function_wrapper.hpp>
+#include <c_bindings/function_wrapper.hpp>
 
 #include <iostream>
 #include <stack>
@@ -16,7 +16,7 @@
 
 #include <gtest/gtest.h>
 
-#include <gridtools/c_bindings/handle.h>
+#include <c_bindings/handle.h>
 
 namespace gridtools {
     namespace c_bindings {
@@ -108,7 +108,7 @@ namespace gridtools {
             void inc(int &val) { ++val; }
 
             TEST(wrap, const_expr) {
-                GT_CONSTEXPR auto wrapped_inc = wrap(inc);
+                constexpr auto wrapped_inc = wrap(inc);
                 int i = 41;
                 wrapped_inc(&i);
                 EXPECT_EQ(42, i);
