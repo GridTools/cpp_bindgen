@@ -37,5 +37,4 @@ fi
 mkdir -p build && cd build
 cmake ..
 nice -15 make -j8
-make test
-
+ctest .
