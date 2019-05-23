@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# Abort on error
+set -e
 
 HOST=$(hostname)
 
