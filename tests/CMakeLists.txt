@@ -17,6 +17,7 @@ function(compile_test name src)
     target_link_libraries(${name} PRIVATE gtest_main)
     target_link_libraries(${name} PRIVATE c_bindings_handle)
     target_link_libraries(${name} PRIVATE c_bindings_generator)
+    add_test(${name})
 endfunction()
 
 enable_testing()
