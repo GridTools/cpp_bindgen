@@ -10,3 +10,4 @@ gt_add_bindings_library(simple SOURCES simple.cpp)
 # 3) link the library to a fortran executable
 add_executable(driver driver.f90)
 target_link_libraries(driver simple_fortran)
+
