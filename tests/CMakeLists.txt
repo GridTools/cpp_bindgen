@@ -1,10 +1,17 @@
 include(FetchContent)
+option(INSTALL_GTEST OFF)
+mark_as_advanced(INSTALL_GTEST)
 FetchContent_Declare(
   googletest
   GIT_REPOSITORY https://github.com/google/googletest.git
   GIT_TAG        release-1.8.1
 )
-FetchContent_MakeAvailable(googletest)
+FetchContent_GetProperties(googletest)
+if(NOT googletest_POPULATED)
+  FetchContent_Populate(googletest)
+  add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
+endif()
+
 
 function(compile_test name src)
     add_executable(${name} ${src})
@@ -12,6 +19,7 @@ function(compile_test name src)
     target_link_libraries(${name} PRIVATE gtest_main)
     target_link_libraries(${name} PRIVATE c_bindings_handle)
     target_link_libraries(${name} PRIVATE c_bindings_generator)
+    add_test(NAME ${name} COMMAND ${name})
 endfunction()
 
 enable_testing()
