@@ -26,23 +26,25 @@
 #  - <library_name>_c the C-bindings with <library_name> linked to it
 #  - <library_name>_fortran the Fortran-bindings with <library_name> linked to it
 
-
 option(GT_ENABLE_BINDINGS_GENERATION "If turned off, bindings will not be generated." ON)
 
-set(BINDINGS_SOURCE_DIR @BINDINGS_SOURCE_DIR@)
-set(BINDINGS_CMAKE_DIR @BINDINGS_CMAKE_DIR@)
-set(BINDINGS_INCLUDE_DIR @BINDINGS_INCLUDE_DIR@)
+# variables are unset after use for scoping, they need to be redefined in the macros
+set(__C_BINDINGS_SOURCE_DIR @__C_BINDINGS_SOURCE_DIR@)
+set(__C_BINDINGS_INCLUDE_DIR @__C_BINDINGS_INCLUDE_DIR@)
 
-add_library(c_bindings_generator ${BINDINGS_SOURCE_DIR}/c_bindings/generator.cpp)
+add_library(c_bindings_generator ${__C_BINDINGS_SOURCE_DIR}/c_bindings/generator.cpp)
 # PUBLIC to make export.hpp available in the sources passed to add_bindings_library()
-target_include_directories(c_bindings_generator PUBLIC ${BINDINGS_INCLUDE_DIR})
+target_include_directories(c_bindings_generator PUBLIC ${__C_BINDINGS_INCLUDE_DIR})
 target_compile_features(c_bindings_generator PUBLIC cxx_std_11)
 target_link_libraries(c_bindings_generator PUBLIC Boost::boost)
 
-add_library(c_bindings_handle ${BINDINGS_SOURCE_DIR}/c_bindings/handle.cpp)
-target_include_directories(c_bindings_handle PRIVATE ${BINDINGS_INCLUDE_DIR})
+add_library(c_bindings_handle ${__C_BINDINGS_SOURCE_DIR}/c_bindings/handle.cpp)
+target_include_directories(c_bindings_handle PRIVATE ${__C_BINDINGS_INCLUDE_DIR})
 target_compile_features(c_bindings_handle PRIVATE cxx_std_11)
 target_link_libraries(c_bindings_generator PRIVATE Boost::boost) #TODO make an interface target for options
+
+unset(__C_BINDINGS_SOURCE_DIR)
+unset(__C_BINDINGS_INCLUDE_DIR)
 
 # gt_enable_bindings_library_fortran()
 #
@@ -52,9 +54,11 @@ target_link_libraries(c_bindings_generator PRIVATE Boost::boost) #TODO make an i
 # However if the user wants to use the target at a later stage, e.g. in testing (with Fortran enabled), the target can
 # be created by a call to gt_enable_bindings_library_fortran().
 macro(gt_enable_bindings_library_fortran target_name)
+    set(__C_BINDINGS_SOURCE_DIR @__C_BINDINGS_SOURCE_DIR@)
+
     if(CMAKE_Fortran_COMPILER_LOADED)
         if(NOT TARGET fortran_bindings_handle)
-            add_library(fortran_bindings_handle ${BINDINGS_SOURCE_DIR}/c_bindings/array_descriptor.f90 ${BINDINGS_SOURCE_DIR}/c_bindings/handle.f90)
+            add_library(fortran_bindings_handle ${__C_BINDINGS_SOURCE_DIR}/c_bindings/array_descriptor.f90 ${__C_BINDINGS_SOURCE_DIR}/c_bindings/handle.f90)
             target_link_libraries(fortran_bindings_handle PUBLIC c_bindings_handle)
             target_include_directories(fortran_bindings_handle PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
         endif()
@@ -69,6 +73,7 @@ macro(gt_enable_bindings_library_fortran target_name)
     elseif(NOT ${ARGN}) # internal: the second (optional) parameter can be used to surpress this fatal error
         message(FATAL_ERROR "Please enable_language(Fortran) to compile the Fortran bindings.")
     endif()
+    unset(__C_BINDINGS_SOURCE_DIR)
 endmacro()
 
 macro(gt_add_bindings_library target_name)
@@ -76,6 +81,9 @@ macro(gt_add_bindings_library target_name)
     set(one_value_args FORTRAN_OUTPUT_DIR C_OUTPUT_DIR FORTRAN_MODULE_NAME)
     set(multi_value_args SOURCES)
     cmake_parse_arguments(ARG "${options}" "${one_value_args};" "${multi_value_args}" ${ARGN})
+
+    set(__C_BINDINGS_SOURCE_DIR @__C_BINDINGS_SOURCE_DIR@)
+    set(__C_BINDINGS_CMAKE_DIR @__C_BINDINGS_CMAKE_DIR@)
 
     if(NOT DEFINED ARG_FORTRAN_MODULE_NAME)
         set(ARG_FORTRAN_MODULE_NAME ${target_name}) # default value
@@ -99,7 +107,7 @@ macro(gt_add_bindings_library target_name)
     if(GT_ENABLE_BINDINGS_GENERATION)
         # generator
         add_executable(${target_name}_decl_generator
-            ${BINDINGS_SOURCE_DIR}/c_bindings/generator_main.cpp)
+            ${__C_BINDINGS_SOURCE_DIR}/c_bindings/generator_main.cpp)
         set_target_properties(${target_name}_decl_generator PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles/decl_generator")
         target_link_libraries(${target_name}_decl_generator c_bindings_generator)
 
@@ -119,7 +127,7 @@ macro(gt_add_bindings_library target_name)
                 -DBINDINGS_C_DECL_FILENAME=${bindings_c_decl_filename}
                 -DBINDINGS_FORTRAN_DECL_FILENAME=${bindings_fortran_decl_filename}
                 -DFORTRAN_MODULE_NAME=${ARG_FORTRAN_MODULE_NAME}
-                -P ${BINDINGS_CMAKE_DIR}/gt_bindings_generate.cmake
+                -P ${__C_BINDINGS_CMAKE_DIR}/gt_bindings_generate.cmake
             BYPRODUCTS ${bindings_c_decl_filename} ${bindings_fortran_decl_filename}
             DEPENDS $<TARGET_FILE:${target_name}_decl_generator>)
     else()
@@ -145,4 +153,7 @@ macro(gt_add_bindings_library target_name)
     set(GT_${target_name}_fortran_bindings_path ${bindings_fortran_decl_filename}
         CACHE INTERNAL "Path to the generated Fortran file for ${target_name}")
     gt_enable_bindings_library_fortran(${target_name} TRUE)
+
+    unset(__C_BINDINGS_SOURCE_DIR)
+    unset(__C_BINDINGS_CMAKE_DIR)
 endmacro()
