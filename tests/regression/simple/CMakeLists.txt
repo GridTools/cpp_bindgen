@@ -1,6 +1,6 @@
-gt_add_bindings_library(simple SOURCES simple.cpp)
+gt_add_bindings_library(gen_regression_simple SOURCES simple.cpp)
 
-add_executable(driver driver.f90)
-target_link_libraries(driver simple_fortran)
+add_executable(gen_regression_simple_driver driver.f90)
+target_link_libraries(gen_regression_simple_driver gen_regression_simple_fortran)
 
-add_test(NAME driver COMMAND driver)
+add_test(NAME gen_regression_simple_driver COMMAND gen_regression_simple_driver)
