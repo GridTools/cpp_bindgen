@@ -38,13 +38,21 @@ cwd=$(pwd)
 # install c_bindings
 mkdir -p build && cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=${cwd}/install
-nice -15 make -j8 install
+nice make -j8 install
 ctest .
 
 # compile examples using the installation
+# simple example using installation
 cd ${cwd}/example/simple
 mkdir -p build && cd build
 cmake .. -Dgt_c_bindings_DIR=${cwd}/install/lib/cmake
-nice -15 make -j8
+nice make -j8
+./driver
+
+# simple example using FetchContent
+cd ${cwd}/example/simple_fetch_content
+mkdir -p build && cd build
+cmake ..
+nice make -j8
 ./driver
 
