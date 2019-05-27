@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.12.4) #TODO replace with generated version
 project(simple_example_with_fetch_content LANGUAGES CXX Fortran)
 
 # 1) fetch c_bindings from the repository
+# TODO: use FetchContent_MakeAvailable() once we require CMake 3.14+
 include(FetchContent)
 FetchContent_Declare(
   c_bindings
