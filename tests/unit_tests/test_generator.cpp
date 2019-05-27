@@ -29,8 +29,8 @@ namespace cpp_bindgen {
         const char expected_c_interface[] = R"?(// This file is generated!
 #pragma once
 
-#include <gridtools/c_bindings/array_descriptor.h>
-#include <gridtools/c_bindings/handle.h>
+#include <cpp_bindgen/array_descriptor.h>
+#include <cpp_bindgen/handle.h>
 
 #ifdef __cplusplus
 extern "C" {

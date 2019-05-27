@@ -81,6 +81,7 @@ function(cpp_bindgen_add_library target_name)
     set(multi_value_args SOURCES)
     cmake_parse_arguments(ARG "${options}" "${one_value_args};" "${multi_value_args}" ${ARGN})
 
+    set(__C_BINDINGS_INCLUDE_DIR @__C_BINDINGS_INCLUDE_DIR@)
     set(__C_BINDINGS_SOURCE_DIR @__C_BINDINGS_SOURCE_DIR@)
     set(__C_BINDINGS_CMAKE_DIR @__C_BINDINGS_CMAKE_DIR@)
 
@@ -144,6 +145,8 @@ function(cpp_bindgen_add_library target_name)
     add_library(${target_name}_c INTERFACE)
     target_link_libraries(${target_name}_c INTERFACE ${target_name})
     target_link_libraries(${target_name}_c INTERFACE c_bindings_handle)
+    target_include_directories(${target_name}_c INTERFACE ${__C_BINDINGS_INCLUDE_DIR}) #TODO maybe use an interface target
+    target_compile_features(${target_name}_c INTERFACE cxx_std_11) #TODO maybe use an interface target
     add_dependencies(${target_name}_c ${target_name}_declarations)
 
     # bindings Fortran library
