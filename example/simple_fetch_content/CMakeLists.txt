@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.12.4) #TODO replace with generated version
-project(simple_example_with_fetch_content LANGUAGES CXX C Fortran)
+project(simple_example_with_fetch_content LANGUAGES CXX Fortran)
 
 # 1) fetch c_bindings from the repository
 include(FetchContent)
@@ -17,10 +17,10 @@ if(NOT c_bindings_POPULATED)
   add_subdirectory(${c_bindings_SOURCE_DIR} ${c_bindings_BINARY_DIR})
 endif()
 
-# 2) create a library with bindings
+# 2) create a library with bindings. This will generate the files simple.h and simple.f90 which can be included within C and Fortran. In CMake you can use them by linking against `simple_c`or `simple_fortran`.
 gt_add_bindings_library(simple SOURCES simple.cpp)
 
-# 3) link the library to a fortran executable
+# 3) link the generated library to a fortran executable
 add_executable(driver driver.f90)
 target_link_libraries(driver simple_fortran)
 

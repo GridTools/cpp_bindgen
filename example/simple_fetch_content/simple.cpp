@@ -18,5 +18,6 @@ namespace {
         std::cout << "Printing from C++: " << i << std::endl;
     }
 
+    // Exports a unary function with the name `print_number_from_cpp`, which forwards to `print_number`.
     GT_EXPORT_BINDING_1(print_number_from_cpp, print_number);
 } // namespace
