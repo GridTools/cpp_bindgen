@@ -12,8 +12,6 @@ if(NOT googletest_POPULATED)
   add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
 endif()
 
-include(${CMAKE_CURRENT_LIST_DIR}/../cmake/bindings.cmake)
-
 function(compile_test name src)
     add_executable(${name} ${src})
     target_include_directories(${name} PRIVATE ${PROJECT_SOURCE_DIR}/include)
