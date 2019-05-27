@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#include <common/copy_into_variadic.hpp>
+#include <cpp_bindgen/common/copy_into_variadic.hpp>
 
 #include <type_traits>
 

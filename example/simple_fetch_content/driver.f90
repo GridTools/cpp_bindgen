@@ -8,7 +8,7 @@
 
 program main
     use iso_c_binding
-    use gt_handle
+    use gen_handle
     use simple
     implicit none
     integer, parameter :: i = 9

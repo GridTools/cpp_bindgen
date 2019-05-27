@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#include <c_bindings/function_wrapper.hpp>
+#include <cpp_bindgen/function_wrapper.hpp>
 
 #include <iostream>
 #include <stack>
@@ -16,31 +16,31 @@
 
 #include <gtest/gtest.h>
 
-#include <c_bindings/handle.h>
+#include <cpp_bindgen/handle.h>
 
 namespace cpp_bindgen {
     namespace {
 
         struct a_struct {};
         struct array_descriptor_struct {
-            array_descriptor_struct(const gt_fortran_array_descriptor &);
-            using gt_view_element_type = int;
-            using gt_view_rank = std::integral_constant<std::size_t, 3>;
+            array_descriptor_struct(const gen_fortran_array_descriptor &);
+            using gen_view_element_type = int;
+            using gen_view_rank = std::integral_constant<std::size_t, 3>;
         };
         static_assert(std::is_same<wrapped_t<void (*)()>, void()>::value, "");
         static_assert(std::is_same<wrapped_t<int()>, int()>::value, "");
-        static_assert(std::is_same<wrapped_t<a_struct()>, gt_handle *()>::value, "");
-        static_assert(std::is_same<wrapped_t<a_struct const &()>, gt_handle *()>::value, "");
+        static_assert(std::is_same<wrapped_t<a_struct()>, gen_handle *()>::value, "");
+        static_assert(std::is_same<wrapped_t<a_struct const &()>, gen_handle *()>::value, "");
         static_assert(std::is_same<wrapped_t<void(int)>, void(int)>::value, "");
         static_assert(std::is_same<wrapped_t<void(int &)>, void(int *)>::value, "");
         static_assert(std::is_same<wrapped_t<void(int const *)>, void(int const *)>::value, "");
-        static_assert(std::is_same<wrapped_t<void(a_struct *)>, void(gt_handle *)>::value, "");
-        static_assert(std::is_same<wrapped_t<void(a_struct &)>, void(gt_handle *)>::value, "");
-        static_assert(std::is_same<wrapped_t<void(a_struct)>, void(gt_handle *)>::value, "");
+        static_assert(std::is_same<wrapped_t<void(a_struct *)>, void(gen_handle *)>::value, "");
+        static_assert(std::is_same<wrapped_t<void(a_struct &)>, void(gen_handle *)>::value, "");
+        static_assert(std::is_same<wrapped_t<void(a_struct)>, void(gen_handle *)>::value, "");
         static_assert(
-            std::is_same<wrapped_t<void(float (&)[1][2][3])>, void(gt_fortran_array_descriptor *)>::value, "");
+            std::is_same<wrapped_t<void(float (&)[1][2][3])>, void(gen_fortran_array_descriptor *)>::value, "");
         static_assert(std::is_same<wrapped_t<array_descriptor_struct(array_descriptor_struct)>,
-                          gt_handle *(gt_fortran_array_descriptor *)>::value,
+                          gen_handle *(gen_fortran_array_descriptor *)>::value,
             "");
 
         template <class T>
@@ -74,7 +74,7 @@ namespace cpp_bindgen {
         }
 
         TEST(wrap, smoke) {
-            gt_handle *obj = wrap(create<int>)();
+            gen_handle *obj = wrap(create<int>)();
             EXPECT_TRUE(wrap(empty<int>)(obj));
             wrap(push_to_ref<int>)(obj, 42);
             EXPECT_FALSE(wrap(empty<int>)(obj));
@@ -84,7 +84,7 @@ namespace cpp_bindgen {
             wrap(pop<int>)(obj);
             wrap(pop<int>)(obj);
             EXPECT_TRUE(wrap(empty<int>)(obj));
-            gt_release(obj);
+            gen_release(obj);
         }
 
         std::unique_ptr<int> make_ptr() { return std::unique_ptr<int>{new int{3}}; }
@@ -93,15 +93,15 @@ namespace cpp_bindgen {
         int get_ptr(std::unique_ptr<int> &ptr) { return *ptr; }
         bool is_ptr_set(std::unique_ptr<int> &ptr) { return ptr.get(); }
         TEST(wrap, return_values) {
-            gt_handle *obj = wrap(make_ptr)();
+            gen_handle *obj = wrap(make_ptr)();
             wrap(set_ptr)(obj, 3);
             EXPECT_EQ(3, wrap(get_ptr)(obj));
-            gt_handle *obj2 = wrap(forward_ptr)(obj);
+            gen_handle *obj2 = wrap(forward_ptr)(obj);
             wrap(set_ptr)(obj2, 4);
             EXPECT_EQ(4, wrap(get_ptr)(obj2));
             EXPECT_FALSE(wrap(is_ptr_set)(obj));
-            gt_release(obj);
-            gt_release(obj2);
+            gen_release(obj);
+            gen_release(obj2);
         }
 
         void inc(int &val) { ++val; }
@@ -127,9 +127,9 @@ namespace cpp_bindgen {
 
         TEST(wrap, array_descriptor) {
             int array[2][3] = {{1, 2, 3}, {4, 5, 6}};
-            gt_fortran_array_descriptor descriptor;
+            gen_fortran_array_descriptor descriptor;
             descriptor.data = array;
-            descriptor.type = gt_fk_Int;
+            descriptor.type = gen_fk_Int;
             descriptor.rank = 2;
             descriptor.dims[0] = 3;
             descriptor.dims[1] = 2;

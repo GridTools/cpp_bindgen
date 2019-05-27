@@ -8,8 +8,8 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#include <c_bindings/generator.hpp>
-#include <c_bindings/handle_impl.hpp>
+#include <cpp_bindgen/generator.hpp>
+#include <cpp_bindgen/handle_impl.hpp>
 
 #include <sstream>
 
@@ -18,13 +18,13 @@
 namespace cpp_bindgen {
     namespace {
 
-        GT_ADD_GENERATED_DECLARATION(void(), foo);
-        GT_ADD_GENERATED_DECLARATION(gt_handle *(int, double const *, gt_handle *), bar);
-        GT_ADD_GENERATED_DECLARATION(void(int *const *volatile *const *), baz);
-        GT_ADD_GENERATED_DECLARATION_WRAPPED(void(int, int (&)[1][2][3]), qux);
+        GEN_ADD_GENERATED_DECLARATION(void(), foo);
+        GEN_ADD_GENERATED_DECLARATION(gen_handle *(int, double const *, gen_handle *), bar);
+        GEN_ADD_GENERATED_DECLARATION(void(int *const *volatile *const *), baz);
+        GEN_ADD_GENERATED_DECLARATION_WRAPPED(void(int, int (&)[1][2][3]), qux);
 
-        GT_ADD_GENERIC_DECLARATION(foo, bar);
-        GT_ADD_GENERIC_DECLARATION(foo, baz);
+        GEN_ADD_GENERIC_DECLARATION(foo, bar);
+        GEN_ADD_GENERIC_DECLARATION(foo, baz);
 
         const char expected_c_interface[] = R"?(// This file is generated!
 #pragma once
@@ -36,10 +36,10 @@ namespace cpp_bindgen {
 extern "C" {
 #endif
 
-gt_handle* bar(int, double*, gt_handle*);
+gen_handle* bar(int, double*, gen_handle*);
 void baz(int****);
 void foo();
-void qux(int, gt_fortran_array_descriptor*);
+void qux(int, gen_fortran_array_descriptor*);
 
 #ifdef __cplusplus
 }
@@ -74,7 +74,7 @@ implicit none
       use iso_c_binding
       use array_descriptor
       integer(c_int), value :: arg0
-      type(gt_fortran_array_descriptor) :: arg1
+      type(gen_fortran_array_descriptor) :: arg1
     end subroutine
 
   end interface
@@ -87,7 +87,7 @@ contains
       use array_descriptor
       integer(c_int), value, target :: arg0
       integer(c_int), dimension(:,:,:), target :: arg1
-      type(gt_fortran_array_descriptor) :: descriptor1
+      type(gen_fortran_array_descriptor) :: descriptor1
 
       descriptor1%rank = 3
       descriptor1%type = 1

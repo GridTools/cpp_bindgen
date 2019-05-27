@@ -6,10 +6,10 @@
 ! Please, refer to the LICENSE file in the root directory.
 ! SPDX-License-Identifier: BSD-3-Clause
 
-module gt_handle
+module gen_handle
     implicit none
     interface
-        subroutine gt_release(h) bind(c)
+        subroutine gen_release(h) bind(c)
             use iso_c_binding
             type(c_ptr), value :: h
         end

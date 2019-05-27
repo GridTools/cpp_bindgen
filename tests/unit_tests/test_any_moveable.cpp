@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#include <common/any_moveable.hpp>
+#include <cpp_bindgen/common/any_moveable.hpp>
 
 #include <gtest/gtest.h>
 #include <memory>

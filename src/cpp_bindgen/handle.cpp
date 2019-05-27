@@ -8,4 +8,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#include "copy_stencil_wrapper.cpp"
+#include <cpp_bindgen/handle.h>
+#include <cpp_bindgen/handle_impl.hpp>
+
+void gen_release(gen_handle const *obj) { delete obj; }
