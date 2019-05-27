@@ -12,5 +12,5 @@
 #include "../common/any_moveable.hpp"
 
 struct gt_handle {
-    gridtools::any_moveable m_value;
+    cpp_bindgen::any_moveable m_value;
 };

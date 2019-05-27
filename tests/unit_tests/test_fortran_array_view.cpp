@@ -28,7 +28,7 @@ std::ostream &operator<<(std::ostream &strm, const gt_fortran_array_descriptor &
     return strm;
 }
 
-namespace gridtools {
+namespace cpp_bindgen {
     namespace adltest {
         namespace {
             template <size_t Rank>
@@ -295,4 +295,4 @@ namespace gridtools {
             }
         } // namespace
     }     // namespace c_bindings
-} // namespace gridtools
+} // namespace cpp_bindgen

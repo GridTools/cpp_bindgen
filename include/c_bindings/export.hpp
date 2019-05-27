@@ -18,16 +18,16 @@
 #include "function_wrapper.hpp"
 #include "generator.hpp"
 
-#define GT_EXPORT_BINDING_IMPL_PARAM_DECL(z, i, signature)                                                    \
-    typename boost::mpl::at_c<                                                                                \
-        typename boost::function_types::parameter_types<::gridtools::c_bindings::wrapped_t<signature>>::type, \
+#define GT_EXPORT_BINDING_IMPL_PARAM_DECL(z, i, signature)                                          \
+    typename boost::mpl::at_c<                                                                      \
+        typename boost::function_types::parameter_types<::cpp_bindgen::wrapped_t<signature>>::type, \
         i>::type param_##i
 
-#define GT_ADD_GENERATED_DEFINITION_IMPL(n, name, cppsignature, impl)                                                \
-    static_assert(::boost::function_types::function_arity<cppsignature>::value == n, "arity mismatch");              \
-    extern "C" typename ::boost::function_types::result_type<::gridtools::c_bindings::wrapped_t<cppsignature>>::type \
-    name(BOOST_PP_ENUM(n, GT_EXPORT_BINDING_IMPL_PARAM_DECL, cppsignature)) {                                        \
-        return ::gridtools::c_bindings::wrap<cppsignature>(impl)(BOOST_PP_ENUM_PARAMS(n, param_));                   \
+#define GT_ADD_GENERATED_DEFINITION_IMPL(n, name, cppsignature, impl)                                            \
+    static_assert(::boost::function_types::function_arity<cppsignature>::value == n, "arity mismatch");          \
+    extern "C" typename ::boost::function_types::result_type<::cpp_bindgen::wrapped_t<cppsignature>>::type name( \
+        BOOST_PP_ENUM(n, GT_EXPORT_BINDING_IMPL_PARAM_DECL, cppsignature)) {                                     \
+        return ::cpp_bindgen::wrap<cppsignature>(impl)(BOOST_PP_ENUM_PARAMS(n, param_));                         \
     }
 
 /**
@@ -56,7 +56,7 @@
  */
 #define GT_EXPORT_BINDING_WITH_SIGNATURE(n, name, cppsignature, impl) \
     GT_ADD_GENERATED_DEFINITION_IMPL(n, name, cppsignature, impl)     \
-    GT_ADD_GENERATED_DECLARATION(::gridtools::c_bindings::wrapped_t<cppsignature>, name)
+    GT_ADD_GENERATED_DECLARATION(::cpp_bindgen::wrapped_t<cppsignature>, name)
 
 /**
  *   Defines the function with the given name with the C linkage with an additional wrapper in the fortran bindings. The

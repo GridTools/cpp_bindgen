@@ -16,12 +16,12 @@
 int main(int argc, const char *argv[]) {
     if (argc > 3) {
         std::ofstream dst(argv[2]);
-        gridtools::c_bindings::generate_fortran_interface(dst, argv[3]);
+        cpp_bindgen::generate_fortran_interface(dst, argv[3]);
     }
     if (argc > 1) {
         std::ofstream dst(argv[1]);
-        gridtools::c_bindings::generate_c_interface(dst);
+        cpp_bindgen::generate_c_interface(dst);
     } else {
-        gridtools::c_bindings::generate_c_interface(std::cout);
+        cpp_bindgen::generate_c_interface(std::cout);
     }
 }
