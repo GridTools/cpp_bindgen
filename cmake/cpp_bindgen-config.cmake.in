@@ -2,7 +2,7 @@
 
 get_filename_component(cpp_bindgen_CONFIG_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
 
-message(STATUS "GridTools C Bindings version @PROJECT_VERSION@ found at ${cpp_bindgen_CONFIG_CMAKE_DIR}")
+message(STATUS "GridTools cpp_bindgen version @PROJECT_VERSION@ found at ${cpp_bindgen_CONFIG_CMAKE_DIR}")
 
 include(CMakeFindDependencyMacro)
 find_dependency(Boost @REQUIRED_BOOST_VERSION@)
@@ -11,4 +11,4 @@ set_and_check(cpp_bindgen_MODULE_PATH @PACKAGE_cpp_bindgen_MODULE_PATH@)
 set_and_check(cpp_bindgen_SOURCES_PATH @PACKAGE_cpp_bindgen_SOURCES_PATH@)
 set_and_check(cpp_bindgen_INCLUDE_PATH @PACKAGE_cpp_bindgen_INCLUDE_PATH@)
 
-include(${cpp_bindgen_MODULE_PATH}/gt_bindings.cmake)
+include(${cpp_bindgen_MODULE_PATH}/cpp_bindgen.cmake)

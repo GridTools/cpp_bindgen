@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#include <c_bindings/export.hpp>
+#include <cpp_bindgen/export.hpp>
 #include <iostream>
 
 // In this example, we demonstrate how the c_bindings library can be used to export functions to C and Fortran.
