@@ -14,7 +14,7 @@
 #include <boost/mpl/transform_view.hpp>
 #include <type_traits>
 
-namespace gridtools {
+namespace cpp_bindgen {
 
     /** \ingroup common
         @{
@@ -34,4 +34,4 @@ namespace gridtools {
     /** @} */
     /** @} */
     /** @} */
-} // namespace gridtools
+} // namespace cpp_bindgen

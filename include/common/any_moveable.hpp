@@ -14,7 +14,7 @@
 #include <typeinfo>
 #include <utility>
 
-namespace gridtools {
+namespace cpp_bindgen {
 
     struct bad_any_cast : std::bad_cast {
         const char *what() const noexcept override { return "gridtools::bad_any_cast"; }
@@ -89,4 +89,4 @@ namespace gridtools {
             "any_cast shall not be used for getting nonconst references to temporary objects");
         return any_cast<T>(src);
     }
-} // namespace gridtools
+} // namespace cpp_bindgen

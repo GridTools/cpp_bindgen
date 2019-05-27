@@ -114,7 +114,7 @@ void test_c_bindings_and_wrapper_compatible_type_b(gt_fortran_array_descriptor*,
 
     TEST(export, c_interface) {
         std::ostringstream strm;
-        gridtools::c_bindings::generate_c_interface(strm);
+        cpp_bindgen::generate_c_interface(strm);
         EXPECT_EQ(strm.str(), expected_c_interface);
     }
 
@@ -237,7 +237,7 @@ end
 
     TEST(export, fortran_interface) {
         std::ostringstream strm;
-        gridtools::c_bindings::generate_fortran_interface(strm, "my_module");
+        cpp_bindgen::generate_fortran_interface(strm, "my_module");
         EXPECT_EQ(strm.str(), expected_fortran_interface);
     }
 } // namespace

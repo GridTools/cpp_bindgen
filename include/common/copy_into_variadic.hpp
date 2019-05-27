@@ -12,7 +12,7 @@
 #include <boost/mpl/copy.hpp>
 #include <boost/mpl/inserter.hpp>
 
-namespace gridtools {
+namespace cpp_bindgen {
 
     namespace _impl {
         struct variadic_push_back {
@@ -39,4 +39,4 @@ namespace gridtools {
     template <class Src, class Dst>
     using copy_into_variadic =
         typename boost::mpl::copy<Src, boost::mpl::inserter<Dst, _impl::variadic_push_back>>::type;
-} // namespace gridtools
+} // namespace cpp_bindgen
