@@ -24,6 +24,7 @@
 #include <boost/type_index.hpp>
 
 #include "../common/copy_into_variadic.hpp"
+#include "../common/for_each.hpp"
 #include "../common/is_there_in_sequence_if.hpp"
 
 #include "function_wrapper.hpp"

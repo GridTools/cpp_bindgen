@@ -12,7 +12,6 @@ if(NOT googletest_POPULATED)
   add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
 endif()
 
-
 function(compile_test name src)
     add_executable(${name} ${src})
     target_include_directories(${name} PRIVATE ${PROJECT_SOURCE_DIR}/include)
@@ -25,4 +24,4 @@ endfunction()
 enable_testing()
 
 add_subdirectory(unit_tests)
-#add_subdirectory(regression)
+add_subdirectory(regression)

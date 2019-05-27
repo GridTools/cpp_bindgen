@@ -15,7 +15,6 @@
 #include <type_traits>
 
 #include "../common/for_each.hpp"
-#include "../meta/macros.hpp"
 #include "../meta/make_indices.hpp"
 #include "../meta/type_traits.hpp"
 
@@ -78,7 +77,7 @@ namespace gridtools {
                 descriptor.rank = std::rank<Arr>::value;
                 descriptor.is_acc_present = false;
 
-                using indices = GT_META_CALL(meta::make_indices, std::rank<Arr>);
+                using indices = typename meta::make_indices<std::rank<Arr>>::type;
                 gridtools::for_each<indices>(
                     std::bind(_impl::fill_extent_f<Arr>{}, std::placeholders::_1, std::ref(descriptor)));
 
