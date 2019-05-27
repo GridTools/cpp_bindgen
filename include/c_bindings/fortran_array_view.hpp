@@ -15,8 +15,8 @@
 #include <type_traits>
 
 #include "../common/for_each.hpp"
+#include "../common/make_indices.hpp"
 #include "../common/type_traits.hpp"
-#include "../meta/make_indices.hpp"
 
 #include "array_descriptor.h"
 
@@ -72,7 +72,7 @@ namespace cpp_bindgen {
             descriptor.rank = std::rank<Arr>::value;
             descriptor.is_acc_present = false;
 
-            using indices = typename gridtools::meta::make_indices<std::rank<Arr>>::type; // TODO remove meta dependency
+            using indices = typename make_indices_c<std::rank<Arr>::value>::type;
             cpp_bindgen::for_each<indices>(
                 std::bind(_impl::fill_extent_f<Arr>{}, std::placeholders::_1, std::ref(descriptor)));
 
