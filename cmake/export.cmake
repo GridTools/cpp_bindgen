@@ -34,13 +34,15 @@ install(
     DESTINATION lib/cmake
     )
     
-set(BINDINGS_CMAKE_DIR "\${gt_c_bindings_MODULE_PATH}")  #TODO refactor the variable names gt_c_bindings_MODULE_PATH, etc.
-set(BINDINGS_SOURCE_DIR "\${gt_c_bindings_SOURCES_PATH}")
-set(BINDINGS_INCLUDE_DIR "\${gt_c_bindings_INCLUDE_PATH}")
-message(STATUS "${BINDINGS_INCLUDE_PATH}")
+set(__C_BINDINGS_CMAKE_DIR "\${gt_c_bindings_MODULE_PATH}")  #TODO refactor the variable names gt_c_bindings_MODULE_PATH, etc.
+set(__C_BINDINGS_SOURCE_DIR "\${gt_c_bindings_SOURCES_PATH}")
+set(__C_BINDINGS_INCLUDE_DIR "\${gt_c_bindings_INCLUDE_PATH}")
 configure_file(cmake/gt_bindings.cmake.in
     ${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/build-install/lib/cmake/gt_bindings.cmake
     @ONLY)
+unset(__C_BINDINGS_CMAKE_DIR)
+unset(__C_BINDINGS_SOURCE_DIR)
+unset(__C_BINDINGS_INCLUDE_DIR)
 
 set(CMAKE_SOURCES
     "${PROJECT_SOURCE_DIR}/cmake/gt_bindings_generate.cmake"
