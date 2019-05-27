@@ -12,8 +12,6 @@
 #include <boost/mpl/copy.hpp>
 #include <boost/mpl/inserter.hpp>
 
-// #include "../defs.hpp" TODO
-
 namespace gridtools {
 
     namespace _impl {

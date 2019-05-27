@@ -15,7 +15,6 @@
 #include <boost/mpl/at.hpp>
 #include <boost/preprocessor.hpp>
 
-#include "../common/boost_pp_generic_macros.hpp"
 #include "function_wrapper.hpp"
 #include "generator.hpp"
 
