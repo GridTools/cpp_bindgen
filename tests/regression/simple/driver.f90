@@ -9,7 +9,7 @@
 program main
     use iso_c_binding
     use gt_handle
-    use simple
+    use gen_regression_simple
     implicit none
     integer, parameter :: i = 9
 
