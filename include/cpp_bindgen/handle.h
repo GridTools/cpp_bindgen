@@ -9,8 +9,15 @@
  */
 #pragma once
 
-#include "../common/any_moveable.hpp"
+struct gen_handle;
 
-struct gt_handle {
-    cpp_bindgen::any_moveable m_value;
-};
+#ifdef __cplusplus
+
+extern "C" void gen_release(gen_handle const *);
+
+#else
+
+typedef struct gen_handle gen_handle;
+void gen_release(gen_handle *);
+
+#endif

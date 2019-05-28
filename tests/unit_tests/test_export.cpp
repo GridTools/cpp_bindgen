@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#include <c_bindings/export.hpp>
+#include <cpp_bindgen/export.hpp>
 
 #include <functional>
 #include <sstream>
@@ -16,7 +16,7 @@
 
 #include <gtest/gtest.h>
 
-#include <c_bindings/handle.h>
+#include <cpp_bindgen/handle.h>
 
 namespace {
 
@@ -25,15 +25,15 @@ namespace {
     // Various flavours to create exported functions.
 
     stack_t my_create_impl() { return stack_t{}; }
-    GT_EXPORT_BINDING_0(my_create, my_create_impl);
+    GEN_EXPORT_BINDING_0(my_create, my_create_impl);
 
     template <class T>
     void push_impl(std::stack<T> *obj, T val) {
         obj->push(val);
     }
-    GT_EXPORT_GENERIC_BINDING(2, my_push, push_impl, (float)(int)(double));
+    GEN_EXPORT_GENERIC_BINDING(2, my_push, push_impl, (float)(int)(double));
 
-    GT_EXPORT_BINDING_WITH_SIGNATURE_1(my_pop, void(stack_t &), [](stack_t &obj) { obj.pop(); });
+    GEN_EXPORT_BINDING_WITH_SIGNATURE_1(my_pop, void(stack_t &), [](stack_t &obj) { obj.pop(); });
 
     struct top_impl {
         template <class T>
@@ -41,9 +41,9 @@ namespace {
             return container.top();
         }
     };
-    GT_EXPORT_BINDING_WITH_SIGNATURE_1(my_top, double(stack_t const &), top_impl{});
+    GEN_EXPORT_BINDING_WITH_SIGNATURE_1(my_top, double(stack_t const &), top_impl{});
 
-    GT_EXPORT_BINDING_WITH_SIGNATURE_1(my_empty, bool(stack_t const &), std::mem_fn(&stack_t::empty));
+    GEN_EXPORT_BINDING_WITH_SIGNATURE_1(my_empty, bool(stack_t const &), std::mem_fn(&stack_t::empty));
 
     template <class T, size_t size>
     void assign_impl(T (&obj)[size][size], T val) {
@@ -53,36 +53,36 @@ namespace {
             }
         }
     }
-    GT_EXPORT_GENERIC_BINDING_WRAPPED(2, my_assign, assign_impl, (int, 2)(double, 2));
+    GEN_EXPORT_GENERIC_BINDING_WRAPPED(2, my_assign, assign_impl, (int, 2)(double, 2));
 
     struct c_bindings_compatible_type {
-        c_bindings_compatible_type(const gt_fortran_array_descriptor &) {}
+        c_bindings_compatible_type(const gen_fortran_array_descriptor &) {}
     };
     struct wrapper_compatible_type {
-        wrapper_compatible_type(const gt_fortran_array_descriptor &) {}
+        wrapper_compatible_type(const gen_fortran_array_descriptor &) {}
     };
-    gt_fortran_array_descriptor get_fortran_view_meta(wrapper_compatible_type *) {
-        gt_fortran_array_descriptor d;
+    gen_fortran_array_descriptor get_fortran_view_meta(wrapper_compatible_type *) {
+        gen_fortran_array_descriptor d;
         d.rank = 2;
-        d.type = gt_fk_Int;
+        d.type = gen_fk_Int;
         d.is_acc_present = false;
         return d;
     }
     void test_c_bindings_and_wrapper_compatible_type_impl(c_bindings_compatible_type, wrapper_compatible_type) {}
-    GT_EXPORT_BINDING_2(
+    GEN_EXPORT_BINDING_2(
         test_c_bindings_and_wrapper_compatible_type_a, test_c_bindings_and_wrapper_compatible_type_impl);
-    GT_EXPORT_BINDING_WRAPPED_2(
+    GEN_EXPORT_BINDING_WRAPPED_2(
         test_c_bindings_and_wrapper_compatible_type_b, test_c_bindings_and_wrapper_compatible_type_impl);
 
     TEST(export, smoke) {
-        gt_handle *obj = my_create();
+        gen_handle *obj = my_create();
         EXPECT_TRUE(my_empty(obj));
         my_push2(obj, 42);
         EXPECT_FALSE(my_empty(obj));
         EXPECT_EQ(42, my_top(obj));
         my_pop(obj);
         EXPECT_TRUE(my_empty(obj));
-        gt_release(obj);
+        gen_release(obj);
     }
 
     const char expected_c_interface[] = R"?(// This file is generated!
@@ -95,17 +95,17 @@ namespace {
 extern "C" {
 #endif
 
-void my_assign0(gt_fortran_array_descriptor*, int);
-void my_assign1(gt_fortran_array_descriptor*, double);
-gt_handle* my_create();
-bool my_empty(gt_handle*);
-void my_pop(gt_handle*);
-void my_push0(gt_handle*, float);
-void my_push1(gt_handle*, int);
-void my_push2(gt_handle*, double);
-double my_top(gt_handle*);
-void test_c_bindings_and_wrapper_compatible_type_a(gt_fortran_array_descriptor*, gt_fortran_array_descriptor*);
-void test_c_bindings_and_wrapper_compatible_type_b(gt_fortran_array_descriptor*, gt_fortran_array_descriptor*);
+void my_assign0(gen_fortran_array_descriptor*, int);
+void my_assign1(gen_fortran_array_descriptor*, double);
+gen_handle* my_create();
+bool my_empty(gen_handle*);
+void my_pop(gen_handle*);
+void my_push0(gen_handle*, float);
+void my_push1(gen_handle*, int);
+void my_push2(gen_handle*, double);
+double my_top(gen_handle*);
+void test_c_bindings_and_wrapper_compatible_type_a(gen_fortran_array_descriptor*, gen_fortran_array_descriptor*);
+void test_c_bindings_and_wrapper_compatible_type_b(gen_fortran_array_descriptor*, gen_fortran_array_descriptor*);
 
 #ifdef __cplusplus
 }
@@ -126,13 +126,13 @@ implicit none
     subroutine my_assign0_impl(arg0, arg1) bind(c, name="my_assign0")
       use iso_c_binding
       use array_descriptor
-      type(gt_fortran_array_descriptor) :: arg0
+      type(gen_fortran_array_descriptor) :: arg0
       integer(c_int), value :: arg1
     end subroutine
     subroutine my_assign1_impl(arg0, arg1) bind(c, name="my_assign1")
       use iso_c_binding
       use array_descriptor
-      type(gt_fortran_array_descriptor) :: arg0
+      type(gen_fortran_array_descriptor) :: arg0
       real(c_double), value :: arg1
     end subroutine
     type(c_ptr) function my_create() bind(c)
@@ -168,15 +168,15 @@ implicit none
     subroutine test_c_bindings_and_wrapper_compatible_type_a(arg0, arg1) bind(c)
       use iso_c_binding
       use array_descriptor
-      type(gt_fortran_array_descriptor) :: arg0
-      type(gt_fortran_array_descriptor) :: arg1
+      type(gen_fortran_array_descriptor) :: arg0
+      type(gen_fortran_array_descriptor) :: arg1
     end subroutine
     subroutine test_c_bindings_and_wrapper_compatible_type_b_impl(arg0, arg1) bind(c, &
         name="test_c_bindings_and_wrapper_compatible_type_b")
       use iso_c_binding
       use array_descriptor
-      type(gt_fortran_array_descriptor) :: arg0
-      type(gt_fortran_array_descriptor) :: arg1
+      type(gen_fortran_array_descriptor) :: arg0
+      type(gen_fortran_array_descriptor) :: arg1
     end subroutine
 
   end interface
@@ -192,7 +192,7 @@ contains
       use array_descriptor
       integer(c_int), dimension(:,:), target :: arg0
       integer(c_int), value, target :: arg1
-      type(gt_fortran_array_descriptor) :: descriptor0
+      type(gen_fortran_array_descriptor) :: descriptor0
 
       descriptor0%rank = 2
       descriptor0%type = 1
@@ -207,7 +207,7 @@ contains
       use array_descriptor
       real(c_double), dimension(:,:), target :: arg0
       real(c_double), value, target :: arg1
-      type(gt_fortran_array_descriptor) :: descriptor0
+      type(gen_fortran_array_descriptor) :: descriptor0
 
       descriptor0%rank = 2
       descriptor0%type = 6
@@ -220,9 +220,9 @@ contains
     subroutine test_c_bindings_and_wrapper_compatible_type_b(arg0, arg1)
       use iso_c_binding
       use array_descriptor
-      type(gt_fortran_array_descriptor), target :: arg0
+      type(gen_fortran_array_descriptor), target :: arg0
       integer(c_int), dimension(:,:), target :: arg1
-      type(gt_fortran_array_descriptor) :: descriptor1
+      type(gen_fortran_array_descriptor) :: descriptor1
 
       descriptor1%rank = 2
       descriptor1%type = 1

@@ -23,9 +23,9 @@
 #include <boost/optional.hpp>
 #include <boost/type_index.hpp>
 
-#include "../common/copy_into_variadic.hpp"
-#include "../common/for_each.hpp"
-#include "../common/is_there_in_sequence_if.hpp"
+#include "common/copy_into_variadic.hpp"
+#include "common/for_each.hpp"
+#include "common/is_there_in_sequence_if.hpp"
 
 #include "function_wrapper.hpp"
 
@@ -189,7 +189,7 @@ namespace cpp_bindgen {
             return fortran_type_name<T>() + " " + fortran_function_specifier<T>();
         }
 
-        std::string fortran_array_element_type_name(gt_fortran_array_kind kind);
+        std::string fortran_array_element_type_name(gen_fortran_array_kind kind);
 
         struct ignore_type_f {
             template <class T>
@@ -201,13 +201,13 @@ namespace cpp_bindgen {
         struct fortran_param_type_from_c_f {
 
             template <class CType,
-                typename std::enable_if<std::is_same<CType, gt_fortran_array_descriptor *>::value, int>::type = 0>
+                typename std::enable_if<std::is_same<CType, gen_fortran_array_descriptor *>::value, int>::type = 0>
             std::string operator()() const {
-                return "type(gt_fortran_array_descriptor)";
+                return "type(gen_fortran_array_descriptor)";
             }
 
             template <class CType,
-                typename std::enable_if<!std::is_same<CType, gt_fortran_array_descriptor *>::value &&
+                typename std::enable_if<!std::is_same<CType, gen_fortran_array_descriptor *>::value &&
                                             (!std::is_pointer<CType>::value ||
                                                 std::is_class<typename std::remove_pointer<CType>::type>::value),
                     int>::type = 0>
@@ -235,11 +235,11 @@ namespace cpp_bindgen {
 
             template <class CppType,
                 class CType = param_converted_to_c_t<CppType>,
-                typename std::enable_if<std::is_same<CType, gt_fortran_array_descriptor *>::value &&
+                typename std::enable_if<std::is_same<CType, gen_fortran_array_descriptor *>::value &&
                                             is_fortran_array_wrappable<CppType>::value,
                     int>::type = 0>
             std::string operator()() const {
-                static const gt_fortran_array_descriptor meta =
+                static const gen_fortran_array_descriptor meta =
                     get_fortran_view_meta((add_pointer_t<CppType>){nullptr});
                 std::string dimensions = "dimension(";
                 for (int i = 0; i < meta.rank; ++i) {
@@ -253,7 +253,7 @@ namespace cpp_bindgen {
 
             template <class CppType,
                 class CType = param_converted_to_c_t<CppType>,
-                typename std::enable_if<!std::is_same<CType, gt_fortran_array_descriptor *>::value ||
+                typename std::enable_if<!std::is_same<CType, gen_fortran_array_descriptor *>::value ||
                                             !is_fortran_array_wrappable<CppType>::value,
                     int>::type = 0>
             std::string operator()() const {
@@ -264,7 +264,7 @@ namespace cpp_bindgen {
         template <typename CSignature>
         struct has_array_descriptor
             : is_there_in_sequence_if<typename boost::function_types::parameter_types<CSignature>::type,
-                  std::is_same<boost::mpl::_, gt_fortran_array_descriptor *>> {};
+                  std::is_same<boost::mpl::_, gen_fortran_array_descriptor *>> {};
 
         /**
          * @brief This function writes the `interface`-section of the fortran-code.
@@ -300,20 +300,20 @@ namespace cpp_bindgen {
         struct cpp_type_descriptor_f {
             template <class CppType,
                 class CType = param_converted_to_c_t<CppType>,
-                typename std::enable_if<std::is_same<CType, gt_fortran_array_descriptor *>::value &&
+                typename std::enable_if<std::is_same<CType, gen_fortran_array_descriptor *>::value &&
                                             is_fortran_array_wrappable<CppType>::value,
                     int>::type = 0>
-            boost::optional<gt_fortran_array_descriptor> operator()() const {
-                static const gt_fortran_array_descriptor meta =
+            boost::optional<gen_fortran_array_descriptor> operator()() const {
+                static const gen_fortran_array_descriptor meta =
                     get_fortran_view_meta((add_pointer_t<CppType>){nullptr});
                 return meta;
             }
             template <class CppType,
                 class CType = param_converted_to_c_t<CppType>,
-                typename std::enable_if<!std::is_same<CType, gt_fortran_array_descriptor *>::value ||
+                typename std::enable_if<!std::is_same<CType, gen_fortran_array_descriptor *>::value ||
                                             !is_fortran_array_wrappable<CppType>::value,
                     int>::type = 0>
-            boost::optional<gt_fortran_array_descriptor> operator()() const {
+            boost::optional<gen_fortran_array_descriptor> operator()() const {
                 return boost::none;
             }
         };
@@ -348,16 +348,16 @@ namespace cpp_bindgen {
             });
 
             for_each_param<CppSignature>(
-                cpp_type_descriptor_f{}, [&](const boost::optional<gt_fortran_array_descriptor> &meta, int i) {
+                cpp_type_descriptor_f{}, [&](const boost::optional<gen_fortran_array_descriptor> &meta, int i) {
                     if (meta) {
                         const auto desc_name = "descriptor" + std::to_string(i);
-                        strm << "      type(gt_fortran_array_descriptor) :: " + desc_name + "\n";
+                        strm << "      type(gen_fortran_array_descriptor) :: " + desc_name + "\n";
                     }
                 });
             strm << "\n";
 
             for_each_param<CppSignature>(
-                cpp_type_descriptor_f{}, [&](const boost::optional<gt_fortran_array_descriptor> &meta, int i) {
+                cpp_type_descriptor_f{}, [&](const boost::optional<gen_fortran_array_descriptor> &meta, int i) {
                     if (meta) {
                         const auto var_name = "arg" + std::to_string(i);
                         const auto desc_name = "descriptor" + std::to_string(i);
@@ -391,7 +391,7 @@ namespace cpp_bindgen {
                 tmp_strm << fortran_name << " = " << fortran_cbindings_name << "(";
             }
             for_each_param<CppSignature>(
-                cpp_type_descriptor_f{}, [&](const boost::optional<gt_fortran_array_descriptor> &meta, int i) {
+                cpp_type_descriptor_f{}, [&](const boost::optional<gen_fortran_array_descriptor> &meta, int i) {
                     if (i)
                         tmp_strm << ", ";
                     if (meta) {
@@ -460,10 +460,10 @@ namespace cpp_bindgen {
         };
     } // namespace _impl
 
-    /// Outputs the content of the C compatible header with the declarations added by GT_ADD_GENERATED_DECLARATION
+    /// Outputs the content of the C compatible header with the declarations added by GEN_ADD_GENERATED_DECLARATION
     void generate_c_interface(std::ostream &strm);
 
-    /// Outputs the content of the Fortran module with the declarations added by GT_ADD_GENERATED_DECLARATION
+    /// Outputs the content of the Fortran module with the declarations added by GEN_ADD_GENERATED_DECLARATION
     void generate_fortran_interface(std::ostream &strm, std::string const &module_name);
 } // namespace cpp_bindgen
 
@@ -471,12 +471,12 @@ namespace cpp_bindgen {
  *  Registers the function that for declaration generations.
  *  Users should not use these directly.
  */
-#define GT_ADD_GENERATED_DECLARATION(csignature, name) \
+#define GEN_ADD_GENERATED_DECLARATION(csignature, name) \
     static ::cpp_bindgen::_impl::registrar_simple<csignature> generated_declaration_registrar_##name(#name)
-#define GT_ADD_GENERATED_DECLARATION_WRAPPED(cppsignature, name)                                         \
+#define GEN_ADD_GENERATED_DECLARATION_WRAPPED(cppsignature, name)                                        \
     static ::cpp_bindgen::_impl::registrar_wrapped<cppsignature> generated_declaration_registrar_##name( \
         #name, BOOST_PP_STRINGIZE(BOOST_PP_CAT(name, _impl)), #name)
 
-#define GT_ADD_GENERIC_DECLARATION(generic_name, concrete_name)                                                        \
+#define GEN_ADD_GENERIC_DECLARATION(generic_name, concrete_name)                                                       \
     static ::cpp_bindgen::_impl::fortran_generic_registrar fortran_generic_registrar_##generic_name##_##concrete_name( \
         #generic_name, #concrete_name)

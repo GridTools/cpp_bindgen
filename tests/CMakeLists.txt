@@ -17,7 +17,7 @@ function(compile_test name src)
     target_include_directories(${name} PRIVATE ${PROJECT_SOURCE_DIR}/include)
     target_link_libraries(${name} PRIVATE gtest_main)
     target_link_libraries(${name} PRIVATE c_bindings_handle)
-    target_link_libraries(${name} PRIVATE c_bindings_generator)
+    target_link_libraries(${name} PRIVATE cpp_bindgen_generator)
     add_test(NAME ${name} COMMAND ${name})
 endfunction()
 

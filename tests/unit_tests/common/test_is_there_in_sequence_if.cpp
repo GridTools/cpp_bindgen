@@ -7,7 +7,7 @@
  * Please, refer to the LICENSE file in the root directory.
  * SPDX-License-Identifier: BSD-3-Clause
  */
-#include <common/is_there_in_sequence_if.hpp>
+#include <cpp_bindgen/common/is_there_in_sequence_if.hpp>
 
 #include <type_traits>
 

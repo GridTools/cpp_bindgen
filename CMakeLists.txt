@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.12.4)
 
-file(STRINGS "version.txt" __C_BINDINGS_VERSION)
-project(c_bindings VERSION ${__C_BINDINGS_VERSION} LANGUAGES CXX)
-unset(__C_BINDINGS_VERSION)
+file(STRINGS "version.txt" __CPP_BINDGEN_VERSION)
+project(cpp_bindgen VERSION ${__CPP_BINDGEN_VERSION} LANGUAGES CXX)
+unset(__CPP_BINDGEN_VERSION)
 
 include(CTest)
 

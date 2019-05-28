@@ -45,7 +45,7 @@ ctest .
 # simple example using installation
 cd ${cwd}/example/simple
 mkdir -p build && cd build
-cmake .. -Dgt_c_bindings_DIR=${cwd}/install/lib/cmake
+cmake .. -Dcpp_bindgen_DIR=${cwd}/install/lib/cmake
 nice make -j8
 ./driver
 

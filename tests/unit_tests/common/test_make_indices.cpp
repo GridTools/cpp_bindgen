@@ -7,7 +7,7 @@
  * Please, refer to the LICENSE file in the root directory.
  * SPDX-License-Identifier: BSD-3-Clause
  */
-#include <common/make_indices.hpp>
+#include <cpp_bindgen/common/make_indices.hpp>
 
 #include <gtest/gtest.h>
 

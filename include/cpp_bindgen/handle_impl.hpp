@@ -7,8 +7,10 @@
  * Please, refer to the LICENSE file in the root directory.
  * SPDX-License-Identifier: BSD-3-Clause
  */
+#pragma once
 
-#include <c_bindings/handle.h>
-#include <c_bindings/handle_impl.hpp>
+#include "common/any_moveable.hpp"
 
-void gt_release(gt_handle const *obj) { delete obj; }
+struct gen_handle {
+    cpp_bindgen::any_moveable m_value;
+};
