@@ -290,7 +290,7 @@ namespace cpp_bindgen {
             strm << wrap_line(tmp_strm.str(), "    ");
             strm << "      use iso_c_binding\n";
             if (has_array_descriptor<CSignature>::value)
-                strm << "      use array_descriptor\n";
+                strm << "      use gen_array_descriptor\n";
             for_each_param<CSignature>(fortran_param_type_from_c_f{},
                 [&](const std::string &type_name, int i) { strm << "      " << type_name << " :: arg" << i << "\n"; });
             return strm << "    end "
@@ -341,7 +341,7 @@ namespace cpp_bindgen {
 
             strm << "      use iso_c_binding\n";
             if (has_array_descriptor<CSignature>::value) {
-                strm << "      use array_descriptor\n";
+                strm << "      use gen_array_descriptor\n";
             }
             for_each_param<CppSignature>(fortran_param_type_from_cpp_f{}, [&](const std::string &type_name, int i) {
                 strm << "      " << type_name << ", target :: arg" << i << "\n";

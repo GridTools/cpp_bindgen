@@ -1,0 +1,5 @@
+cpp_bindgen_add_library(gen_regression_array SOURCES implementation.cpp)
+
+add_executable(gen_regression_array_driver_fortran driver.f90)
+target_link_libraries(gen_regression_array_driver_fortran gen_regression_array_fortran)
+add_test(NAME gen_regression_array_driver_fortran COMMAND gen_regression_array_driver_fortran)
