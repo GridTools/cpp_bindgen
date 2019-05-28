@@ -33,7 +33,7 @@ install(
     ${CMAKE_CURRENT_BINARY_DIR}/cpp_bindgen-config-version.cmake
     DESTINATION lib/cmake
     )
-    
+
 set(__C_BINDINGS_CMAKE_DIR "\${cpp_bindgen_MODULE_PATH}")  #TODO refactor the variable names cpp_bindgen_MODULE_PATH, etc.
 set(__C_BINDINGS_SOURCE_DIR "\${cpp_bindgen_SOURCES_PATH}")
 set(__C_BINDINGS_INCLUDE_DIR "\${cpp_bindgen_INCLUDE_PATH}")
@@ -46,6 +46,7 @@ unset(__C_BINDINGS_INCLUDE_DIR)
 
 set(CMAKE_SOURCES
     "${PROJECT_SOURCE_DIR}/cmake/cpp_bindgen_generate.cmake"
+    "${PROJECT_SOURCE_DIR}/cmake/fortran_helpers.cmake"
     "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/build-install/lib/cmake/cpp_bindgen.cmake"
     )
 set(CBINDINGS_SOURCES

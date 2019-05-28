@@ -47,7 +47,7 @@ target_link_libraries(cpp_bindgen_generator PUBLIC Boost::boost)
 target_link_libraries(cpp_bindgen_generator PUBLIC cpp_bindgen_interface)
 
 add_library(c_bindings_handle ${__C_BINDINGS_SOURCE_DIR}/cpp_bindgen/handle.cpp)
-target_link_libraries(c_bindings_handle PRIVATE cpp_bindgen_interface)
+target_link_libraries(c_bindings_handle PUBLIC cpp_bindgen_interface)
 
 unset(__C_BINDINGS_SOURCE_DIR)
 unset(__C_BINDINGS_INCLUDE_DIR)
@@ -144,7 +144,7 @@ function(cpp_bindgen_add_library target_name)
             message(FATAL_ERROR "Cross-compilation for bindings is enabled: no bindings will be generated, but "
                 "${bindings_c_decl_filename} and/or "
                 "${bindings_fortran_decl_filename} "
-                "are missing. Generate the bindings and consider making them part of your repository.") 
+                "are missing. Generate the bindings and consider making them part of your repository.")
         endif()
     endif()
 
