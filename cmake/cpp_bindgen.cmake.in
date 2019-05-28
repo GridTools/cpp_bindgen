@@ -89,7 +89,6 @@ function(cpp_bindgen_add_library target_name)
     set(multi_value_args SOURCES)
     cmake_parse_arguments(ARG "${options}" "${one_value_args};" "${multi_value_args}" ${ARGN})
 
-    set(__C_BINDINGS_INCLUDE_DIR @__C_BINDINGS_INCLUDE_DIR@)
     set(__C_BINDINGS_SOURCE_DIR @__C_BINDINGS_SOURCE_DIR@)
     set(__C_BINDINGS_CMAKE_DIR @__C_BINDINGS_CMAKE_DIR@)
 
