@@ -18,13 +18,11 @@
 #include <string>
 #include <vector>
 
-#include <boost/function_types/parameter_types.hpp>
-#include <boost/function_types/result_type.hpp>
 #include <boost/type_index.hpp>
 
-#include "common/copy_into_variadic.hpp"
+#include "common/disjunction.hpp"
 #include "common/for_each.hpp"
-#include "common/is_there_in_sequence_if.hpp"
+#include "common/function_traits.hpp"
 
 #include "function_wrapper.hpp"
 
@@ -89,8 +87,7 @@ namespace cpp_bindgen {
         template <class Signature,
             class TypeToStr,
             class Fun,
-            class Params =
-                copy_into_variadic<typename boost::function_types::parameter_types<Signature>::type, std::tuple<>>>
+            class Params = typename function_traits::parameter_types<Signature>::type>
         void for_each_param(TypeToStr &&type_to_str, Fun &&fun) {
             int count = 0;
             for_each_type<Params>(for_each_param_helper_f<TypeToStr, Fun>{
@@ -99,8 +96,7 @@ namespace cpp_bindgen {
 
         template <class CSignature>
         std::ostream &write_c_binding(std::ostream &strm, char const *name) {
-            namespace ft = boost::function_types;
-            strm << get_c_type_name<typename ft::result_type<CSignature>::type>() << " " << name << "(";
+            strm << get_c_type_name<typename function_traits::result_type<CSignature>::type>() << " " << name << "(";
             for_each_param<CSignature>(get_c_type_name_f{}, [&](const std::string &type_name, int i) {
                 if (i)
                     strm << ", ";
@@ -260,10 +256,15 @@ namespace cpp_bindgen {
             }
         };
 
+        template <typename>
+        struct has_array_descriptor_helper;
+        template <typename... Parameters>
+        struct has_array_descriptor_helper<std::tuple<Parameters...>>
+            : disjunction<std::is_same<Parameters, gen_fortran_array_descriptor *>...>::type {};
+
         template <typename CSignature>
         struct has_array_descriptor
-            : is_there_in_sequence_if<typename boost::function_types::parameter_types<CSignature>::type,
-                  std::is_same<boost::mpl::_, gen_fortran_array_descriptor *>> {};
+            : has_array_descriptor_helper<typename function_traits::parameter_types<CSignature>::type> {};
 
         /**
          * @brief This function writes the `interface`-section of the fortran-code.
@@ -273,9 +274,9 @@ namespace cpp_bindgen {
          */
         template <class CSignature>
         std::ostream &write_fortran_binding(std::ostream &strm, char const *c_name, char const *fortran_name) {
-            namespace ft = boost::function_types;
             std::stringstream tmp_strm;
-            tmp_strm << fortran_return_type<typename ft::result_type<CSignature>::type>() << " " << fortran_name << "(";
+            tmp_strm << fortran_return_type<typename function_traits::result_type<CSignature>::type>() << " "
+                     << fortran_name << "(";
             for_each_param<CSignature>(ignore_type_f{}, [&](const std::string &, int i) {
                 if (i)
                     tmp_strm << ", ";
@@ -293,7 +294,7 @@ namespace cpp_bindgen {
             for_each_param<CSignature>(fortran_param_type_from_c_f{},
                 [&](const std::string &type_name, int i) { strm << "      " << type_name << " :: arg" << i << "\n"; });
             return strm << "    end "
-                        << fortran_function_specifier<typename ft::result_type<CSignature>::type>() + "\n";
+                        << fortran_function_specifier<typename function_traits::result_type<CSignature>::type>() + "\n";
         }
 
         struct cpp_type_descriptor_f {
@@ -326,10 +327,10 @@ namespace cpp_bindgen {
         std::ostream &write_fortran_wrapper(
             std::ostream &strm, char const *fortran_cbindings_name, const char *fortran_name) {
             using CSignature = wrapped_t<CppSignature>;
-            namespace ft = boost::function_types;
 
             std::stringstream tmp_strm;
-            tmp_strm << fortran_return_type<typename ft::result_type<CSignature>::type>() << " " << fortran_name << "(";
+            tmp_strm << fortran_return_type<typename function_traits::result_type<CSignature>::type>() << " "
+                     << fortran_name << "(";
             for_each_param<CSignature>(ignore_type_f{}, [&](const std::string &, int i) {
                 if (i)
                     tmp_strm << ", ";
@@ -382,7 +383,7 @@ namespace cpp_bindgen {
             });
 
             tmp_strm.str("");
-            if (std::is_void<typename ft::result_type<CSignature>::type>::value) {
+            if (std::is_void<typename function_traits::result_type<CSignature>::type>::value) {
                 tmp_strm << "call " << fortran_cbindings_name << "(";
             } else {
                 tmp_strm << fortran_name << " = " << fortran_cbindings_name << "(";
@@ -401,7 +402,7 @@ namespace cpp_bindgen {
             strm << wrap_line(tmp_strm.str(), "      ");
 
             return strm << "    end "
-                        << fortran_function_specifier<typename ft::result_type<CSignature>::type>() + "\n";
+                        << fortran_function_specifier<typename function_traits::result_type<CSignature>::type>() + "\n";
         }
 
         struct c_bindings_traits {
