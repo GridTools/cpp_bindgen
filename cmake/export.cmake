@@ -5,8 +5,8 @@ include(CMakePackageConfigHelpers)
 
 # for build tree
 set(cpp_bindgen_MODULE_PATH ${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/build-install/lib/cmake)
-set(cpp_bindgen_SOURCES_PATH ${CMAKE_SOURCE_DIR}/src)
-set(cpp_bindgen_INCLUDE_PATH ${CMAKE_SOURCE_DIR}/include)
+set(cpp_bindgen_SOURCES_PATH ${PROJECT_SOURCE_DIR}/src)
+set(cpp_bindgen_INCLUDE_PATH ${PROJECT_SOURCE_DIR}/include)
 configure_package_config_file(
     cmake/cpp_bindgen-config.cmake.in
     ${PROJECT_BINARY_DIR}/cpp_bindgen-config.cmake
