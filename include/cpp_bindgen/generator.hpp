@@ -20,7 +20,6 @@
 
 #include <boost/function_types/parameter_types.hpp>
 #include <boost/function_types/result_type.hpp>
-#include <boost/optional.hpp>
 #include <boost/type_index.hpp>
 
 #include "common/copy_into_variadic.hpp"
@@ -303,18 +302,18 @@ namespace cpp_bindgen {
                 typename std::enable_if<std::is_same<CType, gen_fortran_array_descriptor *>::value &&
                                             is_fortran_array_wrappable<CppType>::value,
                     int>::type = 0>
-            boost::optional<gen_fortran_array_descriptor> operator()() const {
+            gen_fortran_array_descriptor const *operator()() const {
                 static const gen_fortran_array_descriptor meta =
                     get_fortran_view_meta((add_pointer_t<CppType>){nullptr});
-                return meta;
+                return &meta;
             }
             template <class CppType,
                 class CType = param_converted_to_c_t<CppType>,
                 typename std::enable_if<!std::is_same<CType, gen_fortran_array_descriptor *>::value ||
                                             !is_fortran_array_wrappable<CppType>::value,
                     int>::type = 0>
-            boost::optional<gen_fortran_array_descriptor> operator()() const {
-                return boost::none;
+            gen_fortran_array_descriptor const *operator()() const {
+                return nullptr;
             }
         };
         /**
@@ -347,42 +346,40 @@ namespace cpp_bindgen {
                 strm << "      " << type_name << ", target :: arg" << i << "\n";
             });
 
-            for_each_param<CppSignature>(
-                cpp_type_descriptor_f{}, [&](const boost::optional<gen_fortran_array_descriptor> &meta, int i) {
-                    if (meta) {
-                        const auto desc_name = "descriptor" + std::to_string(i);
-                        strm << "      type(gen_fortran_array_descriptor) :: " + desc_name + "\n";
-                    }
-                });
+            for_each_param<CppSignature>(cpp_type_descriptor_f{}, [&](gen_fortran_array_descriptor const *meta, int i) {
+                if (meta) {
+                    const auto desc_name = "descriptor" + std::to_string(i);
+                    strm << "      type(gen_fortran_array_descriptor) :: " + desc_name + "\n";
+                }
+            });
             strm << "\n";
 
-            for_each_param<CppSignature>(
-                cpp_type_descriptor_f{}, [&](const boost::optional<gen_fortran_array_descriptor> &meta, int i) {
-                    if (meta) {
-                        const auto var_name = "arg" + std::to_string(i);
-                        const auto desc_name = "descriptor" + std::to_string(i);
-                        std::string c_loc = "c_loc(" + var_name + "(";
-                        for (int i = 0; i < meta->rank; ++i) {
-                            if (i)
-                                c_loc += ",";
-                            c_loc += "lbound(" + var_name + ", " + std::to_string(i + 1) + ")";
-                        }
-                        c_loc += "))";
-                        if (meta->is_acc_present)
-                            strm << "      !$acc data present(" << var_name << ")\n" //
-                                 << "      !$acc host_data use_device(" << var_name << ")\n";
-
-                        strm << "      " << desc_name << "%rank = " << meta->rank << "\n"                 //
-                             << "      " << desc_name << "%type = " << meta->type << "\n"                 //
-                             << "      " << desc_name << "%dims = reshape(shape(" << var_name << "), &\n" //
-                             << "        shape(" << desc_name << "%dims), (/0/))\n"                       //
-                             << "      " << desc_name << "%data = " << c_loc << "\n";
-                        if (meta->is_acc_present)
-                            strm << "      !$acc end host_data\n" //
-                                 << "      !$acc end data\n";
-                        strm << "\n";
+            for_each_param<CppSignature>(cpp_type_descriptor_f{}, [&](gen_fortran_array_descriptor const *meta, int i) {
+                if (meta) {
+                    const auto var_name = "arg" + std::to_string(i);
+                    const auto desc_name = "descriptor" + std::to_string(i);
+                    std::string c_loc = "c_loc(" + var_name + "(";
+                    for (int i = 0; i < meta->rank; ++i) {
+                        if (i)
+                            c_loc += ",";
+                        c_loc += "lbound(" + var_name + ", " + std::to_string(i + 1) + ")";
                     }
-                });
+                    c_loc += "))";
+                    if (meta->is_acc_present)
+                        strm << "      !$acc data present(" << var_name << ")\n" //
+                             << "      !$acc host_data use_device(" << var_name << ")\n";
+
+                    strm << "      " << desc_name << "%rank = " << meta->rank << "\n"                 //
+                         << "      " << desc_name << "%type = " << meta->type << "\n"                 //
+                         << "      " << desc_name << "%dims = reshape(shape(" << var_name << "), &\n" //
+                         << "        shape(" << desc_name << "%dims), (/0/))\n"                       //
+                         << "      " << desc_name << "%data = " << c_loc << "\n";
+                    if (meta->is_acc_present)
+                        strm << "      !$acc end host_data\n" //
+                             << "      !$acc end data\n";
+                    strm << "\n";
+                }
+            });
 
             tmp_strm.str("");
             if (std::is_void<typename ft::result_type<CSignature>::type>::value) {
@@ -390,17 +387,16 @@ namespace cpp_bindgen {
             } else {
                 tmp_strm << fortran_name << " = " << fortran_cbindings_name << "(";
             }
-            for_each_param<CppSignature>(
-                cpp_type_descriptor_f{}, [&](const boost::optional<gen_fortran_array_descriptor> &meta, int i) {
-                    if (i)
-                        tmp_strm << ", ";
-                    if (meta) {
-                        const auto desc_name = "descriptor" + std::to_string(i);
-                        tmp_strm << desc_name;
-                    } else {
-                        tmp_strm << "arg" << i;
-                    }
-                });
+            for_each_param<CppSignature>(cpp_type_descriptor_f{}, [&](gen_fortran_array_descriptor const *meta, int i) {
+                if (i)
+                    tmp_strm << ", ";
+                if (meta) {
+                    const auto desc_name = "descriptor" + std::to_string(i);
+                    tmp_strm << desc_name;
+                } else {
+                    tmp_strm << "arg" << i;
+                }
+            });
             tmp_strm << ")";
             strm << wrap_line(tmp_strm.str(), "      ");
 
