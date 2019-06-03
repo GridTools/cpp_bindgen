@@ -1,4 +1,5 @@
 function(gen_enable_fortran_openacc_on_target target)
+    # TODO check if find_package(OpenACC) solves this problem
     if(CMAKE_Fortran_COMPILER_ID STREQUAL "Cray")
         target_compile_options(${target} PRIVATE $<$<COMPILE_LANGUAGE:Fortran>:-h acc>)
     elseif(CMAKE_Fortran_COMPILER_ID STREQUAL "GNU")
@@ -16,4 +17,3 @@ function(gen_enable_fortran_preprocessing_on_target target)
         target_compile_options(${target} PRIVATE $<$<COMPILE_LANGUAGE:Fortran>:-cpp>)
     endif()
 endfunction()
-

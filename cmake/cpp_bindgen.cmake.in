@@ -26,7 +26,7 @@
 #  - <library_name>_c the C-bindings with <library_name> linked to it
 #  - <library_name>_fortran the Fortran-bindings with <library_name> linked to it
 
-# TODO Do we need to protect against multiple inclusion?
+include_guard()
 
 option(GT_ENABLE_BINDINGS_GENERATION "If turned off, bindings will not be generated." ON)
 
