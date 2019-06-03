@@ -1,3 +1,2 @@
-compile_test(test_is_there_in_sequence_if test_is_there_in_sequence_if.cpp)
 compile_test(test_any_moveable test_any_moveable.cpp)
 compile_test(test_make_indices test_make_indices.cpp)
