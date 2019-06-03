@@ -17,7 +17,7 @@
 namespace cpp_bindgen {
 
     struct bad_any_cast : std::bad_cast {
-        const char *what() const noexcept override { return "gridtools::bad_any_cast"; }
+        const char *what() const noexcept override { return "cpp_bindgen::bad_any_cast"; }
     };
 
     /**
