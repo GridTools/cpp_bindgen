@@ -41,6 +41,13 @@ cmake .. -DCMAKE_INSTALL_PREFIX=${cwd}/install
 nice make -j8 install
 ctest .
 
+# compile example using the config from build tree (test for export(package))
+cd ${cwd}/example/simple
+mkdir -p build && cd build
+cmake .. -Dcpp_bindgen_DIR=${cwd}/build
+nice make -j8
+./driver
+
 # compile examples using the installation
 # simple example using installation
 cd ${cwd}/example/simple
