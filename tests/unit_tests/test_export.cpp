@@ -88,8 +88,8 @@ namespace {
     const char expected_c_interface[] = R"?(// This file is generated!
 #pragma once
 
-#include <gridtools/c_bindings/array_descriptor.h>
-#include <gridtools/c_bindings/handle.h>
+#include <cpp_bindgen/array_descriptor.h>
+#include <cpp_bindgen/handle.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -125,13 +125,13 @@ implicit none
 
     subroutine my_assign0_impl(arg0, arg1) bind(c, name="my_assign0")
       use iso_c_binding
-      use array_descriptor
+      use gen_array_descriptor
       type(gen_fortran_array_descriptor) :: arg0
       integer(c_int), value :: arg1
     end subroutine
     subroutine my_assign1_impl(arg0, arg1) bind(c, name="my_assign1")
       use iso_c_binding
-      use array_descriptor
+      use gen_array_descriptor
       type(gen_fortran_array_descriptor) :: arg0
       real(c_double), value :: arg1
     end subroutine
@@ -167,14 +167,14 @@ implicit none
     end function
     subroutine test_c_bindings_and_wrapper_compatible_type_a(arg0, arg1) bind(c)
       use iso_c_binding
-      use array_descriptor
+      use gen_array_descriptor
       type(gen_fortran_array_descriptor) :: arg0
       type(gen_fortran_array_descriptor) :: arg1
     end subroutine
     subroutine test_c_bindings_and_wrapper_compatible_type_b_impl(arg0, arg1) bind(c, &
         name="test_c_bindings_and_wrapper_compatible_type_b")
       use iso_c_binding
-      use array_descriptor
+      use gen_array_descriptor
       type(gen_fortran_array_descriptor) :: arg0
       type(gen_fortran_array_descriptor) :: arg1
     end subroutine
@@ -189,7 +189,7 @@ implicit none
 contains
     subroutine my_assign0(arg0, arg1)
       use iso_c_binding
-      use array_descriptor
+      use gen_array_descriptor
       integer(c_int), dimension(:,:), target :: arg0
       integer(c_int), value, target :: arg1
       type(gen_fortran_array_descriptor) :: descriptor0
@@ -204,7 +204,7 @@ contains
     end subroutine
     subroutine my_assign1(arg0, arg1)
       use iso_c_binding
-      use array_descriptor
+      use gen_array_descriptor
       real(c_double), dimension(:,:), target :: arg0
       real(c_double), value, target :: arg1
       type(gen_fortran_array_descriptor) :: descriptor0
@@ -219,7 +219,7 @@ contains
     end subroutine
     subroutine test_c_bindings_and_wrapper_compatible_type_b(arg0, arg1)
       use iso_c_binding
-      use array_descriptor
+      use gen_array_descriptor
       type(gen_fortran_array_descriptor), target :: arg0
       integer(c_int), dimension(:,:), target :: arg1
       type(gen_fortran_array_descriptor) :: descriptor1

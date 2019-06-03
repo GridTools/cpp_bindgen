@@ -140,8 +140,8 @@ namespace cpp_bindgen {
     void generate_c_interface(std::ostream &strm) {
         strm << "// This file is generated!\n";
         strm << "#pragma once\n\n";
-        strm << "#include <gridtools/c_bindings/array_descriptor.h>\n";
-        strm << "#include <gridtools/c_bindings/handle.h>\n\n";
+        strm << "#include <cpp_bindgen/array_descriptor.h>\n";
+        strm << "#include <cpp_bindgen/handle.h>\n\n";
         strm << "#ifdef __cplusplus\n";
         strm << "extern \"C\" {\n";
         strm << "#endif\n\n";

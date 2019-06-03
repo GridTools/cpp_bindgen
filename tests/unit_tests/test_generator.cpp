@@ -29,8 +29,8 @@ namespace cpp_bindgen {
         const char expected_c_interface[] = R"?(// This file is generated!
 #pragma once
 
-#include <gridtools/c_bindings/array_descriptor.h>
-#include <gridtools/c_bindings/handle.h>
+#include <cpp_bindgen/array_descriptor.h>
+#include <cpp_bindgen/handle.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -72,7 +72,7 @@ implicit none
     end subroutine
     subroutine qux_impl(arg0, arg1) bind(c, name="qux")
       use iso_c_binding
-      use array_descriptor
+      use gen_array_descriptor
       integer(c_int), value :: arg0
       type(gen_fortran_array_descriptor) :: arg1
     end subroutine
@@ -84,7 +84,7 @@ implicit none
 contains
     subroutine qux(arg0, arg1)
       use iso_c_binding
-      use array_descriptor
+      use gen_array_descriptor
       integer(c_int), value, target :: arg0
       integer(c_int), dimension(:,:,:), target :: arg1
       type(gen_fortran_array_descriptor) :: descriptor1

@@ -26,22 +26,28 @@
 #  - <library_name>_c the C-bindings with <library_name> linked to it
 #  - <library_name>_fortran the Fortran-bindings with <library_name> linked to it
 
+include_guard()
+
 option(GT_ENABLE_BINDINGS_GENERATION "If turned off, bindings will not be generated." ON)
 
 # variables are unset after use for scoping, they need to be redefined in the macros
 set(__C_BINDINGS_SOURCE_DIR @__C_BINDINGS_SOURCE_DIR@)
 set(__C_BINDINGS_INCLUDE_DIR @__C_BINDINGS_INCLUDE_DIR@)
 
+add_library(cpp_bindgen_interface INTERFACE)
+target_include_directories(cpp_bindgen_interface INTERFACE ${__C_BINDINGS_INCLUDE_DIR})
+target_compile_features(cpp_bindgen_interface INTERFACE cxx_std_11)
+if(CPP_BINDGEN_GT_LEGACY)
+    target_compile_definitions(cpp_bindgen_interface INTERFACE CPP_BINDGEN_GT_LEGACY)
+endif()
+
 add_library(cpp_bindgen_generator ${__C_BINDINGS_SOURCE_DIR}/cpp_bindgen/generator.cpp)
 # PUBLIC to make export.hpp available in the sources passed to add_bindings_library()
-target_include_directories(cpp_bindgen_generator PUBLIC ${__C_BINDINGS_INCLUDE_DIR})
-target_compile_features(cpp_bindgen_generator PUBLIC cxx_std_11)
 target_link_libraries(cpp_bindgen_generator PUBLIC Boost::boost)
+target_link_libraries(cpp_bindgen_generator PUBLIC cpp_bindgen_interface)
 
 add_library(c_bindings_handle ${__C_BINDINGS_SOURCE_DIR}/cpp_bindgen/handle.cpp)
-target_include_directories(c_bindings_handle PRIVATE ${__C_BINDINGS_INCLUDE_DIR})
-target_compile_features(c_bindings_handle PRIVATE cxx_std_11)
-target_link_libraries(cpp_bindgen_generator PRIVATE Boost::boost) #TODO make an interface target for options
+target_link_libraries(c_bindings_handle PUBLIC cpp_bindgen_interface)
 
 unset(__C_BINDINGS_SOURCE_DIR)
 unset(__C_BINDINGS_INCLUDE_DIR)
@@ -55,19 +61,21 @@ unset(__C_BINDINGS_INCLUDE_DIR)
 # be created by a call to cpp_bindgen_enable_fortran_library().
 function(cpp_bindgen_enable_fortran_library target_name)
     set(__C_BINDINGS_SOURCE_DIR @__C_BINDINGS_SOURCE_DIR@)
+    set(__C_BINDINGS_CMAKE_DIR @__C_BINDINGS_CMAKE_DIR@)
 
     if(CMAKE_Fortran_COMPILER_LOADED)
         if(NOT TARGET fortran_bindings_handle)
             add_library(fortran_bindings_handle ${__C_BINDINGS_SOURCE_DIR}/cpp_bindgen/array_descriptor.f90 ${__C_BINDINGS_SOURCE_DIR}/cpp_bindgen/handle.f90)
             target_link_libraries(fortran_bindings_handle PUBLIC c_bindings_handle)
             target_include_directories(fortran_bindings_handle PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
+            include(${__C_BINDINGS_CMAKE_DIR}/fortran_helpers.cmake)
+            gen_enable_fortran_preprocessing_on_target(fortran_bindings_handle)
         endif()
         if(NOT TARGET ${target_name}_fortran)
             set_source_files_properties(GT_${${target_name}_fortran_bindings_path} PROPERTIES GENERATED TRUE)
             add_library(${target_name}_fortran EXCLUDE_FROM_ALL ${GT_${target_name}_fortran_bindings_path})
             target_link_libraries(${target_name}_fortran PUBLIC ${target_name})
             target_link_libraries(${target_name}_fortran PUBLIC fortran_bindings_handle)
-            target_include_directories(${target_name}_fortran PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
             add_dependencies(${target_name}_fortran ${target_name}_declarations)
         endif()
     elseif(NOT ${ARGN}) # internal: the second (optional) parameter can be used to surpress this fatal error
@@ -136,7 +144,7 @@ function(cpp_bindgen_add_library target_name)
             message(FATAL_ERROR "Cross-compilation for bindings is enabled: no bindings will be generated, but "
                 "${bindings_c_decl_filename} and/or "
                 "${bindings_fortran_decl_filename} "
-                "are missing. Generate the bindings and consider making them part of your repository.") 
+                "are missing. Generate the bindings and consider making them part of your repository.")
         endif()
     endif()
 
@@ -144,6 +152,8 @@ function(cpp_bindgen_add_library target_name)
     add_library(${target_name}_c INTERFACE)
     target_link_libraries(${target_name}_c INTERFACE ${target_name})
     target_link_libraries(${target_name}_c INTERFACE c_bindings_handle)
+    target_link_libraries(${target_name}_c INTERFACE cpp_bindgen_interface)
+
     add_dependencies(${target_name}_c ${target_name}_declarations)
 
     # bindings Fortran library

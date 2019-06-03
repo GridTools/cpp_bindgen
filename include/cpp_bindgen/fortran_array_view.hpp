@@ -92,6 +92,21 @@ namespace cpp_bindgen {
 
             return descriptor;
         }
+
+#ifdef CPP_BINDGEN_GT_LEGACY // remove once GT is at v2.0
+        template <class T>
+        enable_if_t<(T::gt_view_rank::value > 0) && std::is_arithmetic<typename T::gt_view_element_type>::value &&
+                        (T::gt_is_acc_present::value == T::gt_is_acc_present::value),
+            gen_fortran_array_descriptor>
+        get_fortran_view_meta(T *) {
+            gen_fortran_array_descriptor descriptor;
+            descriptor.type = fortran_array_element_kind<typename T::gt_view_element_type>::value;
+            descriptor.rank = T::gt_view_rank::value;
+            descriptor.is_acc_present = T::gt_is_acc_present::value;
+
+            return descriptor;
+        }
+#endif
     } // namespace get_fortran_view_meta_impl
     using get_fortran_view_meta_impl::get_fortran_view_meta;
     /**
@@ -151,6 +166,14 @@ namespace cpp_bindgen {
                                      std::declval<gen_fortran_array_descriptor *>(), std::declval<T *>())),
             T>::value>> : std::true_type {};
 
+#ifdef CPP_BINDGEN_GT_LEGACY // remove once GT is at v2.0
+    template <class T>
+    struct is_fortran_array_convertible<T,
+        enable_if_t<std::is_same<decltype(gt_make_fortran_array_view(
+                                     std::declval<gen_fortran_array_descriptor *>(), std::declval<T *>())),
+            T>::value>> : std::true_type {};
+#endif
+
     /**
      * @brief A type is fortran_array_bindable if it is fortran_array_convertible
      *
@@ -206,4 +229,32 @@ namespace cpp_bindgen {
     make_fortran_array_view(gen_fortran_array_descriptor *descriptor) {
         return gen_make_fortran_array_view(descriptor, (T *){nullptr});
     }
+
+#ifdef CPP_BINDGEN_GT_LEGACY // remove once GT is at v2.0
+    template <class T>
+    enable_if_t<std::is_same<decltype(gt_make_fortran_array_view(
+                                 std::declval<gen_fortran_array_descriptor *>(), std::declval<T *>())),
+                    T>::value,
+        T>
+    make_fortran_array_view(gen_fortran_array_descriptor *descriptor) {
+        return gt_make_fortran_array_view(descriptor, (T *){nullptr});
+    }
+#endif
 } // namespace cpp_bindgen
+
+#ifdef CPP_BINDGEN_GT_LEGACY // remove once GT is at v2.0
+namespace gridtools {
+    namespace c_bindings {
+        // TODO comment
+
+        using cpp_bindgen::fortran_array_element_kind;
+        using cpp_bindgen::is_fortran_array_bindable;
+        using cpp_bindgen::is_fortran_array_convertible;
+        using cpp_bindgen::is_fortran_array_view_inspectable;
+        using cpp_bindgen::is_fortran_array_wrappable;
+
+        using cpp_bindgen::make_fortran_array_view;
+        using cpp_bindgen::get_fortran_view_meta_impl::get_fortran_view_meta;
+    } // namespace c_bindings
+} // namespace gridtools
+#endif
