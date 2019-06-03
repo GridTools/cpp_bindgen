@@ -36,13 +36,6 @@ namespace cpp_bindgen {
         };
     } // namespace for_each_detail
 
-    /** \ingroup common
-        @{
-        \ingroup allmeta
-        @{
-        \defgroup foreach For Each
-        @{
-    */
     /// Calls fun(T{}) for each element of the type list List.
     template <class List, class Fun>
     void for_each(Fun const &fun) {
@@ -60,9 +53,5 @@ namespace cpp_bindgen {
     template <class List, class Fun>
     void for_each_type(Fun const &fun) {
         for_each_detail::for_each_type_impl<List>::exec(fun);
-    };
-
-    /** @} */
-    /** @} */
-    /** @} */
+    }
 } // namespace cpp_bindgen

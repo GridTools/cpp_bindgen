@@ -18,14 +18,11 @@
 #include <string>
 #include <vector>
 
-#include <boost/function_types/parameter_types.hpp>
-#include <boost/function_types/result_type.hpp>
-#include <boost/optional.hpp>
 #include <boost/type_index.hpp>
 
-#include "common/copy_into_variadic.hpp"
+#include "common/disjunction.hpp"
 #include "common/for_each.hpp"
-#include "common/is_there_in_sequence_if.hpp"
+#include "common/function_traits.hpp"
 
 #include "function_wrapper.hpp"
 
@@ -90,8 +87,7 @@ namespace cpp_bindgen {
         template <class Signature,
             class TypeToStr,
             class Fun,
-            class Params =
-                copy_into_variadic<typename boost::function_types::parameter_types<Signature>::type, std::tuple<>>>
+            class Params = typename function_traits::parameter_types<Signature>::type>
         void for_each_param(TypeToStr &&type_to_str, Fun &&fun) {
             int count = 0;
             for_each_type<Params>(for_each_param_helper_f<TypeToStr, Fun>{
@@ -100,8 +96,7 @@ namespace cpp_bindgen {
 
         template <class CSignature>
         std::ostream &write_c_binding(std::ostream &strm, char const *name) {
-            namespace ft = boost::function_types;
-            strm << get_c_type_name<typename ft::result_type<CSignature>::type>() << " " << name << "(";
+            strm << get_c_type_name<typename function_traits::result_type<CSignature>::type>() << " " << name << "(";
             for_each_param<CSignature>(get_c_type_name_f{}, [&](const std::string &type_name, int i) {
                 if (i)
                     strm << ", ";
@@ -261,10 +256,15 @@ namespace cpp_bindgen {
             }
         };
 
+        template <typename>
+        struct has_array_descriptor_helper;
+        template <typename... Parameters>
+        struct has_array_descriptor_helper<std::tuple<Parameters...>>
+            : disjunction<std::is_same<Parameters, gen_fortran_array_descriptor *>...>::type {};
+
         template <typename CSignature>
         struct has_array_descriptor
-            : is_there_in_sequence_if<typename boost::function_types::parameter_types<CSignature>::type,
-                  std::is_same<boost::mpl::_, gen_fortran_array_descriptor *>> {};
+            : has_array_descriptor_helper<typename function_traits::parameter_types<CSignature>::type> {};
 
         /**
          * @brief This function writes the `interface`-section of the fortran-code.
@@ -274,9 +274,9 @@ namespace cpp_bindgen {
          */
         template <class CSignature>
         std::ostream &write_fortran_binding(std::ostream &strm, char const *c_name, char const *fortran_name) {
-            namespace ft = boost::function_types;
             std::stringstream tmp_strm;
-            tmp_strm << fortran_return_type<typename ft::result_type<CSignature>::type>() << " " << fortran_name << "(";
+            tmp_strm << fortran_return_type<typename function_traits::result_type<CSignature>::type>() << " "
+                     << fortran_name << "(";
             for_each_param<CSignature>(ignore_type_f{}, [&](const std::string &, int i) {
                 if (i)
                     tmp_strm << ", ";
@@ -294,7 +294,7 @@ namespace cpp_bindgen {
             for_each_param<CSignature>(fortran_param_type_from_c_f{},
                 [&](const std::string &type_name, int i) { strm << "      " << type_name << " :: arg" << i << "\n"; });
             return strm << "    end "
-                        << fortran_function_specifier<typename ft::result_type<CSignature>::type>() + "\n";
+                        << fortran_function_specifier<typename function_traits::result_type<CSignature>::type>() + "\n";
         }
 
         struct cpp_type_descriptor_f {
@@ -303,18 +303,18 @@ namespace cpp_bindgen {
                 typename std::enable_if<std::is_same<CType, gen_fortran_array_descriptor *>::value &&
                                             is_fortran_array_wrappable<CppType>::value,
                     int>::type = 0>
-            boost::optional<gen_fortran_array_descriptor> operator()() const {
+            gen_fortran_array_descriptor const *operator()() const {
                 static const gen_fortran_array_descriptor meta =
                     get_fortran_view_meta((add_pointer_t<CppType>){nullptr});
-                return meta;
+                return &meta;
             }
             template <class CppType,
                 class CType = param_converted_to_c_t<CppType>,
                 typename std::enable_if<!std::is_same<CType, gen_fortran_array_descriptor *>::value ||
                                             !is_fortran_array_wrappable<CppType>::value,
                     int>::type = 0>
-            boost::optional<gen_fortran_array_descriptor> operator()() const {
-                return boost::none;
+            gen_fortran_array_descriptor const *operator()() const {
+                return nullptr;
             }
         };
         /**
@@ -327,10 +327,10 @@ namespace cpp_bindgen {
         std::ostream &write_fortran_wrapper(
             std::ostream &strm, char const *fortran_cbindings_name, const char *fortran_name) {
             using CSignature = wrapped_t<CppSignature>;
-            namespace ft = boost::function_types;
 
             std::stringstream tmp_strm;
-            tmp_strm << fortran_return_type<typename ft::result_type<CSignature>::type>() << " " << fortran_name << "(";
+            tmp_strm << fortran_return_type<typename function_traits::result_type<CSignature>::type>() << " "
+                     << fortran_name << "(";
             for_each_param<CSignature>(ignore_type_f{}, [&](const std::string &, int i) {
                 if (i)
                     tmp_strm << ", ";
@@ -347,65 +347,62 @@ namespace cpp_bindgen {
                 strm << "      " << type_name << ", target :: arg" << i << "\n";
             });
 
-            for_each_param<CppSignature>(
-                cpp_type_descriptor_f{}, [&](const boost::optional<gen_fortran_array_descriptor> &meta, int i) {
-                    if (meta) {
-                        const auto desc_name = "descriptor" + std::to_string(i);
-                        strm << "      type(gen_fortran_array_descriptor) :: " + desc_name + "\n";
-                    }
-                });
+            for_each_param<CppSignature>(cpp_type_descriptor_f{}, [&](gen_fortran_array_descriptor const *meta, int i) {
+                if (meta) {
+                    const auto desc_name = "descriptor" + std::to_string(i);
+                    strm << "      type(gen_fortran_array_descriptor) :: " + desc_name + "\n";
+                }
+            });
             strm << "\n";
 
-            for_each_param<CppSignature>(
-                cpp_type_descriptor_f{}, [&](const boost::optional<gen_fortran_array_descriptor> &meta, int i) {
-                    if (meta) {
-                        const auto var_name = "arg" + std::to_string(i);
-                        const auto desc_name = "descriptor" + std::to_string(i);
-                        std::string c_loc = "c_loc(" + var_name + "(";
-                        for (int i = 0; i < meta->rank; ++i) {
-                            if (i)
-                                c_loc += ",";
-                            c_loc += "lbound(" + var_name + ", " + std::to_string(i + 1) + ")";
-                        }
-                        c_loc += "))";
-                        if (meta->is_acc_present)
-                            strm << "      !$acc data present(" << var_name << ")\n" //
-                                 << "      !$acc host_data use_device(" << var_name << ")\n";
-
-                        strm << "      " << desc_name << "%rank = " << meta->rank << "\n"                 //
-                             << "      " << desc_name << "%type = " << meta->type << "\n"                 //
-                             << "      " << desc_name << "%dims = reshape(shape(" << var_name << "), &\n" //
-                             << "        shape(" << desc_name << "%dims), (/0/))\n"                       //
-                             << "      " << desc_name << "%data = " << c_loc << "\n";
-                        if (meta->is_acc_present)
-                            strm << "      !$acc end host_data\n" //
-                                 << "      !$acc end data\n";
-                        strm << "\n";
+            for_each_param<CppSignature>(cpp_type_descriptor_f{}, [&](gen_fortran_array_descriptor const *meta, int i) {
+                if (meta) {
+                    const auto var_name = "arg" + std::to_string(i);
+                    const auto desc_name = "descriptor" + std::to_string(i);
+                    std::string c_loc = "c_loc(" + var_name + "(";
+                    for (int i = 0; i < meta->rank; ++i) {
+                        if (i)
+                            c_loc += ",";
+                        c_loc += "lbound(" + var_name + ", " + std::to_string(i + 1) + ")";
                     }
-                });
+                    c_loc += "))";
+                    if (meta->is_acc_present)
+                        strm << "      !$acc data present(" << var_name << ")\n" //
+                             << "      !$acc host_data use_device(" << var_name << ")\n";
+
+                    strm << "      " << desc_name << "%rank = " << meta->rank << "\n"                 //
+                         << "      " << desc_name << "%type = " << meta->type << "\n"                 //
+                         << "      " << desc_name << "%dims = reshape(shape(" << var_name << "), &\n" //
+                         << "        shape(" << desc_name << "%dims), (/0/))\n"                       //
+                         << "      " << desc_name << "%data = " << c_loc << "\n";
+                    if (meta->is_acc_present)
+                        strm << "      !$acc end host_data\n" //
+                             << "      !$acc end data\n";
+                    strm << "\n";
+                }
+            });
 
             tmp_strm.str("");
-            if (std::is_void<typename ft::result_type<CSignature>::type>::value) {
+            if (std::is_void<typename function_traits::result_type<CSignature>::type>::value) {
                 tmp_strm << "call " << fortran_cbindings_name << "(";
             } else {
                 tmp_strm << fortran_name << " = " << fortran_cbindings_name << "(";
             }
-            for_each_param<CppSignature>(
-                cpp_type_descriptor_f{}, [&](const boost::optional<gen_fortran_array_descriptor> &meta, int i) {
-                    if (i)
-                        tmp_strm << ", ";
-                    if (meta) {
-                        const auto desc_name = "descriptor" + std::to_string(i);
-                        tmp_strm << desc_name;
-                    } else {
-                        tmp_strm << "arg" << i;
-                    }
-                });
+            for_each_param<CppSignature>(cpp_type_descriptor_f{}, [&](gen_fortran_array_descriptor const *meta, int i) {
+                if (i)
+                    tmp_strm << ", ";
+                if (meta) {
+                    const auto desc_name = "descriptor" + std::to_string(i);
+                    tmp_strm << desc_name;
+                } else {
+                    tmp_strm << "arg" << i;
+                }
+            });
             tmp_strm << ")";
             strm << wrap_line(tmp_strm.str(), "      ");
 
             return strm << "    end "
-                        << fortran_function_specifier<typename ft::result_type<CSignature>::type>() + "\n";
+                        << fortran_function_specifier<typename function_traits::result_type<CSignature>::type>() + "\n";
         }
 
         struct c_bindings_traits {

@@ -9,25 +9,21 @@
  */
 #pragma once
 
-#include <boost/function_types/function_arity.hpp>
-#include <boost/function_types/parameter_types.hpp>
-#include <boost/function_types/result_type.hpp>
-#include <boost/mpl/at.hpp>
 #include <boost/preprocessor.hpp>
 
+#include "common/function_traits.hpp"
 #include "function_wrapper.hpp"
 #include "generator.hpp"
 
-#define GEN_EXPORT_BINDING_IMPL_PARAM_DECL(z, i, signature)                                         \
-    typename boost::mpl::at_c<                                                                      \
-        typename boost::function_types::parameter_types<::cpp_bindgen::wrapped_t<signature>>::type, \
-        i>::type param_##i
+#define GEN_EXPORT_BINDING_IMPL_PARAM_DECL(z, i, signature) \
+    typename std::tuple_element<i,                          \
+        ::cpp_bindgen::function_traits::parameter_types<::cpp_bindgen::wrapped_t<signature>>::type>::type param_##i
 
-#define GEN_ADD_GENERATED_DEFINITION_IMPL(n, name, cppsignature, impl)                                           \
-    static_assert(::boost::function_types::function_arity<cppsignature>::value == n, "arity mismatch");          \
-    extern "C" typename ::boost::function_types::result_type<::cpp_bindgen::wrapped_t<cppsignature>>::type name( \
-        BOOST_PP_ENUM(n, GEN_EXPORT_BINDING_IMPL_PARAM_DECL, cppsignature)) {                                    \
-        return ::cpp_bindgen::wrap<cppsignature>(impl)(BOOST_PP_ENUM_PARAMS(n, param_));                         \
+#define GEN_ADD_GENERATED_DEFINITION_IMPL(n, name, cppsignature, impl)                                            \
+    static_assert(::cpp_bindgen::function_traits::arity<cppsignature>::value == n, "arity mismatch");             \
+    extern "C" typename ::cpp_bindgen::function_traits::result_type<::cpp_bindgen::wrapped_t<cppsignature>>::type \
+    name(BOOST_PP_ENUM(n, GEN_EXPORT_BINDING_IMPL_PARAM_DECL, cppsignature)) {                                    \
+        return ::cpp_bindgen::wrap<cppsignature>(impl)(BOOST_PP_ENUM_PARAMS(n, param_));                          \
     }
 
 /**
