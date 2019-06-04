@@ -219,7 +219,7 @@ namespace cpp_bindgen {
                 throw std::runtime_error("Extents do not match");
         }
 
-        return *reinterpret_cast<remove_reference_t<T> *>(descriptor->data);
+        return *static_cast<remove_reference_t<T> *>(descriptor->data);
     }
     template <class T>
     enable_if_t<std::is_same<decltype(gen_make_fortran_array_view(
