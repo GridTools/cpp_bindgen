@@ -10,7 +10,9 @@
 
 #include <array>
 
+#ifndef CPP_BINDGEN_GT_LEGACY
 #define CPP_BINDGEN_GT_LEGACY
+#endif
 #include <cpp_bindgen/export_gt_legacy.hpp>
 #undef CPP_BINDGEN_GT_LEGACY
 #include <type_traits>
