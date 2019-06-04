@@ -15,6 +15,9 @@ endif()
 include(${PROJECT_SOURCE_DIR}/cmake/detect_features.cmake)
 detect_cuda()
 
+include(${PROJECT_SOURCE_DIR}/cmake/workaround_thread.cmake)
+_fix_threads_flags()
+
 function(compile_test name)
     add_executable(${name} ${name}.cpp)
     target_link_libraries(${name} PRIVATE gtest_main)
