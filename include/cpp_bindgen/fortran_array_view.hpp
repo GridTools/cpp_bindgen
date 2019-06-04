@@ -245,16 +245,10 @@ namespace cpp_bindgen {
 #ifdef CPP_BINDGEN_GT_LEGACY // remove once GT is at v2.0
 namespace gridtools {
     namespace c_bindings {
-        // TODO comment
-
         using cpp_bindgen::fortran_array_element_kind;
         using cpp_bindgen::is_fortran_array_bindable;
-        using cpp_bindgen::is_fortran_array_convertible;
         using cpp_bindgen::is_fortran_array_view_inspectable;
         using cpp_bindgen::is_fortran_array_wrappable;
-
-        using cpp_bindgen::make_fortran_array_view;
-        using cpp_bindgen::get_fortran_view_meta_impl::get_fortran_view_meta;
     } // namespace c_bindings
 } // namespace gridtools
 #endif
