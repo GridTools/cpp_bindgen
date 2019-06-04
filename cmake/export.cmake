@@ -1,36 +1,44 @@
-# TODO export package
-
-#include(GNUInstallDirs)
-
-# install(FILES src/dotprod.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/dotprod)
-
-# install(EXPORT dotprod-targets
-#     FILE dotprod-targets.cmake
-#     NAMESPACE Dotprod::
-#     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake
-#     )
+# this registers the build-tree with a global CMake-registry
+export(PACKAGE cpp_bindgen)
 
 include(CMakePackageConfigHelpers)
 
-write_basic_package_version_file(cpp_bindgen-config-version.cmake
+# for build tree
+set(cpp_bindgen_MODULE_PATH ${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/build-install/lib/cmake)
+set(cpp_bindgen_SOURCES_PATH ${PROJECT_SOURCE_DIR}/src)
+set(cpp_bindgen_INCLUDE_PATH ${PROJECT_SOURCE_DIR}/include)
+configure_package_config_file(
+    cmake/cpp_bindgen-config.cmake.in
+    ${PROJECT_BINARY_DIR}/cpp_bindgen-config.cmake
+    PATH_VARS cpp_bindgen_MODULE_PATH cpp_bindgen_SOURCES_PATH cpp_bindgen_INCLUDE_PATH
+    INSTALL_DESTINATION ${PROJECT_BINARY_DIR}
+    )
+write_basic_package_version_file(
+    ${PROJECT_BINARY_DIR}/cpp_bindgen-config-version.cmake
     VERSION ${PROJECT_VERSION}
     COMPATIBILITY SameMajorVersion
     )
 
+# for install tree
 set(cpp_bindgen_MODULE_PATH lib/cmake)
 set(cpp_bindgen_SOURCES_PATH src)
 set(cpp_bindgen_INCLUDE_PATH include)
-
-configure_package_config_file(cmake/cpp_bindgen-config.cmake.in
-${CMAKE_CURRENT_BINARY_DIR}/cpp_bindgen-config.cmake
-PATH_VARS cpp_bindgen_MODULE_PATH cpp_bindgen_SOURCES_PATH cpp_bindgen_INCLUDE_PATH
-INSTALL_DESTINATION lib/cmake
-)
+configure_package_config_file(
+    cmake/cpp_bindgen-config.cmake.in
+    ${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/install/cpp_bindgen-config.cmake
+    PATH_VARS cpp_bindgen_MODULE_PATH cpp_bindgen_SOURCES_PATH cpp_bindgen_INCLUDE_PATH
+    INSTALL_DESTINATION lib/cmake
+    )
+write_basic_package_version_file(
+    ${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/install/cpp_bindgen-config-version.cmake
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY SameMajorVersion
+    )
 
 install(
     FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/cpp_bindgen-config.cmake
-    ${CMAKE_CURRENT_BINARY_DIR}/cpp_bindgen-config-version.cmake
+    ${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/install/cpp_bindgen-config.cmake
+    ${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/install/cpp_bindgen-config-version.cmake
     DESTINATION lib/cmake
     )
 
@@ -60,3 +68,5 @@ set(CBINDINGS_SOURCES
 install(DIRECTORY include/ DESTINATION include)
 install(FILES ${CMAKE_SOURCES} DESTINATION "lib/cmake")
 install(FILES ${CBINDINGS_SOURCES} DESTINATION "src/cpp_bindgen")
+
+file(COPY ${CMAKE_SOURCES} DESTINATION "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/build-install/lib/cmake")
