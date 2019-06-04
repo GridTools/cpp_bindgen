@@ -1,6 +1,7 @@
 include(FetchContent)
 option(INSTALL_GTEST OFF)
 mark_as_advanced(INSTALL_GTEST)
+find_package(Threads)
 FetchContent_Declare(
   googletest
   GIT_REPOSITORY https://github.com/google/googletest.git
