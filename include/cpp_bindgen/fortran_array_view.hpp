@@ -110,8 +110,8 @@ namespace cpp_bindgen {
         template <class T>
         using gen_fortran_array_view_t =
             decltype(gen_make_fortran_array_view(std::declval<gen_fortran_array_descriptor *>(), std::declval<T *>()));
-        template <class T>
 #ifdef CPP_BINDGEN_GT_LEGACY // remove once GT is at v2.0
+        template <class T>
         using gt_fortran_array_view_t =
             decltype(gt_make_fortran_array_view(std::declval<gt_fortran_array_descriptor *>(), std::declval<T *>()));
 #endif
