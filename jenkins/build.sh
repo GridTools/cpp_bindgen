@@ -57,8 +57,10 @@ nice make -j8
 ./driver
 
 # test gt legacy mode
-cd ${cwd}
-mkdir -p build_legacy && cd build_legacy
-cmake .. -DCMAKE_INSTALL_PREFIX=${cwd}/install -DCPP_BINDGEN_GT_LEGACY=ON
-nice make -j8 install
-ctest .
+if [[ "$HOST" != kesch* ]]; then
+    cd ${cwd}
+    mkdir -p build_legacy && cd build_legacy
+    cmake .. -DCMAKE_INSTALL_PREFIX=${cwd}/install -DCPP_BINDGEN_GT_LEGACY=ON
+    nice make -j8 install
+    ctest .
+fi
