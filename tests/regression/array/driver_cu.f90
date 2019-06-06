@@ -1,0 +1,33 @@
+! GridTools
+!
+! Copyright (c) 2014-2019, ETH Zurich
+! All rights reserved.
+!
+! Please, refer to the LICENSE file in the root directory.
+! SPDX-License-Identifier: BSD-3-Clause
+
+program main
+    use iso_c_binding
+    use gen_handle
+    use gen_regression_array_cu
+    implicit none
+    integer, parameter :: ie = 9, je = 10, ke = 11
+    integer :: i, j, k
+    real(8), dimension(ie, je, ke) :: arr, expected
+
+    !$acc data copy(arr)
+
+    call fill_array(arr)
+
+    !$acc end data
+
+    DO i=1, ie
+        DO j=1, je
+            DO k=1, ke
+                expected(i,j,k) = (i-1)*10000 + (j-1)*100 + (k-1)
+            END DO
+        END DO
+    END DO
+
+    if (any(arr /= expected)) stop 1
+end
