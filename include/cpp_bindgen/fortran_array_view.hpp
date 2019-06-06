@@ -169,7 +169,7 @@ namespace cpp_bindgen {
         enable_if_t<std::is_lvalue_reference<T>::value && std::is_array<remove_reference_t<T>>::value &&
                     std::is_arithmetic<remove_all_extents_t<remove_reference_t<T>>>::value>> : std::true_type {};
 
-    // simplify this when support for CUDA 9.2 is gone
+    // simplify this when support for CUDA 9.2 is gone, or if GT is at v2.0
     template <class T>
     struct is_fortran_array_convertible<T,
         void_t<get_fortran_view_meta_impl::gen_fortran_array_view_t<T>,
@@ -233,7 +233,7 @@ namespace cpp_bindgen {
 
         return *static_cast<remove_reference_t<T> *>(descriptor->data);
     }
-    // simplify this when support for CUDA 9.2 is gone
+    // simplify this when support for CUDA 9.2 is gone, or if GT is at v2.0
     template <class T>
     enable_if_t<std::is_same<get_fortran_view_meta_impl::gen_fortran_array_view_t<T>, T>::value,
         get_fortran_view_meta_impl::gen_fortran_array_view_t<T>>
