@@ -21,14 +21,12 @@ program main
 
     !$acc exit data copyout(arr)
 
-    call fill_array(arr)
-
     do i=1, ie
         do j=1, je
             do k=1, ke
                 expected(i,j,k) = (i-1)*10000 + (j-1)*100 + (k-1)
-                end do
             end do
+        end do
     end do
 
     if (any(arr /= expected)) stop 1

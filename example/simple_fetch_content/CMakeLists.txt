@@ -16,7 +16,7 @@ FetchContent_Declare(
 FetchContent_GetProperties(cpp_bindgen)
 if(NOT c_bindings_POPULATED)
   FetchContent_Populate(cpp_bindgen)
-  add_subdirectory(${c_bindings_SOURCE_DIR} ${c_bindings_BINARY_DIR})
+  add_subdirectory(${cpp_bindgen_SOURCE_DIR} ${cpp_bindgen_BINARY_DIR})
 endif()
 
 # 2) create a library with bindings. This will generate the files simple.h and simple.f90 which can be included within C and Fortran. In CMake you can use them by linking against `simple_c`or `simple_fortran`.

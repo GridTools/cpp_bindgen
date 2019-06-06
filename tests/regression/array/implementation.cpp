@@ -11,7 +11,7 @@
 #include <array>
 
 #include <cpp_bindgen/export.hpp>
-#include <type_traits>
+#include <iostream>
 
 namespace custom_array {
     template <class T>

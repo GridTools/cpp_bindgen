@@ -9,6 +9,8 @@
  */
 #include "implementation.cpp"
 
+#include <iostream>
+
 namespace gpu_array {
     template <class T>
     struct my_array {
@@ -34,6 +36,11 @@ namespace gpu_array {
         if (descriptor->rank != 3) {
             throw std::runtime_error("only 3-dimensional arrays are supported");
         }
+        cudaPointerAttributes attributes;
+        auto ret = cudaPointerGetAttributes(&attributes, descriptor->data);
+        if (ret != cudaSuccess || attributes.memoryType != cudaMemoryTypeDevice) {
+            throw std::runtime_error("no gpu pointer");
+        }
         return my_array<T>{static_cast<T *>(descriptor->data),
             {descriptor->dims[0], descriptor->dims[1], descriptor->dims[2]},
             {1, descriptor->dims[0], descriptor->dims[0] * descriptor->dims[1]}};
@@ -54,8 +61,8 @@ namespace gpu_array {
 
 namespace {
     __global__ void fill_array_kernel(gpu_array::my_array<double> a) {
-        for (size_t i = 0; i < a.sizes[0]; ++i) {
-            a(i, blockIdx.x, threadIdx.x) = i * 10000 + blockIdx.x * 100 + threadIdx.x;
+        for (size_t i = 0; i < a.sizes[2]; ++i) {
+            a(threadIdx.x, blockIdx.x, i) = threadIdx.x * 10000 + blockIdx.x * 100 + i;
         }
     }
 
