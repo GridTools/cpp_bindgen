@@ -1,0 +1,25 @@
+macro(detect_cuda)
+    if(NOT DEFINED CPP_BINDGEN_TEST_CUDA)
+        # detect CUDA support
+        include(CheckLanguage)
+        check_language(CUDA)
+
+        if(CMAKE_CUDA_COMPILER)
+            enable_language (CUDA)
+            message(STATUS "Enable CUDA tests")
+            set(CUDA_AVAILABLE ON)
+        else()
+            message(STATUS "Disable CUDA tests")
+            set(CUDA_AVAILABLE OFF)
+        endif()
+    elseif(CPP_BINDGEN_TEST_CUDA)
+        enable_language(CUDA)
+        message(STATUS "Enable CUDA tests")
+        set(CUDA_AVAILABLE ON)
+    else()
+        message(STATUS "Disable CUDA tests")
+        set(CUDA_AVAILABLE OFF)
+    endif()
+endmacro(detect_cuda)
+
+

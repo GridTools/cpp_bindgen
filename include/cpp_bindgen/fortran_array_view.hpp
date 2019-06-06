@@ -107,6 +107,15 @@ namespace cpp_bindgen {
             return descriptor;
         }
 #endif
+        template <class T>
+        using gen_fortran_array_view_t =
+            decltype(gen_make_fortran_array_view(std::declval<gen_fortran_array_descriptor *>(), std::declval<T *>()));
+#ifdef CPP_BINDGEN_GT_LEGACY // remove once GT is at v2.0
+        template <class T>
+        using gt_fortran_array_view_t =
+            decltype(gt_make_fortran_array_view(std::declval<gt_fortran_array_descriptor *>(), std::declval<T *>()));
+#endif
+
     } // namespace get_fortran_view_meta_impl
     using get_fortran_view_meta_impl::get_fortran_view_meta;
     /**
@@ -160,18 +169,21 @@ namespace cpp_bindgen {
         enable_if_t<std::is_lvalue_reference<T>::value && std::is_array<remove_reference_t<T>>::value &&
                     std::is_arithmetic<remove_all_extents_t<remove_reference_t<T>>>::value>> : std::true_type {};
 
+    // simplify this when support for CUDA 9.2 is gone, or if GT is at v2.0
     template <class T>
     struct is_fortran_array_convertible<T,
-        enable_if_t<std::is_same<decltype(gen_make_fortran_array_view(
-                                     std::declval<gen_fortran_array_descriptor *>(), std::declval<T *>())),
-            T>::value>> : std::true_type {};
+        void_t<get_fortran_view_meta_impl::gen_fortran_array_view_t<T>,
+            enable_if_t<std::is_same<get_fortran_view_meta_impl::gen_fortran_array_view_t<T>,
+                T>::value>> //
+        > : std::true_type {};
 
 #ifdef CPP_BINDGEN_GT_LEGACY // remove once GT is at v2.0
     template <class T>
     struct is_fortran_array_convertible<T,
-        enable_if_t<std::is_same<decltype(gt_make_fortran_array_view(
-                                     std::declval<gen_fortran_array_descriptor *>(), std::declval<T *>())),
-            T>::value>> : std::true_type {};
+        void_t<get_fortran_view_meta_impl::gt_fortran_array_view_t<T>,
+            enable_if_t<std::is_same<get_fortran_view_meta_impl::gt_fortran_array_view_t<T>,
+                T>::value>> //
+        > : std::true_type {};
 #endif
 
     /**
@@ -219,23 +231,20 @@ namespace cpp_bindgen {
                 throw std::runtime_error("Extents do not match");
         }
 
-        return *reinterpret_cast<remove_reference_t<T> *>(descriptor->data);
+        return *static_cast<remove_reference_t<T> *>(descriptor->data);
     }
+    // simplify this when support for CUDA 9.2 is gone, or if GT is at v2.0
     template <class T>
-    enable_if_t<std::is_same<decltype(gen_make_fortran_array_view(
-                                 std::declval<gen_fortran_array_descriptor *>(), std::declval<T *>())),
-                    T>::value,
-        T>
+    enable_if_t<std::is_same<get_fortran_view_meta_impl::gen_fortran_array_view_t<T>, T>::value,
+        get_fortran_view_meta_impl::gen_fortran_array_view_t<T>>
     make_fortran_array_view(gen_fortran_array_descriptor *descriptor) {
         return gen_make_fortran_array_view(descriptor, (T *){nullptr});
     }
 
 #ifdef CPP_BINDGEN_GT_LEGACY // remove once GT is at v2.0
     template <class T>
-    enable_if_t<std::is_same<decltype(gt_make_fortran_array_view(
-                                 std::declval<gen_fortran_array_descriptor *>(), std::declval<T *>())),
-                    T>::value,
-        T>
+    enable_if_t<std::is_same<get_fortran_view_meta_impl::gt_fortran_array_view_t<T>, T>::value,
+        get_fortran_view_meta_impl::gt_fortran_array_view_t<T>>
     make_fortran_array_view(gen_fortran_array_descriptor *descriptor) {
         return gt_make_fortran_array_view(descriptor, (T *){nullptr});
     }

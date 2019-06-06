@@ -10,9 +10,7 @@
 
 #include <array>
 
-#define CPP_BINDGEN_GT_LEGACY
 #include <cpp_bindgen/export_gt_legacy.hpp>
-#undef CPP_BINDGEN_GT_LEGACY
 #include <type_traits>
 
 namespace custom_array {
@@ -40,25 +38,21 @@ namespace custom_array {
 
     template <class T>
     struct is_my_array<my_array<T>> : std::true_type {};
-} // namespace custom_array
 
-namespace custom_array {
-    template <typename T,
-        typename = typename std::enable_if<is_my_array<typename std::remove_const<T>::type>::value>::type>
-    T gt_make_fortran_array_view(gt_fortran_array_descriptor *descriptor, T *) {
+    template <typename T>
+    my_array<T> gt_make_fortran_array_view(gt_fortran_array_descriptor *descriptor, my_array<T> *) {
         if (descriptor->rank != 3) {
             throw std::runtime_error("only 3-dimensional arrays are supported");
         }
-        return T{reinterpret_cast<typename T::data_t *>(descriptor->data),
+        return my_array<T>{static_cast<T *>(descriptor->data),
             {descriptor->dims[0], descriptor->dims[1], descriptor->dims[2]},
             {1, descriptor->dims[0], descriptor->dims[0] * descriptor->dims[1]}};
     }
 
-    template <typename T,
-        typename = typename std::enable_if<is_my_array<typename std::remove_const<T>::type>::value>::type>
-    gt_fortran_array_descriptor get_fortran_view_meta(T *) {
+    template <typename T>
+    gt_fortran_array_descriptor get_fortran_view_meta(my_array<T> *) {
         gt_fortran_array_descriptor descriptor;
-        descriptor.type = cpp_bindgen::fortran_array_element_kind<typename T::data_t>::value;
+        descriptor.type = cpp_bindgen::fortran_array_element_kind<T>::value;
         descriptor.rank = 3;
         descriptor.is_acc_present = false;
         return descriptor;

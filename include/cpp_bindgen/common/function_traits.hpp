@@ -38,16 +38,35 @@ namespace cpp_bindgen {
             struct arity_helper<Ret(Args...)> {
                 static constexpr std::size_t value = sizeof...(Args);
             };
+
+            template <class>
+            struct nuke_fptr_helper;
+
+            template <class Ret, class... Args>
+            struct nuke_fptr_helper<Ret(Args...)> {
+                using type = Ret(Args...);
+            };
+            template <class Ret, class... Args>
+            struct nuke_fptr_helper<Ret (&)(Args...)> {
+                using type = Ret(Args...);
+            };
+            template <class Ret, class... Args>
+            struct nuke_fptr_helper<Ret (*)(Args...)> {
+                using type = Ret(Args...);
+            };
+
+            template <class F>
+            using nuke_fptr = typename nuke_fptr_helper<typename std::remove_cv<F>::type>::type;
         } // namespace _impl
 
-        template <class F, typename std::enable_if<std::is_function<F>::value, int>::type = 0>
-        struct parameter_types : _impl::parameter_types_helper<typename std::remove_cv<F>::type> {};
+        template <class F>
+        struct parameter_types : _impl::parameter_types_helper<_impl::nuke_fptr<F>> {};
 
-        template <class F, typename std::enable_if<std::is_function<F>::value, int>::type = 0>
-        struct result_type : _impl::result_type_helper<typename std::remove_cv<F>::type> {};
+        template <class F>
+        struct result_type : _impl::result_type_helper<_impl::nuke_fptr<F>> {};
 
-        template <class F, typename std::enable_if<std::is_function<F>::value, int>::type = 0>
-        struct arity : _impl::arity_helper<typename std::remove_cv<F>::type> {};
+        template <class F>
+        struct arity : _impl::arity_helper<_impl::nuke_fptr<F>> {};
 
     } // namespace function_traits
 } // namespace cpp_bindgen
