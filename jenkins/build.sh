@@ -16,6 +16,7 @@ if [[ "$HOST" == kesch* || "$HOST" == escha* ]]; then
     export BOOST_ROOT=/project/c14/install/kesch/boost/boost_1_67_0
     export CUDATOOLKIT_HOME=$CUDA_PATH
     export CUDA_ARCH=sm_37
+    export FC=`which gfortran`
 elif [[ "$HOST" == tave* ]]; then
     module switch PrgEnv-cray PrgEnv-gnu
     module rm CMake
@@ -37,7 +38,7 @@ cwd=$(pwd)
 
 # install c_bindings
 mkdir -p build && cd build
-cmake .. -DCMAKE_INSTALL_PREFIX=${cwd}/install
+cmake .. -DCMAKE_INSTALL_PREFIX=${cwd}/install -DCPP_BINDGEN_REQUIRE_TEST_C=ON -DCPP_BINDGEN_REQUIRE_TEST_Fortran=ON
 nice make -j8 install
 ctest .
 

@@ -22,4 +22,30 @@ macro(detect_cuda)
     endif()
 endmacro(detect_cuda)
 
+include (CMakeDependentOption)
 
+macro(detect_fortran_compiler)
+    CMAKE_DEPENDENT_OPTION (CPP_BINDGEN_REQUIRE_TEST_Fortran "CMake will abort if no Fortran compiler can be found"
+        OFF "BUILD_TESTING" OFF)
+
+    include(CheckLanguage)
+    check_language(Fortran)
+    if (CMAKE_Fortran_COMPILER OR CPP_BINDGEN_REQUIRE_TEST_Fortran)
+        enable_language(Fortran)
+    else()
+        message(WARNING "Fortran Compiler has not been found. Tests using Fortran will not be built!")
+    endif()
+endmacro(detect_fortran_compiler)
+
+macro(detect_c_compiler)
+    CMAKE_DEPENDENT_OPTION (CPP_BINDGEN_REQUIRE_TEST_C "CMake will abort if no C compiler can be found"
+        OFF "BUILD_TESTING" OFF)
+
+    include(CheckLanguage)
+    check_language(C)
+    if (CMAKE_C_COMPILER OR CPP_BINDGEN_REQUIRE_TEST_C)
+        enable_language(C)
+    else()
+        message(WARNING "C Compiler has not been found. Tests using C will not be built!")
+    endif()
+endmacro(detect_c_compiler)
