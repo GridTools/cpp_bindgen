@@ -16,6 +16,7 @@ if [[ "$HOST" == kesch* || "$HOST" == escha* ]]; then
     export BOOST_ROOT=/project/c14/install/kesch/boost/boost_1_67_0
     export CUDATOOLKIT_HOME=$CUDA_PATH
     export CUDA_ARCH=sm_37
+    export FC=`which gfortran`
 elif [[ "$HOST" == tave* ]]; then
     module switch PrgEnv-cray PrgEnv-gnu
     module rm CMake
