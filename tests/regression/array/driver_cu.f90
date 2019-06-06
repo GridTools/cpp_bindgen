@@ -15,19 +15,23 @@ program main
     integer :: i, j, k
     real(8), dimension(ie, je, ke) :: arr, expected
 
-    !$acc data copy(arr)
+    !$acc enter data create(arr)
+
+    call fill_gpu_array(arr)
+
+    !$acc exit data copyout(arr)
 
     call fill_array(arr)
 
-    !$acc end data
-
-    DO i=1, ie
-        DO j=1, je
-            DO k=1, ke
+    do i=1, ie
+        do j=1, je
+            do k=1, ke
                 expected(i,j,k) = (i-1)*10000 + (j-1)*100 + (k-1)
-            END DO
-        END DO
-    END DO
+                end do
+            end do
+    end do
 
     if (any(arr /= expected)) stop 1
+
+    print *, "Success!"
 end
