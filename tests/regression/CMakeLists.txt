@@ -1,5 +1,6 @@
-enable_language(Fortran) #TODO conditionally
-enable_language(C) #TODO conditionally
+include(${PROJECT_SOURCE_DIR}/cmake/detect_features.cmake)
+detect_fortran_compiler()
+detect_c_compiler()
 
 add_subdirectory(array)
 if(CPP_BINDGEN_GT_LEGACY)
