@@ -18,14 +18,14 @@ if [[ "$HOST" == kesch* || "$HOST" == escha* ]]; then
     export CUDATOOLKIT_HOME=$CUDA_PATH
     export CUDA_ARCH=sm_37
     export FC=`which gfortran`
-    SRUN_PREFIX="srun -p pp-short -c 12 --time=00:30:00"
+    RUN_PREFIX="srun -p pp-short -c 12 --time=00:30:00"
 
 elif [[ "$HOST" == tave* ]]; then
     module switch PrgEnv-cray PrgEnv-gnu
     module rm CMake
     module load /users/jenkins/easybuild/tave/modules/all/CMake/3.12.4
     export BOOST_ROOT=/project/c14/install/kesch/boost/boost_1_67_0
-    SRUN_PREFIX=""
+    RUN_PREFIX=""
 
 elif [[ "$HOST" == daint* ]]; then
     module load daint-gpu
@@ -35,7 +35,7 @@ elif [[ "$HOST" == daint* ]]; then
     module load /users/jenkins/easybuild/daint/haswell/modules/all/CMake/3.12.4
     export BOOST_ROOT=/project/c14/install/daint/boost/boost_1_67_0
     export CUDA_ARCH=sm_60
-    SRUN_PREFIX="srun -C gpu -p cscsci --account=$CSCS_ACCOUNT --time=00:30:00"
+    RUN_PREFIX="srun -C gpu -p cscsci --account=$CSCS_ACCOUNT --time=00:30:00"
 
 else
     echo "Unknown host ${HOST}, using current environment."
@@ -47,7 +47,7 @@ cwd=$(pwd)
 mkdir -p build && cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=${cwd}/install -DCPP_BINDGEN_REQUIRE_TEST_C=ON -DCPP_BINDGEN_REQUIRE_TEST_Fortran=ON
 nice make -j8 install
-$SRUN_PREFIX ctest .
+$RUN_PREFIX ctest .
 
 # compile example using the config from build tree (test for export(package))
 cd ${cwd}/example/simple
@@ -77,5 +77,5 @@ if [[ "$HOST" != kesch* ]]; then
     mkdir -p build_legacy && cd build_legacy
     cmake .. -DCMAKE_INSTALL_PREFIX=${cwd}/install -DCPP_BINDGEN_GT_LEGACY=ON
     nice make -j8 install
-    $SRUN_PREFIX ctest .
+    $RUN_PREFIX ctest .
 fi
