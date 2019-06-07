@@ -2,7 +2,7 @@
 <br/><br/>
 <a target="_blank" href="https://opensource.org/licenses/BSD-3-Clause">![License: BSD][BSD.License]</a>
 
-**cpp_bindgen** is a library to generate C and Fortran bindings for C++ from C++. It is part of the GridTools framework, a set of libraries and utilities to develop performance portable applications in the area of weather and climate.
+**cpp_bindgen** is a library to generate C and Fortran bindings for C++ functions from C++. It is part of the GridTools framework, a set of libraries and utilities to develop performance portable applications in the area of weather and climate.
 
 Currently the documentation of **cpp_bindgen** is part of the [GridTools documentation](https://gridtools.github.io/gridtools/latest/user_manual/user_manual.html#interfacing-to-other-programming-languages). For simple examples, see the examples folder of this repository. More advanced examples are available in https://github.com/GridTools/gridtools.
 
