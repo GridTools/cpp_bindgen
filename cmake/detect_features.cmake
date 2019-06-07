@@ -1,14 +1,13 @@
-if(${PROJECT_SOURCE_DIR} STREQUAL ${CMAKE_SOURCE_DIR})
-    set(__enable_compiler_detection_default ON)
-else()
-    set(__enable_compiler_detection_default OFF)
+if(NOT DEFINED CPP_BINDGEN_ENABLE_COMPILER_DETECTION)
+    if(${PROJECT_SOURCE_DIR} STREQUAL ${CMAKE_SOURCE_DIR})
+        # If turned OFF, it will still use the compilers,
+        # - if they are available from a super-project, or
+        # - if compilers are forced to on via other options.
+        set(CPP_BINDGEN_ENABLE_COMPILER_DETECTION OFF)
+    else()
+        set(CPP_BINDGEN_ENABLE_COMPILER_DETECTION ON)
+    endif()
 endif()
-
-option(CPP_BINDGEN_ENABLE_COMPILER_DETECTION "Try to detect (optional) C/Fortran compilers" ${__enable_compiler_detection_default})
-# If turned OFF, it will still use the compilers,
-# - if they are available from a super-project, or
-# - if compilers are forced to on via other options.
-mark_as_advanced(CPP_BINDGEN_ENABLE_COMPILER_DETECTION)
 
 macro(detect_cuda)
     if(CPP_BINDGEN_ENABLE_COMPILER_DETECTION)
