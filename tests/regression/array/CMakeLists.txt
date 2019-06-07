@@ -7,7 +7,6 @@ add_test(NAME gen_regression_array_driver_fortran
 set_target_properties(gen_regression_array_driver_fortran PROPERTIES LINKER_LANGUAGE Fortran)
 
 if(CUDA_AVAILABLE)
-
     cpp_bindgen_add_library(gen_regression_array_cu SOURCES implementation.cu)
     gen_enable_fortran_openacc_on_target(gen_regression_array_cu_fortran)
 
