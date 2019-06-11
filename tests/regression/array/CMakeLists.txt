@@ -5,7 +5,7 @@ target_link_libraries(gen_regression_array_driver_fortran gen_regression_array_f
 add_test(NAME gen_regression_array_driver_fortran
     COMMAND $<TARGET_FILE:gen_regression_array_driver_fortran>)
 
-if(CUDA_AVAILABLE)
+if(CUDA_AVAILABLE AND "${CMAKE_CXX_COMPILER_VERSION}" VERSION_GREATER_EQUAL "6")
     cpp_bindgen_add_library(gen_regression_array_cu SOURCES implementation.cu)
     gen_enable_fortran_openacc_on_target(gen_regression_array_cu_fortran)
 
