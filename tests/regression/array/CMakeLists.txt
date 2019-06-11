@@ -12,6 +12,8 @@ if(CUDA_AVAILABLE)
     add_executable(gen_regression_array_driver_cu_fortran driver_cu.f90)
     target_link_libraries(gen_regression_array_driver_cu_fortran gen_regression_array_cu_fortran)
     gen_enable_fortran_openacc_on_target(gen_regression_array_driver_cu_fortran)
-    add_test(NAME gen_regression_array_driver_cu_fortran
-        COMMAND $<TARGET_FILE:gen_regression_array_driver_cu_fortran>)
+
+    # we don't add this test on purpose, because it is likely that this test does not work
+    # out of the box. The Fortran code would need to be compiled separately with a different
+    # compiler than the C++ code with a compiler that has proper OpenACC support.
 endif()
