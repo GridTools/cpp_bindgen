@@ -5,6 +5,7 @@ if(CMAKE_Fortran_COMPILER_LOADED)
     target_link_libraries(gen_regression_simple_driver_fortran gen_regression_simple_fortran)
     add_test(NAME gen_regression_simple_driver_fortran
         COMMAND $<TARGET_FILE:gen_regression_simple_driver_fortran>)
+    set_target_properties(gen_regression_simple_driver_fortran PROPERTIES LINKER_LANGUAGE Fortran)
 endif()
 
 if(CMAKE_C_COMPILER_LOADED)
