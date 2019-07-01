@@ -5,14 +5,12 @@ set -e
 HOST=$(hostname)
 
 if [[ "$HOST" == kesch* || "$HOST" == escha* ]]; then
-    module load craype-network-infiniband
+    module load cmake/3.13.4
+    module load PE/17.06
     module load craype-haswell
-    module load craype-accel-nvidia35
-    module load cray-libsci
-    module load cudatoolkit/8.0.61
-    module load mvapich2gdr_gnu/2.2_cuda_8.0
-    module load gcc/5.4.0-2.26
-    module load /users/jenkins/easybuild/kesch/modules/all/cmake/3.12.4
+    module load craype-network-infiniband
+    module load PrgEnv-gnu/17.02
+    module load netcdf-fortran/4.4.4-gmvolf-17.02
     export BOOST_ROOT=/project/c14/install/kesch/boost/boost_1_67_0
     export CUDATOOLKIT_HOME=$CUDA_PATH
     export CUDA_ARCH=sm_37
