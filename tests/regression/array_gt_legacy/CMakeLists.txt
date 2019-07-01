@@ -4,4 +4,3 @@ add_executable(gen_regression_array_gt_legacy_driver_fortran driver.f90)
 target_link_libraries(gen_regression_array_gt_legacy_driver_fortran gen_regression_array_gt_legacy_fortran)
 add_test(NAME gen_regression_array_gt_legacy_driver_fortran
     COMMAND $<TARGET_FILE:gen_regression_array_gt_legacy_driver_fortran>)
-set_target_properties(gen_regression_array_gt_legacy_driver_fortran PROPERTIES LINKER_LANGUAGE Fortran)
