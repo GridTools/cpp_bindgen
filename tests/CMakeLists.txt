@@ -16,6 +16,12 @@ endif()
 include(${PROJECT_SOURCE_DIR}/cmake/detect_features.cmake)
 detect_cuda()
 
+# If clang+nvcc, we disable the tests, if CUDA < 10.0 because nvcc has problems with C++14 in this combination
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL Clang AND DEFINED CMAKE_CUDA_COMPILER AND "${CMAKE_CUDA_COMPILER_VERSION}" VERSION_LESS "10.0")
+  message("NVCC < 10.0 is not supported with Clang as host compiler. Disabling CUDA tests.")
+  set(CUDA_AVAILABLE OFF)
+endif()
+
 include(${PROJECT_SOURCE_DIR}/cmake/workaround_thread.cmake)
 _fix_threads_flags()
 
