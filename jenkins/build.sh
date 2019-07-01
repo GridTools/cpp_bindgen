@@ -10,7 +10,6 @@ if [[ "$HOST" == kesch* || "$HOST" == escha* ]]; then
     module load craype-haswell
     module load craype-network-infiniband
     module load PrgEnv-gnu/17.02
-    module load netcdf-fortran/4.4.4-gmvolf-17.02
     module load cudatoolkit/9.2.148
     export BOOST_ROOT=/project/c14/install/kesch/boost/boost_1_67_0
     export CUDATOOLKIT_HOME=$CUDA_PATH
