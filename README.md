@@ -1,54 +1,39 @@
-<a href="https://GridTools.github.io/gridtools"><img src="docs/_static/logo.svg"/></a>
+<a href="https://GridTools.github.io/gridtools"><img src="https://gridtools.github.io/gridtools/latest/_static/logo.svg"/></a>
 <br/><br/>
 <a target="_blank" href="https://opensource.org/licenses/BSD-3-Clause">![License: BSD][BSD.License]</a>
 
-The GridTools framework is a set of libraries and utilities to develop performance portable applications in the area of weather and climate. To achieve the goal of performance portability, the user-code is written in a generic form which is then optimized for a given architecture at compile-time. The core of GridTools is the stencil composition module which implements a DSL embedded in C++ for stencils and stencil-like patterns. Further, GridTools provides modules for halo exchanges, boundary conditions, data management and bindings to C and Fortran.
+**cpp_bindgen** is a library to generate C and Fortran bindings for C++ functions from C++. It is part of the GridTools framework, a set of libraries and utilities to develop performance portable applications in the area of weather and climate.
 
-GridTools is successfully used to accelerate the dynamical core of the [COSMO model](http://cosmo-model.org/) with improved performance on CUDA-GPUs compared to the current official version, demonstrating production quality and feature-completeness of the library for models on lat-lon grids.
-
-Although GridTools was developed for weather and climate applications it might be applicable for other domains with a focus on stencil-like computations.
-
-A detailed introduction can be found in the [documentation](https://GridTools.github.io/gridtools).
+Currently the documentation of **cpp_bindgen** is part of the [GridTools documentation](https://gridtools.github.io/gridtools/latest/user_manual/user_manual.html#interfacing-to-other-programming-languages). For simple examples, see the examples folder of this repository. More advanced examples are available in https://github.com/GridTools/gridtools.
 
 ### Installation instructions
 
+You can easily integrate **cpp_bindgen** in your CMake project with the following snippet which makes the function `cpp_bindgen_add_library()` available.
+
+```cmake
+include(FetchContent)
+FetchContent_Declare(
+  c_bindings
+  GIT_REPOSITORY https://github.com/GridTools/c_bindings.git
+  GIT_TAG        master # consider replacing master by a tagged version
+)
+FetchContent_GetProperties(c_bindings)
+if(NOT c_bindings_POPULATED)
+  FetchContent_Populate(c_bindings)
+  add_subdirectory(${c_bindings_SOURCE_DIR} ${c_bindings_BINARY_DIR})
+endif()
 ```
-git clone https://github.com/GridTools/gridtools.git
-cd gridtools
-mkdir -p build && cd build
-cmake ..
-make -j8
-make test
-```
+
+See also https://github.com/GridTools/cpp_bindgen/tree/master/example/simple_fetch_content.
+
 ##### Requirements
 
 - Boost (1.65.1 or later)
 - CMake (3.12.4 or later)
-- CUDA Toolkit (8.0 or later, optional)
-
-### Supported compilers
-
-The GridTools libraries are currently nightly tested with the following compilers on [CSCS supercomputers](https://www.cscs.ch/computers/overview/).
-
-| Compiler | Backend | Tested on |
-| --- | --- | --- |
-| NVCC 9.2 with GNU 5.3 | cuda | Piz Daint |
-| NVCC 9.2 with Clang 3.8.1 | cuda | Piz Daint |
-| GNU 7.3.0 | x86, mc | Piz Daint |
-| Clang 7.0.1 | x86, mc | Piz Daint |
-| NVCC 8.0 with GNU 5.4.0 | cuda | Piz Kesch |
 
 ##### Known issues
 
-- Intel is able to compile GridTools code, but depending on user code, might have severe performance problems compared to GNU- or Clang-compiled code.
-
-##### Officially not supported (no workarounds implemented and planned)
-
-| Compiler | Backend | Date | Comments
-| --- | --- | --- | --- |
-| NVCC <= 9.1 with GNU 6.x | cuda | 2018-10-16 | similar to [this tuple bug](https://devtalk.nvidia.com/default/topic/1028112/cuda-setup-and-installation/nvcc-bug-related-to-gcc-6-lt-tuple-gt-header-/)
-| PGI 18.5 | x86 | 2018-12-06 | no effort to fix compilation
-| Cray 8.7.3 | x86 | 2018-12-06 | no effort to fix compilation
+- The library doesn't work with NVCC <= 9.2 using Clang as host compiler, if c++14 is enabled, due to a bug in NVCC.
 
 ### Contributing
 
