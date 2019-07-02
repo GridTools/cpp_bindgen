@@ -9,13 +9,17 @@
 program main
     use iso_c_binding
     use gen_handle
-    use gen_regression_array
+    use gen_regression_array_cu
     implicit none
     integer, parameter :: ie = 9, je = 10, ke = 11
     integer :: i, j, k
     real(8), dimension(ie, je, ke) :: arr, expected
 
-    call fill_array(arr)
+    !$acc enter data create(arr)
+
+    call fill_gpu_array(arr)
+
+    !$acc exit data copyout(arr)
 
     do i=1, ie
         do j=1, je

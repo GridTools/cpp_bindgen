@@ -110,7 +110,6 @@ function(cpp_bindgen_add_library target_name)
 
     add_library(${target_name} ${ARG_SOURCES})
     target_link_libraries(${target_name} PRIVATE cpp_bindgen_generator)
-    # target_include_directories(${target_name} PRIVATE ${PROJECT_SOURCE_DIR}/include) #TODO probably wrong
 
     if(GT_ENABLE_BINDINGS_GENERATION)
         # generator

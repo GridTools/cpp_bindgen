@@ -1,11 +1,11 @@
 if(NOT DEFINED CPP_BINDGEN_ENABLE_COMPILER_DETECTION)
     if(${PROJECT_SOURCE_DIR} STREQUAL ${CMAKE_SOURCE_DIR})
+        set(CPP_BINDGEN_ENABLE_COMPILER_DETECTION ON)
+    else()
         # If turned OFF, it will still use the compilers,
         # - if they are available from a super-project, or
         # - if compilers are forced to on via other options.
         set(CPP_BINDGEN_ENABLE_COMPILER_DETECTION OFF)
-    else()
-        set(CPP_BINDGEN_ENABLE_COMPILER_DETECTION ON)
     endif()
 endif()
 

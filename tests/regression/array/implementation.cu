@@ -7,27 +7,25 @@
  * Please, refer to the LICENSE file in the root directory.
  * SPDX-License-Identifier: BSD-3-Clause
  */
+#include "implementation.cpp"
 
-#include <array>
-
-#include <cpp_bindgen/export.hpp>
 #include <iostream>
 
-namespace custom_array {
+namespace gpu_array {
     template <class T>
     struct my_array {
         using data_t = T;
 
         T *data;
-        std::array<int, 3> sizes;
-        std::array<int, 3> strides;
+        int sizes[3];
+        int strides[3];
 
-        const T &operator()(int i, int j, int k) const {
+        __device__ const T &operator()(int i, int j, int k) const {
             assert(i < sizes[0] && j < sizes[1] && k < sizes[2] && "out of bounds");
             return data[i * strides[0] + j * strides[1] + k * strides[2]];
         }
 
-        T &operator()(int i, int j, int k) {
+        __device__ T &operator()(int i, int j, int k) {
             assert(i < sizes[0] && j < sizes[1] && k < sizes[2] && "out of bounds");
             return data[i * strides[0] + j * strides[1] + k * strides[2]];
         }
@@ -37,6 +35,11 @@ namespace custom_array {
     my_array<T> gen_make_fortran_array_view(gen_fortran_array_descriptor *descriptor, my_array<T> *) {
         if (descriptor->rank != 3) {
             throw std::runtime_error("only 3-dimensional arrays are supported");
+        }
+        cudaPointerAttributes attributes;
+        auto ret = cudaPointerGetAttributes(&attributes, descriptor->data);
+        if (ret != cudaSuccess || attributes.memoryType != cudaMemoryTypeDevice) {
+            throw std::runtime_error("no gpu pointer");
         }
         return my_array<T>{static_cast<T *>(descriptor->data),
             {descriptor->dims[0], descriptor->dims[1], descriptor->dims[2]},
@@ -48,22 +51,22 @@ namespace custom_array {
         gen_fortran_array_descriptor descriptor;
         descriptor.type = cpp_bindgen::fortran_array_element_kind<T>::value;
         descriptor.rank = 3;
-        descriptor.is_acc_present = false;
+        descriptor.is_acc_present = true;
         return descriptor;
     }
 
     static_assert(cpp_bindgen::is_fortran_array_bindable<my_array<double>>::value, "");
     static_assert(cpp_bindgen::is_fortran_array_wrappable<my_array<double>>::value, "");
-} // namespace custom_array
+} // namespace gpu_array
 
 namespace {
-    void fill_array_impl(custom_array::my_array<double> a) {
-        for (size_t i = 0; i < a.sizes[0]; ++i)
-            for (size_t j = 0; j < a.sizes[1]; ++j)
-                for (size_t k = 0; k < a.sizes[2]; ++k) {
-                    a(i, j, k) = i * 10000 + j * 100 + k;
-                }
+    __global__ void fill_array_kernel(gpu_array::my_array<double> a) {
+        for (size_t i = 0; i < a.sizes[2]; ++i) {
+            a(threadIdx.x, blockIdx.x, i) = threadIdx.x * 10000 + blockIdx.x * 100 + i;
+        }
     }
 
-    GEN_EXPORT_BINDING_WRAPPED_1(fill_array, fill_array_impl);
+    void fill_gpu_array_impl(gpu_array::my_array<double> a) { fill_array_kernel<<<a.sizes[1], a.sizes[0]>>>(a); }
+
+    GEN_EXPORT_BINDING_WRAPPED_1(fill_gpu_array, fill_gpu_array_impl);
 } // namespace
