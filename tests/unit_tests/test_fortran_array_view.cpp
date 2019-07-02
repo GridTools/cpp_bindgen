@@ -115,7 +115,7 @@ namespace cpp_bindgen {
             }
         } // namespace
     }     // namespace adltest
-    namespace c_bindings {
+    namespace cpp_bindgen {
         namespace {
             static_assert(is_fortran_array_bindable<bindgen_fortran_array_descriptor>::value, "");
             static_assert(is_fortran_array_bindable<bindgen_fortran_array_descriptor &>::value, "");
@@ -297,5 +297,5 @@ namespace cpp_bindgen {
                 EXPECT_EQ(meta.rank, 3);
             }
         } // namespace
-    }     // namespace c_bindings
+    }     // namespace cpp_bindgen
 } // namespace cpp_bindgen

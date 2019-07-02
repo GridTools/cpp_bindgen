@@ -55,8 +55,8 @@ namespace {
     }
     BINDGEN_EXPORT_GENERIC_BINDING_WRAPPED(2, my_assign, assign_impl, (int, 2)(double, 2));
 
-    struct c_bindings_compatible_type {
-        c_bindings_compatible_type(const bindgen_fortran_array_descriptor &) {}
+    struct cpp_bindgen_compatible_type {
+        cpp_bindgen_compatible_type(const bindgen_fortran_array_descriptor &) {}
     };
     struct wrapper_compatible_type {
         wrapper_compatible_type(const bindgen_fortran_array_descriptor &) {}
@@ -68,11 +68,11 @@ namespace {
         d.is_acc_present = false;
         return d;
     }
-    void test_c_bindings_and_wrapper_compatible_type_impl(c_bindings_compatible_type, wrapper_compatible_type) {}
+    void test_cpp_bindgen_and_wrapper_compatible_type_impl(cpp_bindgen_compatible_type, wrapper_compatible_type) {}
     BINDGEN_EXPORT_BINDING_2(
-        test_c_bindings_and_wrapper_compatible_type_a, test_c_bindings_and_wrapper_compatible_type_impl);
+        test_cpp_bindgen_and_wrapper_compatible_type_a, test_cpp_bindgen_and_wrapper_compatible_type_impl);
     BINDGEN_EXPORT_BINDING_WRAPPED_2(
-        test_c_bindings_and_wrapper_compatible_type_b, test_c_bindings_and_wrapper_compatible_type_impl);
+        test_cpp_bindgen_and_wrapper_compatible_type_b, test_cpp_bindgen_and_wrapper_compatible_type_impl);
 
     TEST(export, smoke) {
         bindgen_handle *obj = my_create();
@@ -104,8 +104,8 @@ void my_push0(bindgen_handle*, float);
 void my_push1(bindgen_handle*, int);
 void my_push2(bindgen_handle*, double);
 double my_top(bindgen_handle*);
-void test_c_bindings_and_wrapper_compatible_type_a(bindgen_fortran_array_descriptor*, bindgen_fortran_array_descriptor*);
-void test_c_bindings_and_wrapper_compatible_type_b(bindgen_fortran_array_descriptor*, bindgen_fortran_array_descriptor*);
+void test_cpp_bindgen_and_wrapper_compatible_type_a(bindgen_fortran_array_descriptor*, bindgen_fortran_array_descriptor*);
+void test_cpp_bindgen_and_wrapper_compatible_type_b(bindgen_fortran_array_descriptor*, bindgen_fortran_array_descriptor*);
 
 #ifdef __cplusplus
 }
@@ -165,14 +165,14 @@ implicit none
       use iso_c_binding
       type(c_ptr), value :: arg0
     end function
-    subroutine test_c_bindings_and_wrapper_compatible_type_a(arg0, arg1) bind(c)
+    subroutine test_cpp_bindgen_and_wrapper_compatible_type_a(arg0, arg1) bind(c)
       use iso_c_binding
       use bindgen_array_descriptor
       type(bindgen_fortran_array_descriptor) :: arg0
       type(bindgen_fortran_array_descriptor) :: arg1
     end subroutine
-    subroutine test_c_bindings_and_wrapper_compatible_type_b_impl(arg0, arg1) bind(c, &
-        name="test_c_bindings_and_wrapper_compatible_type_b")
+    subroutine test_cpp_bindgen_and_wrapper_compatible_type_b_impl(arg0, arg1) bind(c, &
+        name="test_cpp_bindgen_and_wrapper_compatible_type_b")
       use iso_c_binding
       use bindgen_array_descriptor
       type(bindgen_fortran_array_descriptor) :: arg0
@@ -217,7 +217,7 @@ contains
 
       call my_assign1_impl(descriptor0, arg1)
     end subroutine
-    subroutine test_c_bindings_and_wrapper_compatible_type_b(arg0, arg1)
+    subroutine test_cpp_bindgen_and_wrapper_compatible_type_b(arg0, arg1)
       use iso_c_binding
       use bindgen_array_descriptor
       type(bindgen_fortran_array_descriptor), target :: arg0
@@ -230,7 +230,7 @@ contains
         shape(descriptor1%dims), (/0/))
       descriptor1%data = c_loc(arg1(lbound(arg1, 1),lbound(arg1, 2)))
 
-      call test_c_bindings_and_wrapper_compatible_type_b_impl(arg0, descriptor1)
+      call test_cpp_bindgen_and_wrapper_compatible_type_b_impl(arg0, descriptor1)
     end subroutine
 end
 )?";

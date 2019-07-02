@@ -41,7 +41,7 @@ fi
 
 cwd=$(pwd)
 
-# install c_bindings
+# install cpp_bindgen
 mkdir -p build && cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=${cwd}/install -DCPP_BINDGEN_REQUIRE_TEST_C=ON -DCPP_BINDGEN_REQUIRE_TEST_Fortran=ON
 nice make -j8 install

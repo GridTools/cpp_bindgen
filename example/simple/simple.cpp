@@ -11,7 +11,7 @@
 #include <cpp_bindgen/export.hpp>
 #include <iostream>
 
-// In this example, we demonstrate how the c_bindings library can be used to export functions to C and Fortran.
+// In this example, we demonstrate how the cpp_bindgen library can be used to export functions to C and Fortran.
 
 namespace {
     void print_number(int i) { std::cout << "Printing from C++: " << i << std::endl; }

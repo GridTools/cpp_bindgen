@@ -31,27 +31,27 @@ include_guard()
 option(GT_ENABLE_BINDINGS_GENERATION "If turned off, bindings will not be generated." ON)
 
 # variables are unset after use for scoping, they need to be redefined in the macros
-set(__C_BINDINGS_SOURCE_DIR @__C_BINDINGS_SOURCE_DIR@)
-set(__C_BINDINGS_INCLUDE_DIR @__C_BINDINGS_INCLUDE_DIR@)
+set(__CPP_BINDGEN_SOURCE_DIR @__CPP_BINDGEN_SOURCE_DIR@)
+set(__CPP_BINDGEN_INCLUDE_DIR @__CPP_BINDGEN_INCLUDE_DIR@)
 
 add_library(cpp_bindgen_interface INTERFACE)
-target_include_directories(cpp_bindgen_interface INTERFACE ${__C_BINDINGS_INCLUDE_DIR})
+target_include_directories(cpp_bindgen_interface INTERFACE ${__CPP_BINDGEN_INCLUDE_DIR})
 target_compile_features(cpp_bindgen_interface INTERFACE cxx_std_11)
 target_compile_definitions(cpp_bindgen_interface INTERFACE BOOST_PP_VARIADICS=1)
 if(CPP_BINDGEN_GT_LEGACY)
     target_compile_definitions(cpp_bindgen_interface INTERFACE CPP_BINDGEN_GT_LEGACY)
 endif()
 
-add_library(cpp_bindgen_generator ${__C_BINDINGS_SOURCE_DIR}/cpp_bindgen/generator.cpp)
+add_library(cpp_bindgen_generator ${__CPP_BINDGEN_SOURCE_DIR}/cpp_bindgen/generator.cpp)
 # PUBLIC to make export.hpp available in the sources passed to add_bindings_library()
 target_link_libraries(cpp_bindgen_generator PUBLIC Boost::boost)
 target_link_libraries(cpp_bindgen_generator PUBLIC cpp_bindgen_interface)
 
-add_library(c_bindings_handle ${__C_BINDINGS_SOURCE_DIR}/cpp_bindgen/handle.cpp)
-target_link_libraries(c_bindings_handle PUBLIC cpp_bindgen_interface)
+add_library(cpp_bindgen_handle ${__CPP_BINDGEN_SOURCE_DIR}/cpp_bindgen/handle.cpp)
+target_link_libraries(cpp_bindgen_handle PUBLIC cpp_bindgen_interface)
 
-unset(__C_BINDINGS_SOURCE_DIR)
-unset(__C_BINDINGS_INCLUDE_DIR)
+unset(__CPP_BINDGEN_SOURCE_DIR)
+unset(__CPP_BINDGEN_INCLUDE_DIR)
 
 # cpp_bindgen_enable_fortran_library()
 #
@@ -61,15 +61,15 @@ unset(__C_BINDINGS_INCLUDE_DIR)
 # However if the user wants to use the target at a later stage, e.g. in testing (with Fortran enabled), the target can
 # be created by a call to cpp_bindgen_enable_fortran_library().
 function(cpp_bindgen_enable_fortran_library target_name)
-    set(__C_BINDINGS_SOURCE_DIR @__C_BINDINGS_SOURCE_DIR@)
-    set(__C_BINDINGS_CMAKE_DIR @__C_BINDINGS_CMAKE_DIR@)
+    set(__CPP_BINDGEN_SOURCE_DIR @__CPP_BINDGEN_SOURCE_DIR@)
+    set(__CPP_BINDGEN_CMAKE_DIR @__CPP_BINDGEN_CMAKE_DIR@)
 
     if(CMAKE_Fortran_COMPILER_LOADED)
         if(NOT TARGET fortran_bindings_handle)
-            add_library(fortran_bindings_handle ${__C_BINDINGS_SOURCE_DIR}/cpp_bindgen/array_descriptor.f90 ${__C_BINDINGS_SOURCE_DIR}/cpp_bindgen/handle.f90)
-            target_link_libraries(fortran_bindings_handle PUBLIC c_bindings_handle)
+            add_library(fortran_bindings_handle ${__CPP_BINDGEN_SOURCE_DIR}/cpp_bindgen/array_descriptor.f90 ${__CPP_BINDGEN_SOURCE_DIR}/cpp_bindgen/handle.f90)
+            target_link_libraries(fortran_bindings_handle PUBLIC cpp_bindgen_handle)
             target_include_directories(fortran_bindings_handle PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
-            include(${__C_BINDINGS_CMAKE_DIR}/fortran_helpers.cmake)
+            include(${__CPP_BINDGEN_CMAKE_DIR}/fortran_helpers.cmake)
             cpp_bindgen_enable_fortran_preprocessing_on_target(fortran_bindings_handle)
         endif()
         if(NOT TARGET ${target_name}_fortran)
@@ -90,8 +90,8 @@ function(cpp_bindgen_add_library target_name)
     set(multi_value_args SOURCES)
     cmake_parse_arguments(ARG "${options}" "${one_value_args};" "${multi_value_args}" ${ARGN})
 
-    set(__C_BINDINGS_SOURCE_DIR @__C_BINDINGS_SOURCE_DIR@)
-    set(__C_BINDINGS_CMAKE_DIR @__C_BINDINGS_CMAKE_DIR@)
+    set(__CPP_BINDGEN_SOURCE_DIR @__CPP_BINDGEN_SOURCE_DIR@)
+    set(__CPP_BINDGEN_CMAKE_DIR @__CPP_BINDGEN_CMAKE_DIR@)
 
     if(NOT DEFINED ARG_FORTRAN_MODULE_NAME)
         set(ARG_FORTRAN_MODULE_NAME ${target_name}) # default value
@@ -114,7 +114,7 @@ function(cpp_bindgen_add_library target_name)
     if(GT_ENABLE_BINDINGS_GENERATION)
         # generator
         add_executable(${target_name}_decl_generator
-            ${__C_BINDINGS_SOURCE_DIR}/cpp_bindgen/generator_main.cpp)
+            ${__CPP_BINDGEN_SOURCE_DIR}/cpp_bindgen/generator_main.cpp)
         set_target_properties(${target_name}_decl_generator PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles/decl_generator")
         target_link_libraries(${target_name}_decl_generator cpp_bindgen_generator)
 
@@ -134,7 +134,7 @@ function(cpp_bindgen_add_library target_name)
                 -DBINDINGS_C_DECL_FILENAME=${bindings_c_decl_filename}
                 -DBINDINGS_FORTRAN_DECL_FILENAME=${bindings_fortran_decl_filename}
                 -DFORTRAN_MODULE_NAME=${ARG_FORTRAN_MODULE_NAME}
-                -P ${__C_BINDINGS_CMAKE_DIR}/cpp_bindgen_generate.cmake
+                -P ${__CPP_BINDGEN_CMAKE_DIR}/cpp_bindgen_generate.cmake
             BYPRODUCTS ${bindings_c_decl_filename} ${bindings_fortran_decl_filename}
             DEPENDS $<TARGET_FILE:${target_name}_decl_generator>)
     else()
@@ -151,7 +151,7 @@ function(cpp_bindgen_add_library target_name)
     # bindings c library
     add_library(${target_name}_c INTERFACE)
     target_link_libraries(${target_name}_c INTERFACE ${target_name})
-    target_link_libraries(${target_name}_c INTERFACE c_bindings_handle)
+    target_link_libraries(${target_name}_c INTERFACE cpp_bindgen_handle)
     target_link_libraries(${target_name}_c INTERFACE cpp_bindgen_interface)
 
     add_dependencies(${target_name}_c ${target_name}_declarations)
