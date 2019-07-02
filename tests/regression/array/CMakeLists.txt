@@ -6,9 +6,9 @@ add_test(NAME gen_regression_array_driver_fortran
     COMMAND $<TARGET_FILE:gen_regression_array_driver_fortran>)
 
 if( CUDA_AVAILABLE
-    AND ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU" # -fopenacc will be passed to the c++ linker
+    AND "${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" # -fopenacc will be passed to the c++ linker
     AND "${CMAKE_CXX_COMPILER_VERSION}" VERSION_GREATER_EQUAL "6"
-    AND ${CMAKE_Fortran_COMPILER_ID} STREQUAL "GNU"
+    AND "${CMAKE_Fortran_COMPILER_ID}" STREQUAL "GNU"
     AND "${CMAKE_Fortran_COMPILER_VERSION}" VERSION_GREATER_EQUAL "6"
     )
 
