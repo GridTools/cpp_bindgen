@@ -13,7 +13,8 @@ if(CUDA_AVAILABLE AND "${CMAKE_CXX_COMPILER_VERSION}" VERSION_GREATER_EQUAL "6")
     target_link_libraries(gen_regression_array_driver_cu_fortran gen_regression_array_cu_fortran)
     cpp_bindgen_enable_fortran_openacc_on_target(gen_regression_array_driver_cu_fortran)
 
-    # we don't add this test on purpose, because it is likely that this test does not work
+    # TODO
+    # we don't add this test on purpose for now, because it is likely that this test does not work
     # out of the box. The Fortran code would need to be compiled separately with a different
     # compiler than the C++ code with a compiler that has proper OpenACC support.
 endif()
