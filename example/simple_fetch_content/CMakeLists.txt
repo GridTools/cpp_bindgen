@@ -14,7 +14,7 @@ FetchContent_Declare(
 )
 # FetchContent_MakeAvailable(cpp_bindgen) for CMake >= 3.14
 FetchContent_GetProperties(cpp_bindgen)
-if(NOT c_bindings_POPULATED)
+if(NOT cpp_bindgen_POPULATED)
   FetchContent_Populate(cpp_bindgen)
   add_subdirectory(${cpp_bindgen_SOURCE_DIR} ${cpp_bindgen_BINARY_DIR})
 endif()
@@ -25,4 +25,3 @@ cpp_bindgen_add_library(simple SOURCES simple.cpp)
 # 3) link the generated library to a fortran executable
 add_executable(driver driver.f90)
 target_link_libraries(driver simple_fortran)
-

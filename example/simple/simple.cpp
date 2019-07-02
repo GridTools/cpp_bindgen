@@ -16,5 +16,5 @@
 namespace {
     void print_number(int i) { std::cout << "Printing from C++: " << i << std::endl; }
 
-    GEN_EXPORT_BINDING_1(print_number_from_cpp, print_number);
+    BINDGEN_EXPORT_BINDING_1(print_number_from_cpp, print_number);
 } // namespace
