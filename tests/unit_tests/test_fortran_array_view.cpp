@@ -12,12 +12,14 @@
 
 #include <gtest/gtest.h>
 
-bool operator==(const gen_fortran_array_descriptor &d1, const gen_fortran_array_descriptor &d2) {
+bool operator==(const bindgen_fortran_array_descriptor &d1, const bindgen_fortran_array_descriptor &d2) {
     return d1.type == d2.type && d1.rank == d2.rank &&
            std::equal(std::begin(d1.dims), &d1.dims[d1.rank], std::begin(d2.dims)) && d1.data == d2.data;
 }
-bool operator!=(const gen_fortran_array_descriptor &d1, const gen_fortran_array_descriptor &d2) { return !(d1 == d2); }
-std::ostream &operator<<(std::ostream &strm, const gen_fortran_array_descriptor &d) {
+bool operator!=(const bindgen_fortran_array_descriptor &d1, const bindgen_fortran_array_descriptor &d2) {
+    return !(d1 == d2);
+}
+std::ostream &operator<<(std::ostream &strm, const bindgen_fortran_array_descriptor &d) {
     strm << "Type: " << d.type << ", Dimensions: [";
     for (int i = 0; i < d.rank; ++i) {
         if (i)
@@ -53,9 +55,9 @@ namespace cpp_bindgen {
             };
 
             template <size_t Rank>
-            StaticHypercube<Rank> gen_make_fortran_array_view(
-                gen_fortran_array_descriptor *descriptor, StaticHypercube<Rank> *) {
-                if (descriptor->type != gen_fk_Double) {
+            StaticHypercube<Rank> bindgen_make_fortran_array_view(
+                bindgen_fortran_array_descriptor *descriptor, StaticHypercube<Rank> *) {
+                if (descriptor->type != bindgen_fk_Double) {
                     throw std::runtime_error("type does not match");
                 }
                 for (int i = 0; i < descriptor->rank; ++i)
@@ -65,10 +67,10 @@ namespace cpp_bindgen {
                 return StaticHypercube<Rank>{reinterpret_cast<double *>(descriptor->data)};
             }
             template <size_t Rank>
-            gen_fortran_array_descriptor get_fortran_view_meta(StaticHypercube<Rank> *) {
-                gen_fortran_array_descriptor descriptor;
+            bindgen_fortran_array_descriptor get_fortran_view_meta(StaticHypercube<Rank> *) {
+                bindgen_fortran_array_descriptor descriptor;
                 descriptor.rank = Rank;
-                descriptor.type = gen_fk_Double;
+                descriptor.type = bindgen_fk_Double;
                 descriptor.is_acc_present = false;
                 for (size_t i = 0; i < Rank; ++i) {
                     descriptor.dims[i] = 2;
@@ -100,8 +102,9 @@ namespace cpp_bindgen {
                 size_t rank_;
             };
 
-            DynamicHypercube gen_make_fortran_array_view(gen_fortran_array_descriptor *descriptor, DynamicHypercube *) {
-                if (descriptor->type != gen_fk_Double) {
+            DynamicHypercube bindgen_make_fortran_array_view(
+                bindgen_fortran_array_descriptor *descriptor, DynamicHypercube *) {
+                if (descriptor->type != bindgen_fk_Double) {
                     throw std::runtime_error("type does not match");
                 }
                 for (int i = 0; i < descriptor->rank; ++i)
@@ -114,15 +117,15 @@ namespace cpp_bindgen {
     }     // namespace adltest
     namespace c_bindings {
         namespace {
-            static_assert(is_fortran_array_bindable<gen_fortran_array_descriptor>::value, "");
-            static_assert(is_fortran_array_bindable<gen_fortran_array_descriptor &>::value, "");
-            static_assert(!is_fortran_array_wrappable<gen_fortran_array_descriptor>::value, "");
-            static_assert(!is_fortran_array_wrappable<gen_fortran_array_descriptor &>::value, "");
+            static_assert(is_fortran_array_bindable<bindgen_fortran_array_descriptor>::value, "");
+            static_assert(is_fortran_array_bindable<bindgen_fortran_array_descriptor &>::value, "");
+            static_assert(!is_fortran_array_wrappable<bindgen_fortran_array_descriptor>::value, "");
+            static_assert(!is_fortran_array_wrappable<bindgen_fortran_array_descriptor &>::value, "");
             TEST(FortranArrayView, FortranArrayDescriptorIsBindable) {
                 float data[1][2][3][4];
-                gen_fortran_array_descriptor descriptor{gen_fk_Float, 4, {4, 3, 2, 1}, &data[0]};
+                bindgen_fortran_array_descriptor descriptor{bindgen_fk_Float, 4, {4, 3, 2, 1}, &data[0]};
 
-                auto new_descriptor = make_fortran_array_view<gen_fortran_array_descriptor>(&descriptor);
+                auto new_descriptor = make_fortran_array_view<bindgen_fortran_array_descriptor>(&descriptor);
                 EXPECT_EQ(new_descriptor, descriptor);
             }
 
@@ -134,7 +137,7 @@ namespace cpp_bindgen {
             static_assert(!is_fortran_array_wrappable<int (*)[2][3]>::value, "");
             TEST(FortranArrayView, CArrayReferenceIsBindable) {
                 float data[1][2][3][4];
-                gen_fortran_array_descriptor descriptor{gen_fk_Float, 4, {4, 3, 2, 1}, &data[0]};
+                bindgen_fortran_array_descriptor descriptor{bindgen_fk_Float, 4, {4, 3, 2, 1}, &data[0]};
 
                 auto &view = make_fortran_array_view<float(&)[1][2][3][4]>(&descriptor);
                 static_assert(std::is_same<decltype(view), float(&)[1][2][3][4]>::value, "");
@@ -149,7 +152,7 @@ namespace cpp_bindgen {
                 float data[1][2][3][4];
                 auto meta = get_fortran_view_meta(decltype (&data)(nullptr));
 
-                EXPECT_EQ(meta.type, gen_fk_Float);
+                EXPECT_EQ(meta.type, bindgen_fk_Float);
                 ASSERT_EQ(meta.rank, 4);
                 EXPECT_EQ(meta.dims[0], 1);
                 EXPECT_EQ(meta.dims[1], 2);
@@ -165,8 +168,8 @@ namespace cpp_bindgen {
 
             template <size_t Rank>
             struct BindableStaticHypercubeWithConstructor {
-                BindableStaticHypercubeWithConstructor(const gen_fortran_array_descriptor &descriptor) {
-                    if (descriptor.type != gen_fk_Double) {
+                BindableStaticHypercubeWithConstructor(const bindgen_fortran_array_descriptor &descriptor) {
+                    if (descriptor.type != bindgen_fk_Double) {
                         throw std::runtime_error("type does not match");
                     }
                     for (int i = 0; i < descriptor.rank; ++i)
@@ -199,7 +202,7 @@ namespace cpp_bindgen {
             TEST(FortranArrayView, BindableStaticHypercubeWithConstructorIsBindable) {
                 double data[2][2][2][2] = {
                     {{{1., 2.}, {3., 4.}}, {{5., 6.}, {7., 8.}}}, {{{9., 10.}, {11., 12.}}, {{13., 14.}, {15., 16.}}}};
-                gen_fortran_array_descriptor descriptor{gen_fk_Double, 4, {2, 2, 2, 2}, &data[0]};
+                bindgen_fortran_array_descriptor descriptor{bindgen_fk_Double, 4, {2, 2, 2, 2}, &data[0]};
 
                 BindableStaticHypercubeWithConstructor<4> view =
                     make_fortran_array_view<BindableStaticHypercubeWithConstructor<4>>(&descriptor);
@@ -209,8 +212,8 @@ namespace cpp_bindgen {
 
             template <size_t Rank>
             struct WrappableStaticHypercubeWithMetaTypes {
-                WrappableStaticHypercubeWithMetaTypes(const gen_fortran_array_descriptor &descriptor) {
-                    if (descriptor.type != gen_fk_Double) {
+                WrappableStaticHypercubeWithMetaTypes(const bindgen_fortran_array_descriptor &descriptor) {
+                    if (descriptor.type != bindgen_fk_Double) {
                         throw std::runtime_error("type does not match");
                     }
                     for (int i = 0; i < descriptor.rank; ++i)
@@ -233,9 +236,9 @@ namespace cpp_bindgen {
                     return data_[index];
                 }
 
-                using gen_view_element_type = double;
-                using gen_view_rank = std::integral_constant<size_t, Rank>;
-                using gen_is_acc_present = bool_constant<false>;
+                using bindgen_view_element_type = double;
+                using bindgen_view_rank = std::integral_constant<size_t, Rank>;
+                using bindgen_is_acc_present = bool_constant<false>;
 
               private:
                 double *data_;
@@ -247,7 +250,7 @@ namespace cpp_bindgen {
             TEST(FortranArrayView, WrappableStaticHypercubeWithMetaTypesIsBindable) {
                 double data[2][2][2][2] = {
                     {{{1., 2.}, {3., 4.}}, {{5., 6.}, {7., 8.}}}, {{{9., 10.}, {11., 12.}}, {{13., 14.}, {15., 16.}}}};
-                gen_fortran_array_descriptor descriptor{gen_fk_Double, 4, {2, 2, 2, 2}, &data[0]};
+                bindgen_fortran_array_descriptor descriptor{bindgen_fk_Double, 4, {2, 2, 2, 2}, &data[0]};
 
                 WrappableStaticHypercubeWithMetaTypes<4> view =
                     make_fortran_array_view<WrappableStaticHypercubeWithMetaTypes<4>>(&descriptor);
@@ -257,7 +260,7 @@ namespace cpp_bindgen {
 
             TEST(FortranArrayView, WrappableStaticHypercubeWithMetaTypesIsWrappable) {
                 auto meta = get_fortran_view_meta((WrappableStaticHypercubeWithMetaTypes<3> *){nullptr});
-                EXPECT_EQ(meta.type, gen_fk_Double);
+                EXPECT_EQ(meta.type, bindgen_fk_Double);
                 EXPECT_EQ(meta.rank, 3);
             }
 
@@ -268,7 +271,7 @@ namespace cpp_bindgen {
             TEST(FortranArrayView, BindableDynamicHypercubeWithFactoryFunctionIsBindable) {
                 double data[2][2][2][2] = {
                     {{{1., 2.}, {3., 4.}}, {{5., 6.}, {7., 8.}}}, {{{9., 10.}, {11., 12.}}, {{13., 14.}, {15., 16.}}}};
-                gen_fortran_array_descriptor descriptor{gen_fk_Double, 4, {2, 2, 2, 2}, &data[0]};
+                bindgen_fortran_array_descriptor descriptor{bindgen_fk_Double, 4, {2, 2, 2, 2}, &data[0]};
 
                 adltest::DynamicHypercube view = make_fortran_array_view<adltest::DynamicHypercube>(&descriptor);
                 EXPECT_EQ(view(0, 1, 0, 1), 6.);
@@ -282,15 +285,15 @@ namespace cpp_bindgen {
             TEST(FortranArrayView, WrappableStaticHypercubeWithMetaFunctionIsBindable) {
                 double data[2][2][2][2] = {
                     {{{1., 2.}, {3., 4.}}, {{5., 6.}, {7., 8.}}}, {{{9., 10.}, {11., 12.}}, {{13., 14.}, {15., 16.}}}};
-                gen_fortran_array_descriptor descriptor{gen_fk_Double, 4, {2, 2, 2, 2}, &data[0]};
+                bindgen_fortran_array_descriptor descriptor{bindgen_fk_Double, 4, {2, 2, 2, 2}, &data[0]};
 
                 adltest::StaticHypercube<4> view = make_fortran_array_view<adltest::StaticHypercube<4>>(&descriptor);
                 EXPECT_EQ(view(0, 1, 0, 1), 6.);
                 EXPECT_EQ(view(1, 0, 1, 0), 11.);
             }
             TEST(FortranArrayView, WrappableStaticHypercubeWithMetaFunctionIsWrappable) {
-                gen_fortran_array_descriptor meta = get_fortran_view_meta((adltest::StaticHypercube<3> *){nullptr});
-                EXPECT_EQ(meta.type, gen_fk_Double);
+                bindgen_fortran_array_descriptor meta = get_fortran_view_meta((adltest::StaticHypercube<3> *){nullptr});
+                EXPECT_EQ(meta.type, bindgen_fk_Double);
                 EXPECT_EQ(meta.rank, 3);
             }
         } // namespace

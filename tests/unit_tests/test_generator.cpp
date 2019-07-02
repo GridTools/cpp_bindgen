@@ -18,13 +18,13 @@
 namespace cpp_bindgen {
     namespace {
 
-        GEN_ADD_GENERATED_DECLARATION(void(), foo);
-        GEN_ADD_GENERATED_DECLARATION(gen_handle *(int, double const *, gen_handle *), bar);
-        GEN_ADD_GENERATED_DECLARATION(void(int *const *volatile *const *), baz);
-        GEN_ADD_GENERATED_DECLARATION_WRAPPED(void(int, int (&)[1][2][3]), qux);
+        BINDGEN_ADD_GENERATED_DECLARATION(void(), foo);
+        BINDGEN_ADD_GENERATED_DECLARATION(bindgen_handle *(int, double const *, bindgen_handle *), bar);
+        BINDGEN_ADD_GENERATED_DECLARATION(void(int *const *volatile *const *), baz);
+        BINDGEN_ADD_GENERATED_DECLARATION_WRAPPED(void(int, int (&)[1][2][3]), qux);
 
-        GEN_ADD_GENERIC_DECLARATION(foo, bar);
-        GEN_ADD_GENERIC_DECLARATION(foo, baz);
+        BINDGEN_ADD_GENERIC_DECLARATION(foo, bar);
+        BINDGEN_ADD_GENERIC_DECLARATION(foo, baz);
 
         const char expected_c_interface[] = R"?(// This file is generated!
 #pragma once
@@ -36,10 +36,10 @@ namespace cpp_bindgen {
 extern "C" {
 #endif
 
-gen_handle* bar(int, double*, gen_handle*);
+bindgen_handle* bar(int, double*, bindgen_handle*);
 void baz(int****);
 void foo();
-void qux(int, gen_fortran_array_descriptor*);
+void qux(int, bindgen_fortran_array_descriptor*);
 
 #ifdef __cplusplus
 }
@@ -72,9 +72,9 @@ implicit none
     end subroutine
     subroutine qux_impl(arg0, arg1) bind(c, name="qux")
       use iso_c_binding
-      use gen_array_descriptor
+      use bindgen_array_descriptor
       integer(c_int), value :: arg0
-      type(gen_fortran_array_descriptor) :: arg1
+      type(bindgen_fortran_array_descriptor) :: arg1
     end subroutine
 
   end interface
@@ -84,10 +84,10 @@ implicit none
 contains
     subroutine qux(arg0, arg1)
       use iso_c_binding
-      use gen_array_descriptor
+      use bindgen_array_descriptor
       integer(c_int), value, target :: arg0
       integer(c_int), dimension(:,:,:), target :: arg1
-      type(gen_fortran_array_descriptor) :: descriptor1
+      type(bindgen_fortran_array_descriptor) :: descriptor1
 
       descriptor1%rank = 3
       descriptor1%type = 1

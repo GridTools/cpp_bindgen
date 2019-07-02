@@ -33,7 +33,7 @@ namespace cpp_bindgen {
         template <class T>
         struct result_converted_to_c<T,
             typename std::enable_if<std::is_class<typename std::remove_reference<T>::type>::value>::type> {
-            using type = gen_handle *;
+            using type = bindgen_handle *;
         };
 
         template <class T, class = void>
@@ -57,18 +57,18 @@ namespace cpp_bindgen {
         template <class T>
         struct param_converted_to_c<T *,
             typename std::enable_if<std::is_class<T>::value && !is_fortran_array_bindable<T *>::value>::type> {
-            using type = gen_handle *;
+            using type = bindgen_handle *;
         };
         template <class T>
         struct param_converted_to_c<T,
             typename std::enable_if<std::is_class<remove_reference_t<T>>::value &&
                                     !is_fortran_array_bindable<T>::value>::type> {
-            using type = gen_handle *;
+            using type = bindgen_handle *;
         };
 
         template <class T>
         struct param_converted_to_c<T, typename std::enable_if<is_fortran_array_bindable<T>::value>::type> {
-            using type = gen_fortran_array_descriptor *;
+            using type = bindgen_fortran_array_descriptor *;
         };
 
         template <class T, typename std::enable_if<std::is_arithmetic<T>::value, int>::type = 0>
@@ -78,8 +78,8 @@ namespace cpp_bindgen {
 
         template <class T,
             typename std::enable_if<std::is_class<typename std::remove_reference<T>::type>::value, int>::type = 0>
-        gen_handle *convert_to_c(T &&obj) {
-            return new gen_handle{std::forward<T>(obj)};
+        bindgen_handle *convert_to_c(T &&obj) {
+            return new bindgen_handle{std::forward<T>(obj)};
         }
 
         template <class T>
@@ -102,15 +102,15 @@ namespace cpp_bindgen {
         };
 
         template <class T, typename std::enable_if<std::is_pointer<T>::value, int>::type = 0>
-        T convert_from_c(gen_handle *obj) {
+        T convert_from_c(bindgen_handle *obj) {
             return &any_cast<remove_pointer_t<T> &>(obj->m_value);
         }
         template <class T, typename std::enable_if<!std::is_pointer<T>::value, int>::type = 0>
-        T convert_from_c(gen_handle *obj) {
+        T convert_from_c(bindgen_handle *obj) {
             return any_cast<T>(obj->m_value);
         }
         template <class T>
-        T convert_from_c(gen_fortran_array_descriptor *obj) {
+        T convert_from_c(bindgen_fortran_array_descriptor *obj) {
             return make_fortran_array_view<T>(obj);
         }
 

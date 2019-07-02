@@ -11,6 +11,6 @@
 
 #include "common/any_moveable.hpp"
 
-struct gen_handle {
+struct bindgen_handle {
     cpp_bindgen::any_moveable m_value;
 };

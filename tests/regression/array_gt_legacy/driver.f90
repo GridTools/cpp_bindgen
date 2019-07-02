@@ -9,7 +9,7 @@
 program main
     use iso_c_binding
     use gt_handle
-    use gen_regression_array_gt_legacy
+    use bindgen_regression_array_gt_legacy
     implicit none
     integer, parameter :: ie = 9, je = 10, ke = 11
     integer :: i, j, k
