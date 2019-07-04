@@ -1,4 +1,4 @@
-cpp_bindgen_add_library(bindgen_regression_simple SOURCES simple.cpp)
+bindgen_add_library(bindgen_regression_simple SOURCES simple.cpp)
 
 if(CMAKE_Fortran_COMPILER_LOADED)
     add_executable(bindgen_regression_simple_driver_fortran driver.f90)

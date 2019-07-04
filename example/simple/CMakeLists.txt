@@ -5,7 +5,7 @@ project(simple_example LANGUAGES CXX C Fortran)
 find_package(cpp_bindgen)
 
 # 2) create a library with bindings
-cpp_bindgen_add_library(simple SOURCES simple.cpp)
+bindgen_add_library(simple SOURCES simple.cpp)
 
 # 3) link the library to a fortran executable
 add_executable(driver driver.f90)
