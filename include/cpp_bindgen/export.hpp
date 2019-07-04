@@ -34,14 +34,14 @@
  *     - for result type:
  *       - `void` and arithmetic types remain the same;
  *       - classes (and structures) and references to them are transformed to the pointer to the opaque handle
- *         (`gen_handle*`) which should be released by calling `void bindgen_release(gen_handle*)` function;
+ *         (`bindgen_handle*`) which should be released by calling `void bindgen_release(bindgen_handle*)` function;
  *       - all other result types will cause a compiler error.
  *     - for parameter types:
  *       - arithmetic types and pointers to them remain the same;
  *       - references to arithmetic types are transformed to the corresponded pointers;
  *       - types that fulfill the concept of being fortran_array_bindable are transformed to a
  *         bindgen_fortran_array_descriptor
- *       - classes (and structures) and references or pointers to them are transformed to `gen_handle*`;
+ *       - classes (and structures) and references or pointers to them are transformed to `bindgen_handle*`;
  *       - all other parameter types will cause a compiler error.
  *   Additionally the newly generated function will be registered for automatic interface generation.
  *
@@ -65,7 +65,7 @@
  *     - for result type:
  *       - `void` and arithmetic types remain the same;
  *       - classes (and structures) and references to them are transformed to the pointer to the opaque handle
- *         (`gen_handle*`) which should be released by calling `void bindgen_release(gen_handle*)` function;
+ *         (`bindgen_handle*`) which should be released by calling `void bindgen_release(bindgen_handle*)` function;
  *       - all other result types will cause a compiler error.
  *     - for parameter types:
  *       - arithmetic types and pointers to them remain the same;
@@ -74,7 +74,7 @@
  *         bindgen_fortran_array_descriptor
  *       - types that are fortran_array_wrappable are transformed to a bindgen_fortran_array_descriptor in the
  *         c-bindings, and provide a wrapper in the fortran-bindings such that they can be called with a fortran array
- *       - classes (and structures) and references or pointers to them are transformed to `gen_handle*`;
+ *       - classes (and structures) and references or pointers to them are transformed to `bindgen_handle*`;
  *       - all other parameter types will cause a compiler error.
  *   Additionally the newly generated function will be registered for automatic interface generation.
  *

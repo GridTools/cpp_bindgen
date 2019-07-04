@@ -43,7 +43,7 @@ struct bindgen_fortran_array_descriptor {
     int dims[7];
     void *data;
     bool is_acc_present;
-    // TODO: add support for strides, bounds end type gen_fortran_array_descriptor
+    // TODO: add support for strides, bounds end type bindgen_fortran_array_descriptor
 };
 typedef struct bindgen_fortran_array_descriptor bindgen_fortran_array_descriptor;
 
