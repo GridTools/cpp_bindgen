@@ -5,7 +5,13 @@ target_link_libraries(bindgen_regression_array_driver_fortran bindgen_regression
 add_test(NAME bindgen_regression_array_driver_fortran
     COMMAND $<TARGET_FILE:bindgen_regression_array_driver_fortran>)
 
-if(CUDA_AVAILABLE AND "${CMAKE_CXX_COMPILER_VERSION}" VERSION_GREATER_EQUAL "6")
+    if( CUDA_AVAILABLE
+    AND "${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" # -fopenacc will be passed to the c++ linker
+    AND "${CMAKE_CXX_COMPILER_VERSION}" VERSION_GREATER_EQUAL "6"
+    AND "${CMAKE_Fortran_COMPILER_ID}" STREQUAL "GNU"
+    AND "${CMAKE_Fortran_COMPILER_VERSION}" VERSION_GREATER_EQUAL "6"
+    )
+
     cpp_bindgen_add_library(bindgen_regression_array_cu SOURCES implementation.cu)
     cpp_bindgen_enable_fortran_openacc_on_target(bindgen_regression_array_cu_fortran)
 

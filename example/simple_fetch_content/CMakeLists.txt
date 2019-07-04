@@ -1,8 +1,7 @@
-cmake_minimum_required(VERSION 3.12.4) #TODO replace with generated version
+cmake_minimum_required(VERSION 3.12.4)
 project(simple_example_with_fetch_content LANGUAGES CXX Fortran)
 
 # 1) fetch cpp_bindgen from the repository
-# TODO: use FetchContent_MakeAvailable() once we require CMake 3.14+
 include(FetchContent)
 FetchContent_Declare(
   cpp_bindgen
@@ -12,7 +11,7 @@ FetchContent_Declare(
   # GIT_REPOSITORY https://github.com/GridTools/cpp_bindgen.git
   # GIT_TAG        master # consider replacing master by a tagged version
 )
-# FetchContent_MakeAvailable(cpp_bindgen) for CMake >= 3.14
+# FetchContent_MakeAvailable(cpp_bindgen) for CMake >= 3.14, otherwise:
 FetchContent_GetProperties(cpp_bindgen)
 if(NOT cpp_bindgen_POPULATED)
   FetchContent_Populate(cpp_bindgen)

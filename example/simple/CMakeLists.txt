@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12.4) #TODO replace with generated version
+cmake_minimum_required(VERSION 3.12.4)
 project(simple_example LANGUAGES CXX C Fortran)
 
 # 1) find installed cpp_bindgen version
