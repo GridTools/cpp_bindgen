@@ -65,18 +65,21 @@ function(bindgen_enable_fortran_library target_name)
     set(__CPP_BINDGEN_CMAKE_DIR @__CPP_BINDGEN_CMAKE_DIR@)
 
     if(CMAKE_Fortran_COMPILER_LOADED)
-        if(NOT TARGET fortran_bindings_handle)
-            add_library(fortran_bindings_handle ${__CPP_BINDGEN_SOURCE_DIR}/cpp_bindgen/array_descriptor.f90 ${__CPP_BINDGEN_SOURCE_DIR}/cpp_bindgen/handle.f90)
-            target_link_libraries(fortran_bindings_handle PUBLIC cpp_bindgen_handle)
-            target_include_directories(fortran_bindings_handle PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
+        if(NOT TARGET cpp_bindgen_fortran_handle)
+            add_library(cpp_bindgen_fortran_handle ${__CPP_BINDGEN_SOURCE_DIR}/cpp_bindgen/array_descriptor.f90 ${__CPP_BINDGEN_SOURCE_DIR}/cpp_bindgen/handle.f90)
+            set(CPP_BINDGEN_Fortran_MODULES_DIRECTORY ${CMAKE_BINARY_DIR}/cpp_bindgen_modules
+                CACHE INTERNAL "Directory for Fortran modules of cpp_bindgen")
+            set_target_properties(cpp_bindgen_fortran_handle PROPERTIES Fortran_MODULE_DIRECTORY ${CPP_BINDGEN_Fortran_MODULES_DIRECTORY})
+            target_link_libraries(cpp_bindgen_fortran_handle PUBLIC cpp_bindgen_handle)
+            target_include_directories(cpp_bindgen_fortran_handle PUBLIC $<BUILD_INTERFACE:${CPP_BINDGEN_Fortran_MODULES_DIRECTORY}> $<INSTALL_INTERFACE:include/>)
             include(${__CPP_BINDGEN_CMAKE_DIR}/fortran_helpers.cmake)
-            bindgen_enable_fortran_preprocessing_on_target(fortran_bindings_handle)
+            bindgen_enable_fortran_preprocessing_on_target(cpp_bindgen_fortran_handle)
         endif()
         if(NOT TARGET ${target_name}_fortran)
             set_source_files_properties(GT_${${target_name}_fortran_bindings_path} PROPERTIES GENERATED TRUE)
-            add_library(${target_name}_fortran EXCLUDE_FROM_ALL ${GT_${target_name}_fortran_bindings_path})
+            add_library(${target_name}_fortran EXCLUDE_FROM_ALL ${CPP_BINDGEN_${target_name}_fortran_bindings_path})
             target_link_libraries(${target_name}_fortran PUBLIC ${target_name})
-            target_link_libraries(${target_name}_fortran PUBLIC fortran_bindings_handle)
+            target_link_libraries(${target_name}_fortran PUBLIC cpp_bindgen_fortran_handle)
             add_dependencies(${target_name}_fortran ${target_name}_declarations)
         endif()
     elseif(NOT ${ARGN}) # internal: the second (optional) parameter can be used to surpress this fatal error
@@ -159,7 +162,36 @@ function(bindgen_add_library target_name)
     # bindings Fortran library
     # Export the name of the generated file. The variable needs to exist in the whole cmake!
     # Reason: see description of bindgen_enable_fortran_library().
-    set(GT_${target_name}_fortran_bindings_path ${bindings_fortran_decl_filename}
+    set(CPP_BINDGEN_${target_name}_fortran_bindings_path ${bindings_fortran_decl_filename}
         CACHE INTERNAL "Path to the generated Fortran file for ${target_name}")
     bindgen_enable_fortran_library(${target_name} TRUE)
+endfunction()
+
+# install_cpp_bindgen_targets()
+#
+# cpp_bindgen contains some generic files which are being build on first use of bindgen_add_library().
+# These libraries can be installed with this function which takes the same arguments
+# as install(TARGETS targets... [other-options]), except
+# - you must not specify "TARGETS targets..." but only all [other-options].
+# - if Fortran is enabled Fortran_MODULE_DESTINATION needs to be set to the location where Fortran modules
+#   should be installed to (e.g. include)
+function(install_cpp_bindgen_targets)
+    set(options)
+    set(oneValueArgs Fortran_MODULE_DESTINATION)
+    set(multiValueArgs)
+    cmake_parse_arguments(ARG "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+    if(TARGET cpp_bindgen_fortran_handle) # Fortran is enabled, we need to install a mod file
+        if(ARG_Fortran_MODULE_DESTINATION)
+            install(DIRECTORY ${CPP_BINDGEN_Fortran_MODULES_DIRECTORY}/ DESTINATION ${ARG_Fortran_MODULE_DESTINATION})
+        else()
+            message(WARNING "Fortran_MODULE_DESTINATION was NOT specified, but Fortran was enabled. Modules files for
+                             cpp_bindgen won't be installed.")
+        endif()
+        install(TARGETS cpp_bindgen_fortran_handle ${ARG_UNPARSED_ARGUMENTS})
+    else()
+        if(ARG_Fortran_MODULE_DESTINATION)
+            message(WARNING "Fortran_MODULE_DESTINATION was specified, but Fortran is disabled.")
+        endif()
+    endif()
+    install(TARGETS cpp_bindgen_generator cpp_bindgen_handle cpp_bindgen_interface ${ARG_UNPARSED_ARGUMENTS})
 endfunction()

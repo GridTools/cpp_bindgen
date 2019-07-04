@@ -24,3 +24,10 @@ bindgen_add_library(simple SOURCES simple.cpp)
 # 3) link the generated library to a fortran executable
 add_executable(driver driver.f90)
 target_link_libraries(driver simple_fortran)
+
+# 4) optional: demonstrates installing the library with CMake
+# installs general cpp_bindgen targets
+install_cpp_bindgen_targets(EXPORT simple_fortran_targets Fortran_MODULE_DESTINATION include)
+# install your library (simple) and the generated bindings library (simple_fortran) as usual
+install(TARGETS simple simple_fortran EXPORT simple_fortran_targets)
+install(EXPORT simple_fortran_targets DESTINATION cmake NAMESPACE simple_fortran::)
