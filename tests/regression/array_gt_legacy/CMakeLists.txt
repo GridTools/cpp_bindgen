@@ -1,4 +1,4 @@
-cpp_bindgen_add_library(bindgen_regression_array_gt_legacy SOURCES implementation.cpp)
+bindgen_add_library(bindgen_regression_array_gt_legacy SOURCES implementation.cpp)
 
 add_executable(bindgen_regression_array_gt_legacy_driver_fortran driver.f90)
 target_link_libraries(bindgen_regression_array_gt_legacy_driver_fortran bindgen_regression_array_gt_legacy_fortran)

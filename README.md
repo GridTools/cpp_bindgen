@@ -8,7 +8,7 @@ Currently the documentation of **cpp_bindgen** is part of the [GridTools documen
 
 ### Installation instructions
 
-You can easily integrate **cpp_bindgen** in your CMake project with the following snippet which makes the function `cpp_bindgen_add_library()` available.
+You can easily integrate **cpp_bindgen** in your CMake project with the following snippet which makes the function `bindgen_add_library()` available.
 
 ```cmake
 include(FetchContent)

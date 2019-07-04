@@ -19,7 +19,7 @@ if(NOT cpp_bindgen_POPULATED)
 endif()
 
 # 2) create a library with bindings. This will generate the files simple.h and simple.f90 which can be included within C and Fortran. In CMake you can use them by linking against `simple_c`or `simple_fortran`.
-cpp_bindgen_add_library(simple SOURCES simple.cpp)
+bindgen_add_library(simple SOURCES simple.cpp)
 
 # 3) link the generated library to a fortran executable
 add_executable(driver driver.f90)
