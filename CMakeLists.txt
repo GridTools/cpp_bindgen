@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.12.4)
+# when increasing the minium required version, consider updating in examples as well
 
 file(STRINGS "version.txt" __CPP_BINDGEN_VERSION)
 project(cpp_bindgen VERSION ${__CPP_BINDGEN_VERSION} LANGUAGES CXX)
