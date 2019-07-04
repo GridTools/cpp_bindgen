@@ -5,7 +5,7 @@ file(STRINGS "version.txt" __CPP_BINDGEN_VERSION)
 project(cpp_bindgen VERSION ${__CPP_BINDGEN_VERSION} LANGUAGES CXX)
 unset(__CPP_BINDGEN_VERSION)
 
-# Switch default of NO_PACKAGE_REGISTRY. TODO: Can be removed after CMake 3.15
+# Switch default of NO_PACKAGE_REGISTRY. TODO: Can be removed with CMake 3.15+
 set(CMAKE_EXPORT_NO_PACKAGE_REGISTRY ON CACHE BOOL "")
 mark_as_advanced(CMAKE_EXPORT_NO_PACKAGE_REGISTRY)
 
