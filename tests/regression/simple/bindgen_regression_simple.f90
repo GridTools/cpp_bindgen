@@ -1,5 +1,5 @@
 ! This file is generated!
-module gen_regression_simple
+module bindgen_regression_simple
 implicit none
   interface
 

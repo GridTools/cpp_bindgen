@@ -13,14 +13,14 @@ You can easily integrate **cpp_bindgen** in your CMake project with the followin
 ```cmake
 include(FetchContent)
 FetchContent_Declare(
-  c_bindings
-  GIT_REPOSITORY https://github.com/GridTools/c_bindings.git
+  cpp_bindgen
+  GIT_REPOSITORY https://github.com/GridTools/cpp_bindgen.git
   GIT_TAG        master # consider replacing master by a tagged version
 )
-FetchContent_GetProperties(c_bindings)
-if(NOT c_bindings_POPULATED)
-  FetchContent_Populate(c_bindings)
-  add_subdirectory(${c_bindings_SOURCE_DIR} ${c_bindings_BINARY_DIR})
+FetchContent_GetProperties(cpp_bindgen)
+if(NOT cpp_bindgen_POPULATED)
+  FetchContent_Populate(cpp_bindgen)
+  add_subdirectory(${cpp_bindgen_SOURCE_DIR} ${cpp_bindgen_BINARY_DIR})
 endif()
 ```
 

@@ -9,22 +9,22 @@
  */
 #pragma once
 
-struct gen_handle;
+struct bindgen_handle;
 
 #ifdef __cplusplus
 
-extern "C" void gen_release(gen_handle const *);
+extern "C" void bindgen_release(bindgen_handle const *);
 #ifdef CPP_BINDGEN_GT_LEGACY // remove once GT is at v2.0
-extern "C" void gt_release(gen_handle const *);
+extern "C" void gt_release(bindgen_handle const *);
 #endif
 
 #else
 
-typedef struct gen_handle gen_handle;
-void gen_release(gen_handle *);
+typedef struct bindgen_handle bindgen_handle;
+void bindgen_release(bindgen_handle *);
 #ifdef CPP_BINDGEN_GT_LEGACY // remove once GT is at v2.0
-typedef struct gen_handle gt_handle;
-void gt_release(gen_handle *);
+typedef struct bindgen_handle gt_handle;
+void gt_release(bindgen_handle *);
 #endif
 
 #endif

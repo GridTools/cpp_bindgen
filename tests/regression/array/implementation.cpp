@@ -34,7 +34,7 @@ namespace custom_array {
     };
 
     template <typename T>
-    my_array<T> gen_make_fortran_array_view(gen_fortran_array_descriptor *descriptor, my_array<T> *) {
+    my_array<T> bindgen_make_fortran_array_view(bindgen_fortran_array_descriptor *descriptor, my_array<T> *) {
         if (descriptor->rank != 3) {
             throw std::runtime_error("only 3-dimensional arrays are supported");
         }
@@ -44,8 +44,8 @@ namespace custom_array {
     }
 
     template <typename T>
-    gen_fortran_array_descriptor get_fortran_view_meta(my_array<T> *) {
-        gen_fortran_array_descriptor descriptor;
+    bindgen_fortran_array_descriptor get_fortran_view_meta(my_array<T> *) {
+        bindgen_fortran_array_descriptor descriptor;
         descriptor.type = cpp_bindgen::fortran_array_element_kind<T>::value;
         descriptor.rank = 3;
         descriptor.is_acc_present = false;
@@ -65,5 +65,5 @@ namespace {
                 }
     }
 
-    GEN_EXPORT_BINDING_WRAPPED_1(fill_array, fill_array_impl);
+    BINDGEN_EXPORT_BINDING_WRAPPED_1(fill_array, fill_array_impl);
 } // namespace

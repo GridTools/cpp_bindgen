@@ -81,25 +81,25 @@ namespace cpp_bindgen {
         template <>
         char const fortran_kind_name<signed char>::value[] = "c_signed_char";
 
-        std::string fortran_array_element_type_name(gen_fortran_array_kind kind) {
+        std::string fortran_array_element_type_name(bindgen_fortran_array_kind kind) {
             switch (kind) {
-            case gen_fk_Bool:
+            case bindgen_fk_Bool:
                 return fortran_type_name<bool>();
-            case gen_fk_Int:
+            case bindgen_fk_Int:
                 return fortran_type_name<int>();
-            case gen_fk_Short:
+            case bindgen_fk_Short:
                 return fortran_type_name<short>();
-            case gen_fk_Long:
+            case bindgen_fk_Long:
                 return fortran_type_name<long>();
-            case gen_fk_LongLong:
+            case bindgen_fk_LongLong:
                 return fortran_type_name<long long>();
-            case gen_fk_Float:
+            case bindgen_fk_Float:
                 return fortran_type_name<float>();
-            case gen_fk_Double:
+            case bindgen_fk_Double:
                 return fortran_type_name<double>();
-            case gen_fk_LongDouble:
+            case bindgen_fk_LongDouble:
                 return fortran_type_name<long double>();
-            case gen_fk_SignedChar:
+            case bindgen_fk_SignedChar:
                 return fortran_type_name<signed char>();
             default:
                 assert(false && "Invalid element kind");

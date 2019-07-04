@@ -8,8 +8,8 @@
 
 program main
     use iso_c_binding
-    use gen_handle
-    use gen_regression_array
+    use bindgen_handle
+    use bindgen_regression_array
     implicit none
     integer, parameter :: ie = 9, je = 10, ke = 11
     integer :: i, j, k

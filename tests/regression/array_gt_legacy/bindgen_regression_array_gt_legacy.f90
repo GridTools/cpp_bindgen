@@ -1,21 +1,21 @@
 ! This file is generated!
-module gen_regression_array_gt_legacy
+module bindgen_regression_array_gt_legacy
 implicit none
   interface
 
     subroutine fill_array_impl(arg0) bind(c, name="fill_array")
       use iso_c_binding
-      use gen_array_descriptor
-      type(gen_fortran_array_descriptor) :: arg0
+      use bindgen_array_descriptor
+      type(bindgen_fortran_array_descriptor) :: arg0
     end subroutine
 
   end interface
 contains
     subroutine fill_array(arg0)
       use iso_c_binding
-      use gen_array_descriptor
+      use bindgen_array_descriptor
       real(c_double), dimension(:,:,:), target :: arg0
-      type(gen_fortran_array_descriptor) :: descriptor0
+      type(bindgen_fortran_array_descriptor) :: descriptor0
 
       descriptor0%rank = 3
       descriptor0%type = 6

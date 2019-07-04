@@ -4,13 +4,13 @@ export(PACKAGE cpp_bindgen)
 include(CMakePackageConfigHelpers)
 
 # for build tree
-set(cpp_bindgen_MODULE_PATH ${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/build-install/lib/cmake)
-set(cpp_bindgen_SOURCES_PATH ${PROJECT_SOURCE_DIR}/src)
-set(cpp_bindgen_INCLUDE_PATH ${PROJECT_SOURCE_DIR}/include)
+set(cpp_bindgen_CMAKE_DIR ${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/build-install/lib/cmake)
+set(cpp_bindgen_SOURCE_DIR ${PROJECT_SOURCE_DIR}/src)
+set(cpp_bindgen_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
 configure_package_config_file(
     cmake/cpp_bindgen-config.cmake.in
     ${PROJECT_BINARY_DIR}/cpp_bindgen-config.cmake
-    PATH_VARS cpp_bindgen_MODULE_PATH cpp_bindgen_SOURCES_PATH cpp_bindgen_INCLUDE_PATH
+    PATH_VARS cpp_bindgen_CMAKE_DIR cpp_bindgen_SOURCE_DIR cpp_bindgen_INCLUDE_DIR
     INSTALL_DESTINATION ${PROJECT_BINARY_DIR}
     )
 write_basic_package_version_file(
@@ -20,13 +20,13 @@ write_basic_package_version_file(
     )
 
 # for install tree
-set(cpp_bindgen_MODULE_PATH lib/cmake)
-set(cpp_bindgen_SOURCES_PATH src)
-set(cpp_bindgen_INCLUDE_PATH include)
+set(cpp_bindgen_CMAKE_DIR lib/cmake)
+set(cpp_bindgen_SOURCE_DIR src)
+set(cpp_bindgen_INCLUDE_DIR include)
 configure_package_config_file(
     cmake/cpp_bindgen-config.cmake.in
     ${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/install/cpp_bindgen-config.cmake
-    PATH_VARS cpp_bindgen_MODULE_PATH cpp_bindgen_SOURCES_PATH cpp_bindgen_INCLUDE_PATH
+    PATH_VARS cpp_bindgen_CMAKE_DIR cpp_bindgen_SOURCE_DIR cpp_bindgen_INCLUDE_DIR
     INSTALL_DESTINATION lib/cmake
     )
 write_basic_package_version_file(
@@ -42,15 +42,15 @@ install(
     DESTINATION lib/cmake
     )
 
-set(__C_BINDINGS_CMAKE_DIR "\${cpp_bindgen_MODULE_PATH}")  #TODO refactor the variable names cpp_bindgen_MODULE_PATH, etc.
-set(__C_BINDINGS_SOURCE_DIR "\${cpp_bindgen_SOURCES_PATH}")
-set(__C_BINDINGS_INCLUDE_DIR "\${cpp_bindgen_INCLUDE_PATH}")
+set(__CPP_BINDGEN_CMAKE_DIR "\${cpp_bindgen_CMAKE_DIR}")
+set(__CPP_BINDGEN_SOURCE_DIR "\${cpp_bindgen_SOURCE_DIR}")
+set(__CPP_BINDGEN_INCLUDE_DIR "\${cpp_bindgen_INCLUDE_DIR}")
 configure_file(cmake/cpp_bindgen.cmake.in
     ${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/build-install/lib/cmake/cpp_bindgen.cmake
     @ONLY)
-unset(__C_BINDINGS_CMAKE_DIR)
-unset(__C_BINDINGS_SOURCE_DIR)
-unset(__C_BINDINGS_INCLUDE_DIR)
+unset(__CPP_BINDGEN_CMAKE_DIR)
+unset(__CPP_BINDGEN_SOURCE_DIR)
+unset(__CPP_BINDGEN_INCLUDE_DIR)
 
 set(CMAKE_SOURCES
     "${PROJECT_SOURCE_DIR}/cmake/cpp_bindgen_generate.cmake"

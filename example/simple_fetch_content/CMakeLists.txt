@@ -13,7 +13,7 @@ FetchContent_Declare(
 )
 # FetchContent_MakeAvailable(cpp_bindgen) for CMake >= 3.14, otherwise:
 FetchContent_GetProperties(cpp_bindgen)
-if(NOT c_bindings_POPULATED)
+if(NOT cpp_bindgen_POPULATED)
   FetchContent_Populate(cpp_bindgen)
   add_subdirectory(${cpp_bindgen_SOURCE_DIR} ${cpp_bindgen_BINARY_DIR})
 endif()

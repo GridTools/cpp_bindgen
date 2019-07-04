@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.12.4)
 project(simple_example LANGUAGES CXX C Fortran)
 
-# 1) find installed c_bindings version
+# 1) find installed cpp_bindgen version
 find_package(cpp_bindgen)
 
 # 2) create a library with bindings

@@ -7,8 +7,8 @@ message(STATUS "GridTools cpp_bindgen version @PROJECT_VERSION@ found at ${cpp_b
 include(CMakeFindDependencyMacro)
 find_dependency(Boost @REQUIRED_BOOST_VERSION@)
 
-set_and_check(cpp_bindgen_MODULE_PATH @PACKAGE_cpp_bindgen_MODULE_PATH@)
-set_and_check(cpp_bindgen_SOURCES_PATH @PACKAGE_cpp_bindgen_SOURCES_PATH@)
-set_and_check(cpp_bindgen_INCLUDE_PATH @PACKAGE_cpp_bindgen_INCLUDE_PATH@)
+set_and_check(cpp_bindgen_CMAKE_DIR @PACKAGE_cpp_bindgen_CMAKE_DIR@)
+set_and_check(cpp_bindgen_SOURCE_DIR @PACKAGE_cpp_bindgen_SOURCE_DIR@)
+set_and_check(cpp_bindgen_INCLUDE_DIR @PACKAGE_cpp_bindgen_INCLUDE_DIR@)
 
-include(${cpp_bindgen_MODULE_PATH}/cpp_bindgen.cmake)
+include(${cpp_bindgen_CMAKE_DIR}/cpp_bindgen.cmake)

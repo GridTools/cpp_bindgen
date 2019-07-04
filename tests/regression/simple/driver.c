@@ -8,6 +8,6 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#include "gen_regression_simple.h"
+#include "bindgen_regression_simple.h"
 
 int main() { print_number_from_cpp(7); }

@@ -8,8 +8,8 @@
 extern "C" {
 #endif
 
-void fill_array(gen_fortran_array_descriptor*);
-void fill_gpu_array(gen_fortran_array_descriptor*);
+void fill_array(bindgen_fortran_array_descriptor*);
+void fill_gpu_array(bindgen_fortran_array_descriptor*);
 
 #ifdef __cplusplus
 }
