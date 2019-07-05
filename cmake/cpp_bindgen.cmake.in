@@ -80,6 +80,8 @@ function(bindgen_enable_fortran_library target_name)
             add_library(${target_name}_fortran EXCLUDE_FROM_ALL ${CPP_BINDGEN_${target_name}_fortran_bindings_path})
             target_link_libraries(${target_name}_fortran PUBLIC ${target_name})
             target_link_libraries(${target_name}_fortran PUBLIC cpp_bindgen_fortran_handle)
+            # location of .mod file (we cannot know the INSTALL_INTERFACE directory here)
+            target_include_directories(${target_name}_fortran PUBLIC $<BUILD_INTERFACE:${CPP_BINDGEN_Fortran_MODULES_DIRECTORY}>)
             add_dependencies(${target_name}_fortran ${target_name}_declarations)
         endif()
     elseif(NOT ${ARGN}) # internal: the second (optional) parameter can be used to surpress this fatal error
