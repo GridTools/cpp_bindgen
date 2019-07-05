@@ -17,11 +17,7 @@ FetchContent_Declare(
   GIT_REPOSITORY https://github.com/GridTools/cpp_bindgen.git
   GIT_TAG        master # consider replacing master by a tagged version
 )
-FetchContent_GetProperties(cpp_bindgen)
-if(NOT cpp_bindgen_POPULATED)
-  FetchContent_Populate(cpp_bindgen)
-  add_subdirectory(${cpp_bindgen_SOURCE_DIR} ${cpp_bindgen_BINARY_DIR})
-endif()
+FetchContent_MakeAvailable(cpp_bindgen)
 ```
 
 See also https://github.com/GridTools/cpp_bindgen/tree/master/example/simple_fetch_content.

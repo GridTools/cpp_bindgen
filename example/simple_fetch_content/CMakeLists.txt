@@ -11,12 +11,7 @@ FetchContent_Declare(
   # GIT_REPOSITORY https://github.com/GridTools/cpp_bindgen.git
   # GIT_TAG        master # consider replacing master by a tagged version
 )
-# FetchContent_MakeAvailable(cpp_bindgen) for CMake >= 3.14, otherwise:
-FetchContent_GetProperties(cpp_bindgen)
-if(NOT cpp_bindgen_POPULATED)
-  FetchContent_Populate(cpp_bindgen)
-  add_subdirectory(${cpp_bindgen_SOURCE_DIR} ${cpp_bindgen_BINARY_DIR})
-endif()
+FetchContent_MakeAvailable(cpp_bindgen)
 
 # 2) create a library with bindings. This will generate the files simple.h and simple.f90 which can be included within C and Fortran. In CMake you can use them by linking against `simple_c`or `simple_fortran`.
 bindgen_add_library(simple SOURCES simple.cpp)
