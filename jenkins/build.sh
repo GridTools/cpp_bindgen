@@ -6,7 +6,7 @@ HOST=$(hostname)
 test -n "${CSCS_ACCOUNT}" || CSCS_ACCOUNT=d75
 
 if [[ "$HOST" == kesch* || "$HOST" == escha* ]]; then
-    module load /users/jenkins/easybuild/kesch/modules/all/CMake/3.14.5
+    module load /users/jenkins/easybuild/kesch/modules/all/cmake/3.14.5
     module load PE/17.06
     module load craype-haswell
     module load craype-network-infiniband
