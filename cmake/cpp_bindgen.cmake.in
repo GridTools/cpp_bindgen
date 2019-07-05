@@ -180,8 +180,13 @@ endfunction()
 function(install_cpp_bindgen_targets)
     set(options)
     set(oneValueArgs Fortran_MODULE_DESTINATION)
-    set(multiValueArgs)
+    set(multiValueArgs TARGETS)
     cmake_parse_arguments(ARG "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+    if(ARG_TARGETS)
+        message(FATAL_ERROR "install_cpp_bindgen_targets() must not be called with TARGETS argument.")
+    endif()
+
     if(TARGET cpp_bindgen_fortran_handle) # Fortran is enabled, we need to install a mod file
         if(ARG_Fortran_MODULE_DESTINATION)
             install(DIRECTORY ${CPP_BINDGEN_Fortran_MODULES_DIRECTORY}/ DESTINATION ${ARG_Fortran_MODULE_DESTINATION})
