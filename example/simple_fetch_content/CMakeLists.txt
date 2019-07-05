@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12.4)
+cmake_minimum_required(VERSION 3.14.5)
 project(simple_example_with_fetch_content LANGUAGES CXX Fortran)
 
 # 1) fetch cpp_bindgen from the repository
@@ -27,7 +27,17 @@ target_link_libraries(driver simple_fortran)
 
 # 4) optional: demonstrates installing the library with CMake
 # installs general cpp_bindgen targets
-install_cpp_bindgen_targets(EXPORT simple_fortran_targets Fortran_MODULE_DESTINATION include)
+install_cpp_bindgen_targets(
+  EXPORT simple_fortran_targets
+  Fortran_MODULE_DESTINATION include
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  )
 # install your library (simple) and the generated bindings library (simple_fortran) as usual
-install(TARGETS simple simple_fortran EXPORT simple_fortran_targets)
+install(
+  TARGETS simple simple_fortran
+  EXPORT simple_fortran_targets
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  )
 install(EXPORT simple_fortran_targets DESTINATION cmake NAMESPACE simple_fortran::)
