@@ -6,7 +6,7 @@ HOST=$(hostname)
 test -n "${CSCS_ACCOUNT}" || CSCS_ACCOUNT=d75
 
 if [[ "$HOST" == kesch* || "$HOST" == escha* ]]; then
-    module load cmake/3.13.4
+    module load /users/jenkins/easybuild/kesch/modules/all/cmake/3.14.5
     module load PE/17.06
     module load craype-haswell
     module load craype-network-infiniband
@@ -21,7 +21,7 @@ if [[ "$HOST" == kesch* || "$HOST" == escha* ]]; then
 elif [[ "$HOST" == tave* ]]; then
     module switch PrgEnv-cray PrgEnv-gnu
     module rm CMake
-    module load /users/jenkins/easybuild/tave/modules/all/CMake/3.12.4
+    module load /users/jenkins/easybuild/tave/modules/all/CMake/3.14.5
     export BOOST_ROOT=/project/c14/install/kesch/boost/boost_1_67_0
     RUN_PREFIX=""
 
@@ -30,7 +30,7 @@ elif [[ "$HOST" == daint* ]]; then
     module load cudatoolkit/9.2.148_3.19-6.0.7.1_2.1__g3d9acc8
     module switch PrgEnv-cray PrgEnv-gnu
     module rm CMake
-    module load /users/jenkins/easybuild/daint/haswell/modules/all/CMake/3.12.4
+    module load /users/jenkins/easybuild/daint/haswell/modules/all/CMake/3.14.5
     export BOOST_ROOT=/project/c14/install/daint/boost/boost_1_67_0
     export CUDA_ARCH=sm_60
     RUN_PREFIX="srun -C gpu -p cscsci --account=$CSCS_ACCOUNT --time=00:30:00"

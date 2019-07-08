@@ -54,7 +54,7 @@ unset(__CPP_BINDGEN_INCLUDE_DIR)
 
 set(CMAKE_SOURCES
     "${PROJECT_SOURCE_DIR}/cmake/cpp_bindgen_generate.cmake"
-    "${PROJECT_SOURCE_DIR}/cmake/fortran_helpers.cmake"
+    "${PROJECT_SOURCE_DIR}/cmake/cpp_bindgen_fortran_helpers.cmake"
     "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/build-install/lib/cmake/cpp_bindgen.cmake"
     )
 set(CBINDINGS_SOURCES
