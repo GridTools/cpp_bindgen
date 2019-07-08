@@ -171,7 +171,7 @@ endfunction()
 
 # install_cpp_bindgen_targets()
 #
-# cpp_bindgen contains some generic files which are being build on first use of bindgen_add_library().
+# cpp_bindgen contains some generic files which are being built on first use of bindgen_add_library().
 # These libraries can be installed with this function which takes the same arguments
 # as install(TARGETS targets... [other-options]), except
 # - you must not specify "TARGETS targets..." but only all [other-options].

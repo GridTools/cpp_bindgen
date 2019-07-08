@@ -35,4 +35,4 @@ install(
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib
   )
-install(EXPORT simple_fortran_targets DESTINATION cmake NAMESPACE simple_fortran::)
+install(EXPORT simple_fortran_targets DESTINATION cmake NAMESPACE SimpleFortran::)
