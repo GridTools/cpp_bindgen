@@ -31,6 +31,12 @@ See also https://github.com/GridTools/cpp_bindgen/tree/master/example/simple_fet
 
 - The library doesn't work with NVCC <= 9.2 using Clang as host compiler, if c++14 is enabled, due to a bug in NVCC.
 
+### Continuous integration
+
+We use Jenkins to test this library. To test your PR use
+- `launch jenkins` to execute the tests which are part of this repository.
+- `launch gridtools` to run the changes against the GridTools integration tests from the GridTools/gridtools repository.
+
 ### Contributing
 
 Contributions to the GridTools framework are welcome. Please open an issue for any bugs that you encounter or provide a fix or enhancement as a PR. External contributions to GridTools require us a signed copy of a copyright release form to ETH Zurich. We will contact you on the PR.
