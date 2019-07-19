@@ -5,6 +5,9 @@ if(CMAKE_Fortran_COMPILER_LOADED)
     target_link_libraries(bindgen_regression_simple_driver_fortran bindgen_regression_simple_fortran)
     add_test(NAME bindgen_regression_simple_driver_fortran
         COMMAND $<TARGET_FILE:bindgen_regression_simple_driver_fortran>)
+    if(CMAKE_Fortran_COMPILER_ID STREQUAL "Intel")
+        set_target_properties(bindgen_regression_simple_driver_fortran PROPERTIES LINKER_LANGUAGE Fortran)
+    endif()
 endif()
 
 if(CMAKE_C_COMPILER_LOADED)
