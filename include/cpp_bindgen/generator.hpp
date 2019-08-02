@@ -18,6 +18,7 @@
 #include <string>
 #include <vector>
 
+#include <boost/preprocessor.hpp>
 #include <boost/type_index.hpp>
 
 #include "common/disjunction.hpp"
