@@ -120,6 +120,7 @@ void test_cpp_bindgen_and_wrapper_compatible_type_b(bindgen_fortran_array_descri
 
     const char expected_fortran_interface[] = R"?(! This file is generated!
 module my_module
+use iso_c_binding
 implicit none
   interface
 
