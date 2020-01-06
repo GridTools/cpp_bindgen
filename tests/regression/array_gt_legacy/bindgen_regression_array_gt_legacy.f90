@@ -1,5 +1,6 @@
 ! This file is generated!
 module bindgen_regression_array_gt_legacy
+use iso_c_binding
 implicit none
   interface
 
