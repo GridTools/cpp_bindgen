@@ -30,6 +30,7 @@ include_guard(GLOBAL)
 
 option(GT_ENABLE_BINDINGS_GENERATION "If turned off, bindings will not be generated." ON)
 
+# in some conditions the include guard above doesn't work
 if( NOT TARGET cpp_bindgen_interface )
 
 # variables are unset after use for scoping, they need to be redefined in the macros
