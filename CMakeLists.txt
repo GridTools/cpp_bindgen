@@ -9,8 +9,6 @@ unset(__CPP_BINDGEN_VERSION)
 set(CMAKE_EXPORT_NO_PACKAGE_REGISTRY ON CACHE BOOL "")
 mark_as_advanced(CMAKE_EXPORT_NO_PACKAGE_REGISTRY)
 
-include(CTest)
-
 set(REQUIRED_BOOST_VERSION 1.58)
 find_package(Boost ${REQUIRED_BOOST_VERSION} REQUIRED)
 
@@ -21,8 +19,11 @@ endif()
 # if used via FetchContent/add_subdirectory() we need to make the add_bindings_library() available here
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/bindings.cmake)
 
-if (BUILD_TESTING)
-    add_subdirectory(tests)
+if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+    include(CTest)
+    if(BUILD_TESTING)
+        add_subdirectory(tests)
+    endif()
 endif()
 
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/export.cmake)
