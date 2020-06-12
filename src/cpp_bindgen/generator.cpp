@@ -154,6 +154,7 @@ namespace cpp_bindgen {
     void generate_fortran_interface(std::ostream &strm, std::string const &module_name) {
         strm << "! This file is generated!\n";
         strm << "module " << module_name << "\n";
+        strm << "use iso_c_binding\n"; // pgi wants to have this
         strm << "implicit none\n";
         strm << "  interface\n\n";
         strm << _impl::get_entities<_impl::fortran_bindings_traits>();

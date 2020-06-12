@@ -54,6 +54,7 @@ void qux(int, bindgen_fortran_array_descriptor*);
 
         const char expected_fortran_interface[] = R"?(! This file is generated!
 module my_module
+use iso_c_binding
 implicit none
   interface
 
