@@ -38,9 +38,16 @@ namespace gpu_array {
         }
         cudaPointerAttributes attributes;
         auto ret = cudaPointerGetAttributes(&attributes, descriptor->data);
-        if (ret != cudaSuccess || attributes.memoryType != cudaMemoryTypeDevice) {
+        if (ret != cudaSuccess ||
+#if defined(CUDART_VERSION) && CUDART_VERSION < 10000
+            attributes.memoryType != cudaMemoryTypeDevice
+#else
+            (attributes.type != cudaMemoryTypeDevice && attributes.type != cudaMemoryTypeManaged)
+#endif
+        ) {
             throw std::runtime_error("no gpu pointer");
         }
+
         return my_array<T>{static_cast<T *>(descriptor->data),
             {descriptor->dims[0], descriptor->dims[1], descriptor->dims[2]},
             {1, descriptor->dims[0], descriptor->dims[0] * descriptor->dims[1]}};
