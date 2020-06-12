@@ -14,10 +14,6 @@ include(CTest)
 set(REQUIRED_BOOST_VERSION 1.58)
 find_package(Boost ${REQUIRED_BOOST_VERSION} REQUIRED)
 
-if(NOT CPP_BINDGEN_GT_LEGACY)
-    set(CPP_BINDGEN_GT_LEGACY OFF)
-endif()
-
 # if used via FetchContent/add_subdirectory() we need to make the add_bindings_library() available here
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/bindings.cmake)
 
