@@ -42,7 +42,7 @@ namespace gpu_array {
 #if defined(CUDART_VERSION) && CUDART_VERSION < 10000
             attributes.memoryType != cudaMemoryTypeDevice
 #else
-            (attributes.type != cudaMemoryTypeDevice || attributes.type != cudaMemoryTypeManaged)
+            (attributes.type != cudaMemoryTypeDevice && attributes.type != cudaMemoryTypeManaged)
 #endif
         ) {
             throw std::runtime_error("no gpu pointer");
