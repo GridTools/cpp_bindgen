@@ -43,3 +43,6 @@ install*/
 *.out
 *.app
 
+# Logs
+*.log 
+
