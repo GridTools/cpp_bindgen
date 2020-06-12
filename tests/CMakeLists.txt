@@ -18,9 +18,6 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL Clang AND DEFINED CMAKE_CUDA_COMPILER AND
   set(CUDA_AVAILABLE OFF)
 endif()
 
-include(${PROJECT_SOURCE_DIR}/cmake/workaround_thread.cmake)
-_fix_threads_flags()
-
 function(compile_test name)
     add_executable(${name} ${name}.cpp)
     target_link_libraries(${name} PRIVATE gtest_main)
