@@ -15,16 +15,3 @@ module bindgen_handle
         end
     end interface
 end
-
-! remove once GT is at v2.0
-#ifdef CPP_BINDGEN_GT_LEGACY
-module gt_handle
-    implicit none
-    interface
-        subroutine gt_release(h) bind(c, name="bindgen_release")
-            use iso_c_binding
-            type(c_ptr), value :: h
-        end
-    end interface
-end
-#endif

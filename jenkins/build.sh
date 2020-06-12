@@ -68,12 +68,3 @@ mkdir -p build && cd build
 cmake ..
 nice make -j8
 ./driver
-
-# test gt legacy mode (don't run it on kesch because CUDA 8 is not supported in legacy mode)
-if [[ "$HOST" != kesch* ]]; then
-    cd ${cwd}
-    mkdir -p build_legacy && cd build_legacy
-    cmake .. -DCMAKE_INSTALL_PREFIX=${cwd}/install -DCPP_BINDGEN_GT_LEGACY=ON
-    nice make -j8 install
-    $RUN_PREFIX ctest .
-fi
