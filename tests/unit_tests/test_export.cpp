@@ -233,7 +233,7 @@ contains
 
       call test_cpp_bindgen_and_wrapper_compatible_type_b_impl(arg0, descriptor1)
     end subroutine
-end
+end module
 )?";
 
     TEST(export, fortran_interface) {

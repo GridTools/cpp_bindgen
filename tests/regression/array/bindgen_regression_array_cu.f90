@@ -49,4 +49,4 @@ contains
 
       call fill_gpu_array_impl(descriptor0)
     end subroutine
-end
+end module
