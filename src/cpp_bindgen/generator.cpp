@@ -162,6 +162,6 @@ namespace cpp_bindgen {
         strm << get_fortran_generics();
         strm << "contains\n";
         strm << _impl::get_entities<_impl::fortran_wrapper_traits>();
-        strm << "end\n";
+        strm << "end module\n";
     }
 } // namespace cpp_bindgen

@@ -98,7 +98,7 @@ contains
 
       call qux_impl(arg0, descriptor1)
     end subroutine
-end
+end module
 )?";
 
         TEST(generator, fortran_interface) {

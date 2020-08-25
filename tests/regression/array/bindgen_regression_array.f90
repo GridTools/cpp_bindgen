@@ -26,4 +26,4 @@ contains
 
       call fill_array_impl(descriptor0)
     end subroutine
-end
+end module

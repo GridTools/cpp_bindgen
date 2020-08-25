@@ -11,4 +11,4 @@ implicit none
 
   end interface
 contains
-end
+end module
