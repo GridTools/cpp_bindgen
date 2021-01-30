@@ -10,8 +10,8 @@
 
 #include <cpp_bindgen/function_wrapper.hpp>
 
-#include <iostream>
 #include <stack>
+#include <string>
 #include <type_traits>
 
 #include <gtest/gtest.h>
@@ -42,6 +42,12 @@ namespace cpp_bindgen {
         static_assert(std::is_same<wrapped_t<array_descriptor_struct(array_descriptor_struct)>,
                           bindgen_handle *(bindgen_fortran_array_descriptor *)>::value,
             "");
+        static_assert(std::is_same<wrapped_t<void(std::string)>, void(bindgen_fortran_string_descriptor*)>::value, "");
+        static_assert(std::is_same<wrapped_t<void(std::string const &)>,
+            void(bindgen_fortran_string_descriptor*)>::value, "");
+        static_assert(std::is_same<wrapped_t<void(std::string&&)>,
+            void(bindgen_fortran_string_descriptor*)>::value, "");
+        static_assert(std::is_same<wrapped_t<void(std::string&)>, void(bindgen_handle*)>::value, "");
 
         template <class T>
         std::stack<T> create() {
@@ -138,6 +144,14 @@ namespace cpp_bindgen {
             auto get = wrap<int(int(&)[2][3], size_t, size_t)>(
                 [](int(&array)[2][3], size_t i, size_t j) { return array[i][j]; });
             EXPECT_EQ(array[0][0], get(&descriptor, 0, 0));
+        }
+
+        TEST(wrap, string_descriptor) {
+            char src[] = "foo";
+            bindgen_fortran_string_descriptor in = {src, 3};
+            wrap(+[](std::string const& s) {
+                EXPECT_EQ(s, "foo");
+            })(&in);
         }
     } // namespace
 } // namespace cpp_bindgen

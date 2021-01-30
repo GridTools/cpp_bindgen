@@ -68,7 +68,11 @@ function(bindgen_enable_fortran_library target_name)
 
     if(CMAKE_Fortran_COMPILER_LOADED)
         if(NOT TARGET cpp_bindgen_fortran_handle)
-            add_library(cpp_bindgen_fortran_handle ${__CPP_BINDGEN_SOURCE_DIR}/cpp_bindgen/array_descriptor.f90 ${__CPP_BINDGEN_SOURCE_DIR}/cpp_bindgen/handle.f90)
+            add_library(
+                cpp_bindgen_fortran_handle
+                ${__CPP_BINDGEN_SOURCE_DIR}/cpp_bindgen/array_descriptor.f90
+                ${__CPP_BINDGEN_SOURCE_DIR}/cpp_bindgen/string_descriptor.f90
+                ${__CPP_BINDGEN_SOURCE_DIR}/cpp_bindgen/handle.f90)
             # the following variable is used to install the .mod files in install_cpp_bindgen_targets() and
             # therefore needs to be available project-wide
             set(CPP_BINDGEN_Fortran_MODULES_DIRECTORY ${CMAKE_BINARY_DIR}/cpp_bindgen_modules

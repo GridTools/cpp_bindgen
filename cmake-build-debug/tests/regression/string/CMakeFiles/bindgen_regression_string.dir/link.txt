@@ -1,0 +1,2 @@
+/usr/bin/ar qc libbindgen_regression_string.a  CMakeFiles/bindgen_regression_string.dir/implementation.cpp.o
+/usr/bin/ranlib libbindgen_regression_string.a

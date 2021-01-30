@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcpp_bindgen_generator.a  CMakeFiles/cpp_bindgen_generator.dir/src/cpp_bindgen/generator.cpp.o
+/usr/bin/ranlib libcpp_bindgen_generator.a

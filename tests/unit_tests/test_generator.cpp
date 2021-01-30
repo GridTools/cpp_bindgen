@@ -12,6 +12,7 @@
 #include <cpp_bindgen/handle_impl.hpp>
 
 #include <sstream>
+#include <string>
 
 #include <gtest/gtest.h>
 
@@ -21,7 +22,7 @@ namespace cpp_bindgen {
         BINDGEN_ADD_GENERATED_DECLARATION(void(), foo);
         BINDGEN_ADD_GENERATED_DECLARATION(bindgen_handle *(int, double const *, bindgen_handle *), bar);
         BINDGEN_ADD_GENERATED_DECLARATION(void(int *const *volatile *const *), baz);
-        BINDGEN_ADD_GENERATED_DECLARATION_WRAPPED(void(int, int (&)[1][2][3]), qux);
+        BINDGEN_ADD_GENERATED_DECLARATION_WRAPPED(void(int, int (&)[1][2][3], std::string const&), qux);
 
         BINDGEN_ADD_GENERIC_DECLARATION(foo, bar);
         BINDGEN_ADD_GENERIC_DECLARATION(foo, baz);
@@ -31,6 +32,7 @@ namespace cpp_bindgen {
 
 #include <cpp_bindgen/array_descriptor.h>
 #include <cpp_bindgen/handle.h>
+#include <cpp_bindgen/string_descriptor.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -39,7 +41,7 @@ extern "C" {
 bindgen_handle* bar(int, double*, bindgen_handle*);
 void baz(int****);
 void foo();
-void qux(int, bindgen_fortran_array_descriptor*);
+void qux(int, bindgen_fortran_array_descriptor*, bindgen_fortran_string_descriptor*);
 
 #ifdef __cplusplus
 }
@@ -71,11 +73,13 @@ implicit none
     subroutine foo() bind(c)
       use iso_c_binding
     end subroutine
-    subroutine qux_impl(arg0, arg1) bind(c, name="qux")
+    subroutine qux_impl(arg0, arg1, arg2) bind(c, name="qux")
       use iso_c_binding
       use bindgen_array_descriptor
+      use bindgen_string_descriptor
       integer(c_int), value :: arg0
       type(bindgen_fortran_array_descriptor) :: arg1
+      type(bindgen_fortran_string_descriptor) :: arg2
     end subroutine
 
   end interface
@@ -83,12 +87,15 @@ implicit none
     procedure bar, baz
   end interface
 contains
-    subroutine qux(arg0, arg1)
+    subroutine qux(arg0, arg1, arg2)
       use iso_c_binding
       use bindgen_array_descriptor
+      use bindgen_string_descriptor
       integer(c_int), value, target :: arg0
       integer(c_int), dimension(:,:,:), target :: arg1
+      character(*), target :: arg2
       type(bindgen_fortran_array_descriptor) :: descriptor1
+      type(bindgen_fortran_string_descriptor) :: descriptor2
 
       descriptor1%rank = 3
       descriptor1%type = 1
@@ -96,7 +103,10 @@ contains
         shape(descriptor1%dims), (/0/))
       descriptor1%data = c_loc(arg1(lbound(arg1, 1),lbound(arg1, 2),lbound(arg1, 3)))
 
-      call qux_impl(arg0, descriptor1)
+      descriptor2%data = c_loc(arg2)
+      descriptor2%size = len(arg2)
+
+      call qux_impl(arg0, descriptor1, descriptor2)
     end subroutine
 end module
 )?";

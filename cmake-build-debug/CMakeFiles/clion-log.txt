@@ -1,0 +1,5 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=cc -DCMAKE_CXX_COMPILER=c++ -G "CodeBlocks - Unix Makefiles" /Users/antonaf/cpp_bindgen
+-- Disable CUDA tests
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/antonaf/cpp_bindgen/cmake-build-debug

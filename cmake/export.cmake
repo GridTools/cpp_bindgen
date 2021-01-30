@@ -61,6 +61,7 @@ set(CBINDINGS_SOURCES
     "${PROJECT_SOURCE_DIR}/src/cpp_bindgen/generator.cpp"
     "${PROJECT_SOURCE_DIR}/src/cpp_bindgen/generator_main.cpp"
     "${PROJECT_SOURCE_DIR}/src/cpp_bindgen/array_descriptor.f90"
+    "${PROJECT_SOURCE_DIR}/src/cpp_bindgen/string_descriptor.f90"
     "${PROJECT_SOURCE_DIR}/src/cpp_bindgen/handle.f90"
     "${PROJECT_SOURCE_DIR}/src/cpp_bindgen/handle.cpp"
     )

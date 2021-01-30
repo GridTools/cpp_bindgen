@@ -1,0 +1,1685 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="cpp_bindgen"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\usr\;CMake Files\..\..\..\usr\local\;CMake Files\..\..\..\usr\local\lib\;CMake Files\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\usr\local\lib\cmake\Boost-1.75.0\;CMake Files\..\..\..\usr\local\lib\cmake\boost_headers-1.75.0\;CMake Files\cmake\;CMake Files\tests\;CMake Files\tests\unit_tests\;CMake Files\tests\unit_tests\common\;CMake Files\tests\regression\;CMake Files\tests\regression\simple\;CMake Files\tests\regression\array\;CMake Files\tests\regression\string\;CMake Files\cmake-build-debug\;CMake Files\cmake-build-debug\_deps\;CMake Files\cmake-build-debug\_deps\googletest-src\;CMake Files\cmake-build-debug\_deps\googletest-src\googlemock\;CMake Files\cmake-build-debug\_deps\googletest-src\googletest\;CMake Files\cmake-build-debug\_deps\googletest-src\googletest\cmake\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/strip">
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/strip"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/local">
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/local"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="list_install_components">
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 list_install_components"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cpp_bindgen_generator">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/libcpp_bindgen_generator.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 cpp_bindgen_generator"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cpp_bindgen_generator/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/libcpp_bindgen_generator.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 cpp_bindgen_generator/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test">
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 test"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Continuous">
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 Continuous"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Experimental">
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 Experimental"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Nightly">
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 Nightly"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install">
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 install"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cpp_bindgen_handle">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/libcpp_bindgen_handle.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 cpp_bindgen_handle"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cpp_bindgen_handle/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/libcpp_bindgen_handle.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 cpp_bindgen_handle/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gmock">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/libgmockd.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googlemock/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googlemock"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 gmock"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gmock/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/libgmockd.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googlemock/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googlemock"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 gmock/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gmock_main">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/libgmock_maind.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googlemock/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googlemock"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 gmock_main"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gmock_main/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/libgmock_maind.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googlemock/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googlemock"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 gmock_main/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest_main">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest/libgtest_maind.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest_main"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest_main/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest/libgtest_maind.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest_main/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest/libgtestd.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest/libgtestd.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-build/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_export">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/test_export" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 test_export"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_export/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/test_export" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 test_export/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_generator">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/test_generator" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 test_generator"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_generator/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/test_generator" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 test_generator/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_fortran_array_view">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/test_fortran_array_view" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 test_fortran_array_view"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_fortran_array_view/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/test_fortran_array_view" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 test_fortran_array_view/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_function_traits">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/test_function_traits" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 test_function_traits"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_function_traits/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/test_function_traits" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 test_function_traits/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_function_wrapper">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/test_function_wrapper" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 test_function_wrapper"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_function_wrapper/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/test_function_wrapper" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 test_function_wrapper/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_make_indices">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common/test_make_indices" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common/Makefile&quot;  VERBOSE=1 test_make_indices"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_make_indices/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common/test_make_indices" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common/Makefile&quot;  VERBOSE=1 test_make_indices/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_any_moveable">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common/test_any_moveable" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common/Makefile&quot;  VERBOSE=1 test_any_moveable"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_any_moveable/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common/test_any_moveable" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/include"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common/Makefile&quot;  VERBOSE=1 test_any_moveable/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/unit_tests/common/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_simple_decl_generator">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/CMakeFiles/decl_generator/bindgen_regression_simple_decl_generator" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 bindgen_regression_simple_decl_generator"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_simple_decl_generator/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/CMakeFiles/decl_generator/bindgen_regression_simple_decl_generator" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 bindgen_regression_simple_decl_generator/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_simple_fortran">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/libbindgen_regression_simple_fortran.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/cpp_bindgen_modules"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 bindgen_regression_simple_fortran"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_simple_fortran/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/libbindgen_regression_simple_fortran.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/cpp_bindgen_modules"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 bindgen_regression_simple_fortran/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_simple">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/libbindgen_regression_simple.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 bindgen_regression_simple"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_simple/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/libbindgen_regression_simple.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 bindgen_regression_simple/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_simple_driver_fortran">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/bindgen_regression_simple_driver_fortran" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/cpp_bindgen_modules"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 bindgen_regression_simple_driver_fortran"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_simple_driver_fortran/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/bindgen_regression_simple_driver_fortran" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/cpp_bindgen_modules"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 bindgen_regression_simple_driver_fortran/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cpp_bindgen_fortran_handle">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/libcpp_bindgen_fortran_handle.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 cpp_bindgen_fortran_handle"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cpp_bindgen_fortran_handle/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/libcpp_bindgen_fortran_handle.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 cpp_bindgen_fortran_handle/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_simple_declarations">
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 bindgen_regression_simple_declarations"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_simple_driver_c">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/bindgen_regression_simple_driver_c" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 bindgen_regression_simple_driver_c"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_simple_driver_c/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/bindgen_regression_simple_driver_c" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 bindgen_regression_simple_driver_c/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/simple/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_array_declarations">
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 bindgen_regression_array_declarations"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_array_driver_fortran">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/bindgen_regression_array_driver_fortran" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/cpp_bindgen_modules"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 bindgen_regression_array_driver_fortran"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_array_driver_fortran/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/bindgen_regression_array_driver_fortran" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/cpp_bindgen_modules"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 bindgen_regression_array_driver_fortran/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_array_fortran">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/libbindgen_regression_array_fortran.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/cpp_bindgen_modules"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 bindgen_regression_array_fortran"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_array_fortran/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/libbindgen_regression_array_fortran.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/cpp_bindgen_modules"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 bindgen_regression_array_fortran/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_array_decl_generator">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/CMakeFiles/decl_generator/bindgen_regression_array_decl_generator" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 bindgen_regression_array_decl_generator"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_array_decl_generator/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/CMakeFiles/decl_generator/bindgen_regression_array_decl_generator" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 bindgen_regression_array_decl_generator/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_array">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/libbindgen_regression_array.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 bindgen_regression_array"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_array/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/libbindgen_regression_array.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 bindgen_regression_array/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/array/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_string_driver_fortran">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/bindgen_regression_string_driver_fortran" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/cpp_bindgen_modules"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 bindgen_regression_string_driver_fortran"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_string_driver_fortran/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/bindgen_regression_string_driver_fortran" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/cpp_bindgen_modules"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 bindgen_regression_string_driver_fortran/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_string_fortran">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/libbindgen_regression_string_fortran.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/cpp_bindgen_modules"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 bindgen_regression_string_fortran"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_string_fortran/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/libbindgen_regression_string_fortran.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/cmake-build-debug/cpp_bindgen_modules"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 bindgen_regression_string_fortran/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_string">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/libbindgen_regression_string.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 bindgen_regression_string"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_string/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/libbindgen_regression_string.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 bindgen_regression_string/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_string_decl_generator">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/CMakeFiles/decl_generator/bindgen_regression_string_decl_generator" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 bindgen_regression_string_decl_generator"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_string_decl_generator/fast">
+				<Option output="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/CMakeFiles/decl_generator/bindgen_regression_string_decl_generator" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_PP_VARIADICS=1"/>
+					<Add directory="/Users/antonaf/cpp_bindgen/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/opt/intel/compilers_and_libraries_2020.4.301/mac/mkl/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 bindgen_regression_string_decl_generator/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bindgen_regression_string_declarations">
+				<Option working_dir="/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 bindgen_regression_string_declarations"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/antonaf/cpp_bindgen/cmake-build-debug/tests/regression/string/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googlemock/src/gmock-all.cc">
+			<Option target="gmock"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googlemock/src/gmock_main.cc">
+			<Option target="gmock_main"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/src/gtest-all.cc">
+			<Option target="gtest"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/src/gtest_main.cc">
+			<Option target="gtest_main"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/src/cpp_bindgen/array_descriptor.f90">
+			<Option target="cpp_bindgen_fortran_handle"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/src/cpp_bindgen/generator.cpp">
+			<Option target="cpp_bindgen_generator"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/src/cpp_bindgen/generator_main.cpp">
+			<Option target="bindgen_regression_simple_decl_generator"/>
+			<Option target="bindgen_regression_array_decl_generator"/>
+			<Option target="bindgen_regression_string_decl_generator"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/src/cpp_bindgen/handle.cpp">
+			<Option target="cpp_bindgen_handle"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/src/cpp_bindgen/handle.f90">
+			<Option target="cpp_bindgen_fortran_handle"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/src/cpp_bindgen/string_descriptor.f90">
+			<Option target="cpp_bindgen_fortran_handle"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/regression/array/bindgen_regression_array.f90">
+			<Option target="bindgen_regression_array_fortran"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/regression/array/driver.f90">
+			<Option target="bindgen_regression_array_driver_fortran"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/regression/array/implementation.cpp">
+			<Option target="bindgen_regression_array"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/regression/simple/bindgen_regression_simple.f90">
+			<Option target="bindgen_regression_simple_fortran"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/regression/simple/driver.c">
+			<Option target="bindgen_regression_simple_driver_c"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/regression/simple/driver.f90">
+			<Option target="bindgen_regression_simple_driver_fortran"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/regression/simple/simple.cpp">
+			<Option target="bindgen_regression_simple"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/regression/string/bindgen_regression_string.f90">
+			<Option target="bindgen_regression_string_fortran"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/regression/string/driver.f90">
+			<Option target="bindgen_regression_string_driver_fortran"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/regression/string/implementation.cpp">
+			<Option target="bindgen_regression_string"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/unit_tests/common/test_any_moveable.cpp">
+			<Option target="test_any_moveable"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/unit_tests/common/test_make_indices.cpp">
+			<Option target="test_make_indices"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/unit_tests/test_export.cpp">
+			<Option target="test_export"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/unit_tests/test_fortran_array_view.cpp">
+			<Option target="test_fortran_array_view"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/unit_tests/test_function_traits.cpp">
+			<Option target="test_function_traits"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/unit_tests/test_function_wrapper.cpp">
+			<Option target="test_function_wrapper"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/unit_tests/test_generator.cpp">
+			<Option target="test_generator"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/../../../usr/local/lib/cmake/Boost-1.75.0/BoostConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\usr\local\lib\cmake\Boost-1.75.0\"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/../../../usr/local/lib/cmake/Boost-1.75.0/BoostConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\usr\local\lib\cmake\Boost-1.75.0\"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/../../../usr/local/lib/cmake/boost_headers-1.75.0/boost_headers-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\usr\local\lib\cmake\boost_headers-1.75.0\"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/../../../usr/local/lib/cmake/boost_headers-1.75.0/boost_headers-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\usr\local\lib\cmake\boost_headers-1.75.0\"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/cmake/bindings.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/cmake/cpp_bindgen-config.cmake.in">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/cmake/cpp_bindgen.cmake.in">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/cmake/cpp_bindgen_fortran_helpers.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/cmake/detect_features.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/cmake/export.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\tests\"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/unit_tests/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\tests\unit_tests\"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/unit_tests/common/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\tests\unit_tests\common\"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/regression/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\tests\regression\"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/regression/simple/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\tests\regression\simple\"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/regression/array/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\tests\regression\array\"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/tests/regression/string/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\tests\regression\string\"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\cmake-build-debug\_deps\googletest-src\"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googlemock/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\cmake-build-debug\_deps\googletest-src\googlemock\"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\cmake-build-debug\_deps\googletest-src\googletest\"/>
+		</Unit>
+		<Unit filename="/Users/antonaf/cpp_bindgen/cmake-build-debug/_deps/googletest-src/googletest/cmake/internal_utils.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-debug\_deps\googletest-src\googletest\cmake\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

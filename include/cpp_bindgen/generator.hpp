@@ -203,7 +203,14 @@ namespace cpp_bindgen {
             }
 
             template <class CType,
+                typename std::enable_if<std::is_same<CType, bindgen_fortran_string_descriptor *>::value, int>::type = 0>
+            std::string operator()() const {
+                return "type(bindgen_fortran_string_descriptor)";
+            }
+
+            template <class CType,
                 typename std::enable_if<!std::is_same<CType, bindgen_fortran_array_descriptor *>::value &&
+                                            !std::is_same<CType, bindgen_fortran_string_descriptor *>::value &&
                                             (!std::is_pointer<CType>::value ||
                                                 std::is_class<typename std::remove_pointer<CType>::type>::value),
                     int>::type = 0>
@@ -249,23 +256,35 @@ namespace cpp_bindgen {
 
             template <class CppType,
                 class CType = param_converted_to_c_t<CppType>,
-                typename std::enable_if<!std::is_same<CType, bindgen_fortran_array_descriptor *>::value ||
-                                            !is_fortran_array_wrappable<CppType>::value,
+                typename std::enable_if<std::is_same<CType, bindgen_fortran_string_descriptor *>::value,
+                    int>::type = 0>
+            std::string operator()() const { return "character(*)"; }
+
+            template <class CppType,
+                class CType = param_converted_to_c_t<CppType>,
+                typename std::enable_if<(!std::is_same<CType, bindgen_fortran_array_descriptor *>::value ||
+                                            !is_fortran_array_wrappable<CppType>::value) &&
+                                            !std::is_same<CType, bindgen_fortran_string_descriptor *>::value,
                     int>::type = 0>
             std::string operator()() const {
                 return fortran_param_type_from_c_f{}.template operator()<CType>();
             }
         };
 
-        template <typename>
-        struct has_array_descriptor_helper;
-        template <typename... Parameters>
-        struct has_array_descriptor_helper<std::tuple<Parameters...>>
-            : disjunction<std::is_same<Parameters, bindgen_fortran_array_descriptor *>...>::type {};
+        template <class, class>
+        struct has_helper;
+        template <class T, class... Parameters>
+        struct has_helper<T, std::tuple<Parameters...>>
+            : disjunction<std::is_same<Parameters, T*>...>::type {};
 
-        template <typename CSignature>
-        struct has_array_descriptor
-            : has_array_descriptor_helper<typename function_traits::parameter_types<CSignature>::type> {};
+        template <class T, class CSignature>
+        struct has : has_helper<T, typename function_traits::parameter_types<CSignature>::type> {};
+
+        template <class CSignature>
+        using has_array_descriptor = has<bindgen_fortran_array_descriptor, CSignature>;
+
+        template <class CSignature>
+        using has_string_descriptor = has<bindgen_fortran_string_descriptor, CSignature>;
 
         /**
          * @brief This function writes the `interface`-section of the fortran-code.
@@ -292,13 +311,15 @@ namespace cpp_bindgen {
             strm << "      use iso_c_binding\n";
             if (has_array_descriptor<CSignature>::value)
                 strm << "      use bindgen_array_descriptor\n";
+            if (has_string_descriptor<CSignature>::value)
+                strm << "      use bindgen_string_descriptor\n";
             for_each_param<CSignature>(fortran_param_type_from_c_f{},
                 [&](const std::string &type_name, int i) { strm << "      " << type_name << " :: arg" << i << "\n"; });
             return strm << "    end "
                         << fortran_function_specifier<typename function_traits::result_type<CSignature>::type>() + "\n";
         }
 
-        struct cpp_type_descriptor_f {
+        struct cpp_type_array_descriptor_f {
             template <class CppType,
                 class CType = param_converted_to_c_t<CppType>,
                 typename std::enable_if<std::is_same<CType, bindgen_fortran_array_descriptor *>::value &&
@@ -318,6 +339,25 @@ namespace cpp_bindgen {
                 return nullptr;
             }
         };
+
+        struct cpp_type_string_descriptor_f {
+            template <class CppType>
+            bool operator()() const {
+                return std::is_same<param_converted_to_c_t<CppType>, bindgen_fortran_string_descriptor *>();
+            }
+        };
+
+        struct cpp_type_descriptor_f {
+            template <class CppType>
+            bool operator()() const {
+                using c_type_t = param_converted_to_c_t<CppType>;
+
+                return std::is_same<c_type_t, bindgen_fortran_string_descriptor *>() ||
+                    (std::is_same<c_type_t, bindgen_fortran_array_descriptor *>() &&
+                        is_fortran_array_wrappable<CppType>());
+            }
+        };
+
         /**
          * @brief This function writes the `contains`-section of the fortran-code.
          * @param strm Stream, where the output will be written to
@@ -341,48 +381,61 @@ namespace cpp_bindgen {
             strm << wrap_line(tmp_strm.str(), "    ");
 
             strm << "      use iso_c_binding\n";
-            if (has_array_descriptor<CSignature>::value) {
+            if (has_array_descriptor<CSignature>::value)
                 strm << "      use bindgen_array_descriptor\n";
-            }
+            if (has_string_descriptor<CSignature>::value)
+                strm << "      use bindgen_string_descriptor\n";
             for_each_param<CppSignature>(fortran_param_type_from_cpp_f{}, [&](const std::string &type_name, int i) {
                 strm << "      " << type_name << ", target :: arg" << i << "\n";
             });
 
             for_each_param<CppSignature>(
-                cpp_type_descriptor_f{}, [&](bindgen_fortran_array_descriptor const *meta, int i) {
-                    if (meta) {
-                        const auto desc_name = "descriptor" + std::to_string(i);
-                        strm << "      type(bindgen_fortran_array_descriptor) :: " + desc_name + "\n";
-                    }
+                cpp_type_array_descriptor_f{}, [&](bindgen_fortran_array_descriptor const *meta, int i) {
+                    if (!meta)
+                        return;
+                    strm << "      type(bindgen_fortran_array_descriptor) :: descriptor" << i << "\n";
+                });
+            for_each_param<CppSignature>(
+                cpp_type_string_descriptor_f{}, [&](bool is_descr, int i) {
+                  if (!is_descr)
+                      return;
+                  strm << "      type(bindgen_fortran_string_descriptor) :: descriptor" << i << "\n";
                 });
             strm << "\n";
 
             for_each_param<CppSignature>(
-                cpp_type_descriptor_f{}, [&](bindgen_fortran_array_descriptor const *meta, int i) {
-                    if (meta) {
-                        const auto var_name = "arg" + std::to_string(i);
-                        const auto desc_name = "descriptor" + std::to_string(i);
-                        std::string c_loc = "c_loc(" + var_name + "(";
-                        for (int i = 0; i < meta->rank; ++i) {
-                            if (i)
-                                c_loc += ",";
-                            c_loc += "lbound(" + var_name + ", " + std::to_string(i + 1) + ")";
-                        }
-                        c_loc += "))";
-                        if (meta->is_acc_present)
-                            strm << "      !$acc data present(" << var_name << ")\n" //
-                                 << "      !$acc host_data use_device(" << var_name << ")\n";
-
-                        strm << "      " << desc_name << "%rank = " << meta->rank << "\n"                 //
-                             << "      " << desc_name << "%type = " << meta->type << "\n"                 //
-                             << "      " << desc_name << "%dims = reshape(shape(" << var_name << "), &\n" //
-                             << "        shape(" << desc_name << "%dims), (/0/))\n"                       //
-                             << "      " << desc_name << "%data = " << c_loc << "\n";
-                        if (meta->is_acc_present)
-                            strm << "      !$acc end host_data\n" //
-                                 << "      !$acc end data\n";
-                        strm << "\n";
+                cpp_type_array_descriptor_f{}, [&](bindgen_fortran_array_descriptor const *meta, int i) {
+                    if (!meta)
+                        return;
+                    const auto var_name = "arg" + std::to_string(i);
+                    const auto desc_name = "descriptor" + std::to_string(i);
+                    std::string c_loc = "c_loc(" + var_name + "(";
+                    for (int i = 0; i < meta->rank; ++i) {
+                        if (i)
+                            c_loc += ",";
+                        c_loc += "lbound(" + var_name + ", " + std::to_string(i + 1) + ")";
                     }
+                    c_loc += "))";
+                    if (meta->is_acc_present)
+                        strm << "      !$acc data present(" << var_name << ")\n"
+                             << "      !$acc host_data use_device(" << var_name << ")\n";
+                    strm << "      " << desc_name << "%rank = " << meta->rank << "\n"
+                         << "      " << desc_name << "%type = " << meta->type << "\n"
+                         << "      " << desc_name << "%dims = reshape(shape(" << var_name << "), &\n"
+                         << "        shape(" << desc_name << "%dims), (/0/))\n"
+                         << "      " << desc_name << "%data = " << c_loc << "\n";
+                    if (meta->is_acc_present)
+                        strm << "      !$acc end host_data\n"
+                             << "      !$acc end data\n";
+                    strm << "\n";
+                });
+
+            for_each_param<CppSignature>(
+                cpp_type_string_descriptor_f{}, [&](bool is_descr, int i) {
+                    if (!is_descr)
+                        return;
+                    strm << "      descriptor" << i << "%data = c_loc(arg" << i << ")\n"
+                         << "      descriptor" << i << "%size = len(arg" << i << ")\n\n";
                 });
 
             tmp_strm.str("");
@@ -392,15 +445,10 @@ namespace cpp_bindgen {
                 tmp_strm << fortran_name << " = " << fortran_cbindings_name << "(";
             }
             for_each_param<CppSignature>(
-                cpp_type_descriptor_f{}, [&](bindgen_fortran_array_descriptor const *meta, int i) {
+                cpp_type_descriptor_f{}, [&](bool is_descriptor, int i) {
                     if (i)
                         tmp_strm << ", ";
-                    if (meta) {
-                        const auto desc_name = "descriptor" + std::to_string(i);
-                        tmp_strm << desc_name;
-                    } else {
-                        tmp_strm << "arg" << i;
-                    }
+                    tmp_strm << (is_descriptor ? "descriptor" : "arg") << i;
                 });
             tmp_strm << ")";
             strm << wrap_line(tmp_strm.str(), "      ");

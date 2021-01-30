@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/cpp_bindgen/common/function_traits.hpp
+tuple
+-
+type_traits
+-
+
+/Users/antonaf/cpp_bindgen/tests/unit_tests/test_function_traits.cpp
+cpp_bindgen/common/function_traits.hpp
+-
+

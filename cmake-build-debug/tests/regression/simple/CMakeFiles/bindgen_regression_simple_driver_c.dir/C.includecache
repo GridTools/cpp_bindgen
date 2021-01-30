@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/cpp_bindgen/array_descriptor.h
+stdbool.h
+-
+
+../include/cpp_bindgen/handle.h
+
+../include/cpp_bindgen/string_descriptor.h
+stddef.h
+-
+
+/Users/antonaf/cpp_bindgen/tests/regression/simple/bindgen_regression_simple.h
+cpp_bindgen/array_descriptor.h
+-
+cpp_bindgen/handle.h
+-
+cpp_bindgen/string_descriptor.h
+-
+
+/Users/antonaf/cpp_bindgen/tests/regression/simple/driver.c
+bindgen_regression_simple.h
+/Users/antonaf/cpp_bindgen/tests/regression/simple/bindgen_regression_simple.h
+
