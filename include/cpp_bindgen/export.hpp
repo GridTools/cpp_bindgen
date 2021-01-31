@@ -75,7 +75,7 @@
  *       - types that are fortran_array_wrappable are transformed to a bindgen_fortran_array_descriptor in the
  *         c-bindings, and provide a wrapper in the fortran-bindings such that they can be called with a fortran array
  *       - types that are fortran_string_bindable are transformed to a bindgen_fortran_string_descriptor in the
- *         c-bindings, and provide a wrapper in the fortran-bindings such that they can be called with a fortran array
+ *         c-bindings, and provide a wrapper in the fortran-bindings such that they can be called with a fortran string
  *       - classes (and structures) and references or pointers to them are transformed to `bindgen_handle*`;
  *       - all other parameter types will cause a compiler error.
  *   Additionally the newly generated function will be registered for automatic interface generation.
