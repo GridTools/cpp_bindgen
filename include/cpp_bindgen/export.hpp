@@ -74,9 +74,21 @@
  *         bindgen_fortran_array_descriptor
  *       - types that are fortran_array_wrappable are transformed to a bindgen_fortran_array_descriptor in the
  *         c-bindings, and provide a wrapper in the fortran-bindings such that they can be called with a fortran array
+ *       - types that are fortran_string_bindable are transformed to a bindgen_fortran_string_descriptor in the
+ *         c-bindings, and provide a wrapper in the fortran-bindings such that they can be called with a fortran array
  *       - classes (and structures) and references or pointers to them are transformed to `bindgen_handle*`;
  *       - all other parameter types will cause a compiler error.
  *   Additionally the newly generated function will be registered for automatic interface generation.
+ *
+ *   A note about fortran strings support:
+ *     `std::string` (and `std::string_view` for C++ standard >= 17) and their R-refs and const L-refs satisfy
+ *     `fortran_string_bindable` criteria. This means that for the C++ function like `void f(std::string& const)`
+ *     fortran wrapper will be generated that takes `character(*)` as a parameter. Note that in this case additional
+ *     data copy will take place while calling `std::string` constructor. For C++17 and higher the user can use
+ *     `void f(std::string_view)` signature to avoid data copy. For the C++11/C++14 there are also copy free solutions:
+ *       - use f(bindgen_fortran_string_descriptor) signature for the raw access to the fortran data or
+ *       - use custom `string_view like` class (T) and provide
+ *          `T bindgen_make_fortran_string_view(bindgen_fortran_string_descriptor desc, T*);` function available by ADL.
  *
  *   @param n The arity of the generated function.
  *   @param name The name of the generated function.

@@ -1,12 +1,12 @@
-test_export 1 0.00570849
-test_fortran_array_view 2 0.00610759
-test_function_wrapper 2 0.00246728
-test_generator 2 0.00228463
-test_function_traits 2 0.00562864
-test_any_moveable 2 0.00564855
-test_make_indices 2 0.00482389
-bindgen_regression_simple_driver_fortran 2 0.00481399
-bindgen_regression_simple_driver_c 2 0.00364488
-bindgen_regression_array_driver_fortran 2 0.00259685
-bindgen_regression_string_driver_fortran 2 0.00224717
+test_export 2 0.0480706
+test_fortran_array_view 3 0.00427998
+test_function_wrapper 3 0.00316107
+test_generator 3 0.0029313
+test_function_traits 3 0.00317642
+test_any_moveable 3 0.00336984
+test_make_indices 3 0.00287809
+bindgen_regression_simple_driver_fortran 3 0.00344923
+bindgen_regression_simple_driver_c 3 0.00265137
+bindgen_regression_array_driver_fortran 3 0.00224343
+bindgen_regression_string_driver_fortran 3 0.00198892
 ---

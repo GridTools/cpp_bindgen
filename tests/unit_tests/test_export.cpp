@@ -11,7 +11,6 @@
 #include <cpp_bindgen/export.hpp>
 
 #include <functional>
-#include <sstream>
 #include <stack>
 
 #include <gtest/gtest.h>
