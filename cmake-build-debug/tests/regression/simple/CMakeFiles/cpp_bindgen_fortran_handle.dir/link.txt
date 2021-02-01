@@ -1,2 +1,0 @@
-/usr/bin/ar qc libcpp_bindgen_fortran_handle.a  CMakeFiles/cpp_bindgen_fortran_handle.dir/__/__/__/src/cpp_bindgen/array_descriptor.f90.o CMakeFiles/cpp_bindgen_fortran_handle.dir/__/__/__/src/cpp_bindgen/string_descriptor.f90.o CMakeFiles/cpp_bindgen_fortran_handle.dir/__/__/__/src/cpp_bindgen/handle.f90.o
-/usr/bin/ranlib libcpp_bindgen_fortran_handle.a

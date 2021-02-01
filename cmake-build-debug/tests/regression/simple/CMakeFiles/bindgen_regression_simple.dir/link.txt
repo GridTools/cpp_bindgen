@@ -1,2 +1,0 @@
-/usr/bin/ar qc libbindgen_regression_simple.a  CMakeFiles/bindgen_regression_simple.dir/simple.cpp.o
-/usr/bin/ranlib libbindgen_regression_simple.a

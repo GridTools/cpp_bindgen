@@ -1,2 +1,0 @@
-/usr/bin/ar qc libbindgen_regression_string_fortran.a  CMakeFiles/bindgen_regression_string_fortran.dir/bindgen_regression_string.f90.o
-/usr/bin/ranlib libbindgen_regression_string_fortran.a

@@ -1,5 +1,0 @@
-# The fortran modules provided by this target.
-provides
- bindgen_array_descriptor.mod
- bindgen_handle.mod
- bindgen_string_descriptor.mod
