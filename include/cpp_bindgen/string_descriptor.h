@@ -13,7 +13,7 @@
 #include <stddef.h>
 
 struct bindgen_fortran_string_descriptor {
-    char* data;
+    char *data;
     ptrdiff_t size;
 };
 typedef struct bindgen_fortran_string_descriptor bindgen_fortran_string_descriptor;

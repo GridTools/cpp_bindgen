@@ -13,6 +13,6 @@
 
 #include <cpp_bindgen/export.hpp>
 
-int atoi_impl(std::string const& src) { return atoi(src.c_str()); }
+int atoi_impl(std::string const &src) { return atoi(src.c_str()); }
 
 BINDGEN_EXPORT_BINDING_WRAPPED_1(my_atoi, atoi_impl);

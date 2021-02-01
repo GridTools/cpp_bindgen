@@ -57,9 +57,8 @@ namespace cpp_bindgen {
 
         template <class T>
         struct param_converted_to_c<T *,
-            typename std::enable_if<std::is_class<T>::value &&
-                                    !is_fortran_array_bindable<T*>::value &&
-                                    !is_fortran_string_bindable<T*>::value>::type> {
+            typename std::enable_if<std::is_class<T>::value && !is_fortran_array_bindable<T *>::value &&
+                                    !is_fortran_string_bindable<T *>::value>::type> {
             using type = bindgen_handle *;
         };
         template <class T>

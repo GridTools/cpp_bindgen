@@ -256,9 +256,10 @@ namespace cpp_bindgen {
 
             template <class CppType,
                 class CType = param_converted_to_c_t<CppType>,
-                typename std::enable_if<std::is_same<CType, bindgen_fortran_string_descriptor *>::value,
-                    int>::type = 0>
-            std::string operator()() const { return "character(*)"; }
+                typename std::enable_if<std::is_same<CType, bindgen_fortran_string_descriptor *>::value, int>::type = 0>
+            std::string operator()() const {
+                return "character(*)";
+            }
 
             template <class CppType,
                 class CType = param_converted_to_c_t<CppType>,
@@ -274,8 +275,7 @@ namespace cpp_bindgen {
         template <class, class>
         struct has_helper;
         template <class T, class... Parameters>
-        struct has_helper<T, std::tuple<Parameters...>>
-            : disjunction<std::is_same<Parameters, T*>...>::type {};
+        struct has_helper<T, std::tuple<Parameters...>> : disjunction<std::is_same<Parameters, T *>...>::type {};
 
         template <class T, class CSignature>
         struct has : has_helper<T, typename function_traits::parameter_types<CSignature>::type> {};
@@ -353,8 +353,8 @@ namespace cpp_bindgen {
                 using c_type_t = param_converted_to_c_t<CppType>;
 
                 return std::is_same<c_type_t, bindgen_fortran_string_descriptor *>() ||
-                    (std::is_same<c_type_t, bindgen_fortran_array_descriptor *>() &&
-                        is_fortran_array_wrappable<CppType>());
+                       (std::is_same<c_type_t, bindgen_fortran_array_descriptor *>() &&
+                           is_fortran_array_wrappable<CppType>());
             }
         };
 
@@ -395,12 +395,11 @@ namespace cpp_bindgen {
                         return;
                     strm << "      type(bindgen_fortran_array_descriptor) :: descriptor" << i << "\n";
                 });
-            for_each_param<CppSignature>(
-                cpp_type_string_descriptor_f{}, [&](bool is_descr, int i) {
-                  if (!is_descr)
-                      return;
-                  strm << "      type(bindgen_fortran_string_descriptor) :: descriptor" << i << "\n";
-                });
+            for_each_param<CppSignature>(cpp_type_string_descriptor_f{}, [&](bool is_descr, int i) {
+                if (!is_descr)
+                    return;
+                strm << "      type(bindgen_fortran_string_descriptor) :: descriptor" << i << "\n";
+            });
             strm << "\n";
 
             for_each_param<CppSignature>(
@@ -430,13 +429,12 @@ namespace cpp_bindgen {
                     strm << "\n";
                 });
 
-            for_each_param<CppSignature>(
-                cpp_type_string_descriptor_f{}, [&](bool is_descr, int i) {
-                    if (!is_descr)
-                        return;
-                    strm << "      descriptor" << i << "%data = c_loc(arg" << i << ")\n"
-                         << "      descriptor" << i << "%size = len(arg" << i << ")\n\n";
-                });
+            for_each_param<CppSignature>(cpp_type_string_descriptor_f{}, [&](bool is_descr, int i) {
+                if (!is_descr)
+                    return;
+                strm << "      descriptor" << i << "%data = c_loc(arg" << i << ")\n"
+                     << "      descriptor" << i << "%size = len(arg" << i << ")\n\n";
+            });
 
             tmp_strm.str("");
             if (std::is_void<typename function_traits::result_type<CSignature>::type>::value) {
@@ -444,12 +442,11 @@ namespace cpp_bindgen {
             } else {
                 tmp_strm << fortran_name << " = " << fortran_cbindings_name << "(";
             }
-            for_each_param<CppSignature>(
-                cpp_type_descriptor_f{}, [&](bool is_descriptor, int i) {
-                    if (i)
-                        tmp_strm << ", ";
-                    tmp_strm << (is_descriptor ? "descriptor" : "arg") << i;
-                });
+            for_each_param<CppSignature>(cpp_type_descriptor_f{}, [&](bool is_descriptor, int i) {
+                if (i)
+                    tmp_strm << ", ";
+                tmp_strm << (is_descriptor ? "descriptor" : "arg") << i;
+            });
             tmp_strm << ")";
             strm << wrap_line(tmp_strm.str(), "      ");
 
