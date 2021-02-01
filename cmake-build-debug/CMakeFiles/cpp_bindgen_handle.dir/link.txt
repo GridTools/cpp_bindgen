@@ -1,2 +1,0 @@
-/usr/bin/ar qc libcpp_bindgen_handle.a  CMakeFiles/cpp_bindgen_handle.dir/src/cpp_bindgen/handle.cpp.o
-/usr/bin/ranlib libcpp_bindgen_handle.a
