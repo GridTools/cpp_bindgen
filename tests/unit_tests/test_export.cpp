@@ -11,8 +11,8 @@
 #include <cpp_bindgen/export.hpp>
 
 #include <functional>
-#include <sstream>
 #include <stack>
+#include <string>
 
 #include <gtest/gtest.h>
 
@@ -74,6 +74,9 @@ namespace {
     BINDGEN_EXPORT_BINDING_WRAPPED_2(
         test_cpp_bindgen_and_wrapper_compatible_type_b, test_cpp_bindgen_and_wrapper_compatible_type_impl);
 
+    void takes_string_impl(std::string) {}
+    BINDGEN_EXPORT_BINDING_WRAPPED_1(takes_string, takes_string_impl);
+
     TEST(export, smoke) {
         bindgen_handle *obj = my_create();
         EXPECT_TRUE(my_empty(obj));
@@ -90,6 +93,7 @@ namespace {
 
 #include <cpp_bindgen/array_descriptor.h>
 #include <cpp_bindgen/handle.h>
+#include <cpp_bindgen/string_descriptor.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -104,6 +108,7 @@ void my_push0(bindgen_handle*, float);
 void my_push1(bindgen_handle*, int);
 void my_push2(bindgen_handle*, double);
 double my_top(bindgen_handle*);
+void takes_string(bindgen_fortran_string_descriptor*);
 void test_cpp_bindgen_and_wrapper_compatible_type_a(bindgen_fortran_array_descriptor*, bindgen_fortran_array_descriptor*);
 void test_cpp_bindgen_and_wrapper_compatible_type_b(bindgen_fortran_array_descriptor*, bindgen_fortran_array_descriptor*);
 
@@ -166,6 +171,11 @@ implicit none
       use iso_c_binding
       type(c_ptr), value :: arg0
     end function
+    subroutine takes_string_impl(arg0) bind(c, name="takes_string")
+      use iso_c_binding
+      use bindgen_string_descriptor
+      type(bindgen_fortran_string_descriptor) :: arg0
+    end subroutine
     subroutine test_cpp_bindgen_and_wrapper_compatible_type_a(arg0, arg1) bind(c)
       use iso_c_binding
       use bindgen_array_descriptor
@@ -217,6 +227,17 @@ contains
       descriptor0%data = c_loc(arg0(lbound(arg0, 1),lbound(arg0, 2)))
 
       call my_assign1_impl(descriptor0, arg1)
+    end subroutine
+    subroutine takes_string(arg0)
+      use iso_c_binding
+      use bindgen_string_descriptor
+      character(*), target :: arg0
+      type(bindgen_fortran_string_descriptor) :: descriptor0
+
+      descriptor0%data = c_loc(arg0)
+      descriptor0%size = len(arg0)
+
+      call takes_string_impl(descriptor0)
     end subroutine
     subroutine test_cpp_bindgen_and_wrapper_compatible_type_b(arg0, arg1)
       use iso_c_binding

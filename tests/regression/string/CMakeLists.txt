@@ -1,0 +1,10 @@
+bindgen_add_library(bindgen_regression_string SOURCES implementation.cpp)
+
+add_executable(bindgen_regression_string_driver_fortran driver.f90)
+target_link_libraries(bindgen_regression_string_driver_fortran bindgen_regression_string_fortran)
+if(CMAKE_Fortran_COMPILER_ID STREQUAL "Intel")
+    set_target_properties(bindgen_regression_string_driver_fortran PROPERTIES LINKER_LANGUAGE Fortran)
+endif()
+
+add_test(NAME bindgen_regression_string_driver_fortran
+        COMMAND $<TARGET_FILE:bindgen_regression_string_driver_fortran>)

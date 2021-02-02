@@ -16,6 +16,7 @@
 #include "common/any_moveable.hpp"
 
 #include "fortran_array_view.hpp"
+#include "fortran_string_view.hpp"
 #include "handle_impl.hpp"
 
 namespace cpp_bindgen {
@@ -56,19 +57,26 @@ namespace cpp_bindgen {
 
         template <class T>
         struct param_converted_to_c<T *,
-            typename std::enable_if<std::is_class<T>::value && !is_fortran_array_bindable<T *>::value>::type> {
+            typename std::enable_if<std::is_class<T>::value && !is_fortran_array_bindable<T *>::value &&
+                                    !is_fortran_string_bindable<T *>::value>::type> {
             using type = bindgen_handle *;
         };
         template <class T>
         struct param_converted_to_c<T,
             typename std::enable_if<std::is_class<remove_reference_t<T>>::value &&
-                                    !is_fortran_array_bindable<T>::value>::type> {
+                                    !is_fortran_array_bindable<T>::value &&
+                                    !is_fortran_string_bindable<T>::value>::type> {
             using type = bindgen_handle *;
         };
 
         template <class T>
         struct param_converted_to_c<T, typename std::enable_if<is_fortran_array_bindable<T>::value>::type> {
             using type = bindgen_fortran_array_descriptor *;
+        };
+
+        template <class T>
+        struct param_converted_to_c<T, typename std::enable_if<is_fortran_string_bindable<T>::value>::type> {
+            using type = bindgen_fortran_string_descriptor *;
         };
 
         template <class T, typename std::enable_if<std::is_arithmetic<T>::value, int>::type = 0>
@@ -112,6 +120,10 @@ namespace cpp_bindgen {
         template <class T>
         T convert_from_c(bindgen_fortran_array_descriptor *obj) {
             return make_fortran_array_view<T>(obj);
+        }
+        template <class T, class U = typename std::decay<T>::type>
+        U convert_from_c(bindgen_fortran_string_descriptor *obj) {
+            return make_fortran_string_view<U>(*obj);
         }
 
         template <class T, class Impl>

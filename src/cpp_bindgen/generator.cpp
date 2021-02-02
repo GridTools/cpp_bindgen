@@ -141,7 +141,8 @@ namespace cpp_bindgen {
         strm << "// This file is generated!\n";
         strm << "#pragma once\n\n";
         strm << "#include <cpp_bindgen/array_descriptor.h>\n";
-        strm << "#include <cpp_bindgen/handle.h>\n\n";
+        strm << "#include <cpp_bindgen/handle.h>\n";
+        strm << "#include <cpp_bindgen/string_descriptor.h>\n\n";
         strm << "#ifdef __cplusplus\n";
         strm << "extern \"C\" {\n";
         strm << "#endif\n\n";

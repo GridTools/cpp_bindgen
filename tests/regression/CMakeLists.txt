@@ -6,4 +6,5 @@ add_subdirectory(simple)
 
 if(CMAKE_Fortran_COMPILER_LOADED)
     add_subdirectory(array)
+    add_subdirectory(string)
 endif()
